@@ -1,5 +1,7 @@
 # NativeModels
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Prefinem/nativemodels.svg)](https://greenkeeper.io/)
+
 Native Models provides a way to map objects and arrays of objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
 ## Getting Started
