@@ -2,12 +2,12 @@ import base from './base';
 
 const date = () => ({
 	...base,
-	parse(value) {
+	parse(value, name) {
 		if (value instanceof Date) {
 			return value;
 		}
 
-		throw new Error('Not a date');
+		throw new Error(`Property ${name} is not a date`);
 	},
 });
 

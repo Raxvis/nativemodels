@@ -20,7 +20,7 @@ const parseRecord = (schema, record, defaultedRecord) =>
 	Object.keys(record).reduce(
 		(result, key) => ({
 			...result,
-			...(schema[key] ? { [key]: schema[key].parse(record[key]) } : {}),
+			...(schema[key] ? { [key]: schema[key].parse(record[key], key) } : {}),
 		}),
 		defaultedRecord,
 	);
