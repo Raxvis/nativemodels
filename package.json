@@ -1,0 +1,59 @@
+{
+	"author": {
+		"email": "prefinem@gmail.com",
+		"name": "Prefinem",
+		"url": "https://prefinem.com"
+	},
+	"description": "Native Models for Javascript",
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-eslint": "^8.2.6",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"eslint": "^5.3.0",
+		"eslint-config-prettier": "^2.9.0",
+		"gulp": "^3.9.1",
+		"gulp-babel": "^7.0.1",
+		"gulp-eslint": "^5.0.0",
+		"gulp-eslint-if-fixed": "^1.0.0",
+		"jest": "^23.5.0",
+		"lint-staged": "^7.2.0",
+		"pkg-ok": "^2.2.0"
+	},
+	"engines": {
+		"node": ">=8.10"
+	},
+	"homepage": "https://github.com/Prefinem/nativemodels",
+	"license": "MIT",
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"prettier --config ./.prettierrc.json --write",
+			"jest --bail --findRelatedTests",
+			"git add"
+		]
+	},
+	"main": "index.js",
+	"name": "nativemodels",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Prefinem/nativemodels"
+	},
+	"scripts": {
+		"build": "gulp build && cp ./package.json ./dist/package.json",
+		"clean": "yarn lint && yarn prettify",
+		"docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
+		"docs:md": "jsdoc2md src/** >> DOCS.md",
+		"lint": "eslint src/* --fix",
+		"precommit": "lint-staged",
+		"prepublishOnly": "pkg-ok",
+		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
+		"pub": "yarn clean && yarn build && yarn publish dist/",
+		"staged": "lint-staged",
+		"start": "gulp watch",
+		"test": "jest --coverage",
+		"watch": "gulp watch"
+	},
+	"version": "0.0.1"
+}
