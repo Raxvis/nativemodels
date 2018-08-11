@@ -54,3 +54,9 @@ test('objectModel - fail to set value that does not exist', () => {
 		model().lastName = 'test';
 	}).toThrow();
 });
+
+test('objectModel - handle extra data', () => {
+	const model = objectModel({ name: datatypes.string() });
+
+	expect(model({ name: 'name', name2: 'remove this' })).toEqual({ name: 'name' });
+});

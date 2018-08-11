@@ -1,53 +1,53 @@
 /* eslint consistent-return:off */
 
-export const objectModel = (schema) => (record = {}) => {
-	const recordKeys = Object.keys(record);
-	const schemaKeys = Object.keys(schema);
-	const parsedRecord = {};
-
-	schemaKeys.forEach((key) => {
+const requiredCheck = (schema, record) =>
+	Object.keys(schema).forEach((key) => {
 		if (schema[key].isRequired && !record[key]) {
 			throw new Error(`Property: '${key}' is required`);
 		}
-		if (schema[key].hasDefault && !record[key]) {
-			parsedRecord[key] = schema[key].defaultValue;
-		}
 	});
 
-	recordKeys.forEach((key) => {
-		if (schemaKeys.indexOf(key) > -1) {
-			parsedRecord[key] = schema[key].parse(record[key]);
+const defaultRecord = (schema, record) =>
+	Object.keys(schema).reduce(
+		(result, key) => ({
+			...result,
+			...(schema[key].hasDefault && !record[key] ? { [key]: schema[key].defaultValue } : {}),
+		}),
+		{},
+	);
+
+const parseRecord = (schema, record, defaultedRecord) =>
+	Object.keys(record).reduce(
+		(result, key) => ({
+			...result,
+			...(schema[key] ? { [key]: schema[key].parse(record[key]) } : {}),
+		}),
+		defaultedRecord,
+	);
+
+const handler = (schema) => ({
+	get: (target, property) => {
+		if (schema[property]) {
+			return schema[property].fn ? schema[property].fn(target) : target[property];
 		}
-	});
 
-	schemaKeys.forEach((key) => {
-		if (schema[key].fn) {
-			parsedRecord[key] = schema[key].fn(parsedRecord);
-		}
-	});
-
-	return new Proxy(parsedRecord, {
-		get: (target, property) => {
-			if (schema[property]) {
-				if (schema[property].fn) {
-					return schema[property].fn(target);
-				}
-
-				return target[property];
-			}
-
-			return false;
-		},
-		set: (target, property, value) => {
-			if (schema[property]) {
-				target[property] = value;
-
-				return true;
-			}
-
+		return false;
+	},
+	set: (target, property, value) => {
+		if (!schema[property]) {
 			throw new Error(`${property} is not a property of model`);
-		},
-	});
+		}
+
+		target[property] = value;
+
+		return true;
+	},
+});
+
+export const objectModel = (schema) => (record = {}) => {
+	requiredCheck(schema, record);
+
+	return new Proxy(parseRecord(schema, record, defaultRecord(schema, record)), handler(schema));
 };
 
 export default objectModel;
