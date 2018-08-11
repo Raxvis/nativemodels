@@ -4,7 +4,7 @@ Native Models provides a way to map objects and arrays of objects in a clean and
 
 ## Getting Started
 
-```
+```js
 import {
 	boolean,
 	computed,
