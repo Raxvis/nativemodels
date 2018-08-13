@@ -11,8 +11,12 @@ const types = {
 		invalid: ['string', 100.0, false],
 		valid: [new Date()],
 	},
-	number: {
+	float: {
 		invalid: ['string', false, '', true],
+		valid: [100, 100.0, 1.2],
+	},
+	int: {
+		invalid: ['string', false, '', true, 100.2],
 		valid: [100, 100.0],
 	},
 	string: {
