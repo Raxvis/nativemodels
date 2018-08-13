@@ -17,16 +17,15 @@ Native Models provides a way to map objects and arrays of objects in a clean and
 ## Getting Started
 
 ```js
-import { boolean, computed, date, guid, id, string } from './datatypes';
-import arrayModel from './arrayModel';
-import objectModel from './objectModel';
+import { arrayModel, objectModel } from 'nativemodels';
+import { boolean, computed, date, int, string } from 'nativemodels/datatypes';
 
 const schema = {
 	firstName: string().required(),
 	lastName: string().required(),
 	fullName: computed((record) => `${record.firstName} ${record.lastName}`),
-	typeID: number().default(2),
-	isAdmin: boolean().default(faulse),
+	typeID: int().default(2),
+	isAdmin: boolean().default(false),
 	created: date().default(new Date()),
 	updated: date().default(new Date()),
 };
@@ -39,7 +38,7 @@ const johnSmith = userModel({
 });
 // => { firstName: 'John', lastName: 'Smith', fullName: 'John Smith', ...}
 
-const usersModel = arrayObject(schema);
+const usersModel = arrayModel(schema);
 
 const users = usersModel([
 	{
@@ -51,4 +50,11 @@ const users = usersModel([
 		lastName: 'Doe',
 	},
 ]);
+
+const janeDoe = userModel({
+	...johnSmith,
+	firstName: 'Jane',
+	lastName: 'Doe',
+});
+// => { firstName: 'Jane', lastName: 'Doe', fullName: 'Jane Doe', ...}
 ```
