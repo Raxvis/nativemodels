@@ -33,6 +33,13 @@ const handler = (schema) => ({
 
 		return false;
 	},
+	getOwnPropertyDescriptor: (target, property) => ({
+		configurable: true,
+		enumerable: true,
+		value: schema[property].fn ? schema[property].fn(target) : target[property],
+		writable: true,
+	}),
+	ownKeys: (target) => [...Object.keys(target), ...Object.keys(schema).filter((key) => schema[key].fn)],
 	set: (target, property, value) => {
 		if (!schema[property]) {
 			throw new Error(`${property} is not a property of model`);

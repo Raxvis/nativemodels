@@ -60,3 +60,23 @@ test('objectModel - handle extra data', () => {
 
 	expect(model({ name: 'name', name2: 'remove this' })).toEqual({ name: 'name' });
 });
+
+test('objectModel - handle extra data', () => {
+	const model = objectModel({
+		firstName: datatypes.string(),
+		fullName: datatypes.computed((record) => `${record.firstName} ${record.lastName}`),
+		lastName: datatypes.string(),
+	});
+
+	const johnSmith = model({
+		firstName: 'John',
+		lastName: 'Smith',
+	});
+	const janeDoe = { ...johnSmith, firstName: 'Jane', lastName: 'Doe' };
+
+	expect(janeDoe).toEqual({ firstName: 'Jane', fullName: 'John Smith', lastName: 'Doe' });
+
+	const parsedJaneDoe = model(janeDoe);
+
+	expect(parsedJaneDoe).toEqual({ firstName: 'Jane', fullName: 'Jane Doe', lastName: 'Doe' });
+});
