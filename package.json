@@ -57,5 +57,5 @@
 		"test": "jest --coverage",
 		"watch": "gulp watch"
 	},
-	"version": "0.0.1"
+	"version": "0.0.4"
 }
