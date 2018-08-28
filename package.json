@@ -7,7 +7,7 @@
 	"description": "Native Models for Javascript",
 	"devDependencies": {
 		"babel-core": "^6.26.3",
-		"babel-eslint": "^8.2.6",
+		"babel-eslint": "^9.0.0",
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
 		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
