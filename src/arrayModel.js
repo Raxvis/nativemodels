@@ -1,9 +1,9 @@
-import objectModel from './objectModel';
+const objectModel = require('./objectModel');
 
-export const arrayModel = (schema) => (records = []) => {
+const arrayModel = (schema) => (records = []) => {
 	const model = objectModel(schema);
 
 	return records.map((record) => model(record));
 };
 
-export default arrayModel;
+module.exports = arrayModel;

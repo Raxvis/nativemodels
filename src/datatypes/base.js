@@ -5,6 +5,9 @@ const base = {
 
 		return this;
 	},
+	nullable() {
+		this.allowNull = true;
+	},
 	parse(value) {
 		return value;
 	},
@@ -15,4 +18,4 @@ const base = {
 	},
 };
 
-export default base;
+module.exports = base;

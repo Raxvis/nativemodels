@@ -1,8 +1,8 @@
-import base from './base';
+const base = require('./base');
 
 const computed = (fn) => ({
 	...base,
 	fn,
 });
 
-export default computed;
+module.exports = computed;

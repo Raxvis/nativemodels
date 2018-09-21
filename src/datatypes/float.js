@@ -1,5 +1,4 @@
-import base from './base';
-
+const base = require('./base');
 const float = () => ({
 	...base,
 	parse(value, name) {
@@ -15,4 +14,4 @@ const float = () => ({
 	},
 });
 
-export default float;
+module.exports = float;

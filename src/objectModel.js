@@ -51,10 +51,10 @@ const handler = (schema) => ({
 	},
 });
 
-export const objectModel = (schema) => (record = {}) => {
+const objectModel = (schema) => (record = {}) => {
 	requiredCheck(schema, record);
 
 	return new Proxy(parseRecord(schema, record, defaultRecord(schema, record)), handler(schema));
 };
 
-export default objectModel;
+module.exports = objectModel;

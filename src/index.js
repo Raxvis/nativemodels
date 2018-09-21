@@ -1,12 +1,8 @@
-import arrayModel from './arrayModel';
-import datatypes from './datatypes';
-import objectModel from './objectModel';
+const arrayModel = require('./arrayModel');
+const datatypes = require('./datatypes');
+const objectModel = require('./objectModel');
 
-export { default as arrayModel } from './arrayModel';
-export { default as datatypes } from './datatypes';
-export { default as objectModel } from './objectModel';
-
-export default {
+module.exports = {
 	arrayModel,
 	datatypes,
 	objectModel,

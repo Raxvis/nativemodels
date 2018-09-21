@@ -1,7 +1,7 @@
-import base from './base';
+const base = require('./base');
 
 const string = () => ({
 	...base,
 });
 
-export default string;
+module.exports = string;

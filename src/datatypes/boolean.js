@@ -1,4 +1,4 @@
-import base from './base';
+const base = require('./base');
 
 const boolean = () => ({
 	...base,
@@ -7,4 +7,4 @@ const boolean = () => ({
 	},
 });
 
-export default boolean;
+module.exports = boolean;

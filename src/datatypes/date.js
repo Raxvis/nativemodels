@@ -1,4 +1,4 @@
-import base from './base';
+const base = require('./base');
 
 const date = () => ({
 	...base,
@@ -11,4 +11,4 @@ const date = () => ({
 	},
 });
 
-export default date;
+module.exports = date;

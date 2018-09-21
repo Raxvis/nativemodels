@@ -1,4 +1,4 @@
-import base from './base';
+const base = require('./base');
 
 const int = () => ({
 	...base,
@@ -15,4 +15,4 @@ const int = () => ({
 	},
 });
 
-export default int;
+module.exports = int;
