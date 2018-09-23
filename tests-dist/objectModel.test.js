@@ -96,3 +96,14 @@ test('objectModel - ensure set adheres to schema', () => {
 		record.id = 'test';
 	}).toThrow();
 });
+
+test('objectModel - default overrides required', () => {
+	const model = objectModel({
+		id: datatypes
+			.int()
+			.default(2)
+			.required(),
+	});
+
+	expect(model()).toEqual({ id: 2 });
+});
