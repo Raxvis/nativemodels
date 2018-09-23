@@ -1,70 +1,14 @@
-/* eslint consistent-return:off */
-
-const requiredCheck = (schema, record) =>
-	Object.keys(schema).forEach((key) => {
-		if (schema[key].isRequired && !record[key] && !schema[key].defaultValue) {
-			throw new Error(`Property: '${key}' is required`);
-		}
-	});
-
-const defaultRecord = (schema, record) =>
-	Object.keys(schema).reduce(
-		(result, key) => ({
-			...result,
-			...(schema[key].hasDefault && !record[key] ? { [key]: schema[key].defaultValue } : {}),
-		}),
-		{},
-	);
-
-const parseValue = (schema, key, value) => {
-	if (schema[key].allowNull && value === null) {
-		return null;
-	}
-
-	return schema[key].parse(value, key);
-};
-
-const parseRecord = (schema, record, defaultedRecord) =>
-	Object.keys(record).reduce(
-		(result, key) => ({
-			...result,
-			...(schema[key] ? { [key]: parseValue(schema, key, record[key]) } : {}),
-		}),
-		defaultedRecord,
-	);
-
-const handler = (schema) => ({
-	get: (target, property) => {
-		if (schema[property]) {
-			return schema[property].fn ? schema[property].fn(target) : target[property];
-		}
-
-		return false;
-	},
-	getOwnPropertyDescriptor: (target, property) => ({
-		configurable: true,
-		enumerable: true,
-		value: schema[property].fn ? schema[property].fn(target) : target[property],
-		writable: true,
-	}),
-	ownKeys: (target) => [...Object.keys(target), ...Object.keys(schema).filter((key) => schema[key].fn)],
-	set: (target, property, value) => {
-		if (!schema[property]) {
-			throw new Error(`${property} is not a property of model`);
-		}
-
-		target[property] = parseValue(schema, property, value);
-
-		return true;
-	},
-});
+const defaultRecord = require('./lib/defaultRecord');
+const parseRecord = require('./lib/parseRecord');
+const proxyHandler = require('./lib/proxyHandler');
+const requiredCheck = require('./lib/requiredCheck');
 
 const objectModel = (schema) => (record = {}) => {
 	requiredCheck(schema, record);
 
-	const target = parseRecord(schema, record, defaultRecord(schema, record));
+	const proxyTarget = parseRecord(schema, record, defaultRecord(schema, record));
 
-	return new Proxy(target, handler(schema));
+	return new Proxy(proxyTarget, proxyHandler(schema));
 };
 
 module.exports = objectModel;
