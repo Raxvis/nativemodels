@@ -41,7 +41,6 @@
 		"docs:md": "jsdoc2md src/** >> DOCS.md",
 		"lint": "eslint src/* --fix",
 		"precommit": "yarn staged",
-		"prepublishOnly": "yarn staged",
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
 		"pub": "./publish.sh",
 		"staged": "lint-staged",
