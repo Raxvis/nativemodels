@@ -7,6 +7,8 @@ const base = {
 	},
 	nullable() {
 		this.allowNull = true;
+
+		return this;
 	},
 	parse(value) {
 		return value;

@@ -26,6 +26,7 @@ const schema = {
 	fullName: computed((record) => `${record.firstName} ${record.lastName}`),
 	typeID: int().default(2),
 	isAdmin: boolean().default(false),
+	accountID: int().nullable(),
 	created: date().default(new Date()),
 	updated: date().default(new Date()),
 };
@@ -58,3 +59,32 @@ const janeDoe = userModel({
 });
 // => { firstName: 'Jane', lastName: 'Doe', fullName: 'Jane Doe', ...}
 ```
+
+## Datatype API
+
+Datatype methods that can be called or extended.
+
+### datatypes.default(defaultValue)
+
+Sets a default value if no value is set
+
+### datatypes.nullable()
+
+Allows the value set to be null (useful for database models)
+
+### datatypes.parse(value)
+
+Parses the value being set. Used to extend base datatype
+
+### datatypes.required()
+
+Forces the value to be required. Is ignored if default value is set
+
+## Datatypes
+
+-   boolean
+-   computed
+-   date
+-   float
+-   int
+-   string

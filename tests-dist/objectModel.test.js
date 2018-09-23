@@ -80,3 +80,19 @@ test('objectModel - handle extra data', () => {
 
 	expect(parsedJaneDoe).toEqual({ firstName: 'Jane', fullName: 'Jane Doe', lastName: 'Doe' });
 });
+
+test('objectModel - allow nulls', () => {
+	const model = objectModel({ id: datatypes.int().nullable() });
+	const record = model({ id: null });
+
+	expect(record).toEqual({ id: null });
+});
+
+test('objectModel - ensure set adheres to schema', () => {
+	const model = objectModel({ id: datatypes.int() });
+	const record = model({ id: 1 });
+
+	expect(() => {
+		record.id = 'test';
+	}).toThrow();
+});

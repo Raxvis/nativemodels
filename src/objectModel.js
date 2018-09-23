@@ -2,7 +2,7 @@
 
 const requiredCheck = (schema, record) =>
 	Object.keys(schema).forEach((key) => {
-		if (schema[key].isRequired && !record[key]) {
+		if (schema[key].isRequired && !record[key] && !schema[key].defaultValue) {
 			throw new Error(`Property: '${key}' is required`);
 		}
 	});
@@ -16,11 +16,19 @@ const defaultRecord = (schema, record) =>
 		{},
 	);
 
+const parseValue = (schema, key, value) => {
+	if (schema[key].allowNull && value === null) {
+		return null;
+	}
+
+	return schema[key].parse(value, key);
+};
+
 const parseRecord = (schema, record, defaultedRecord) =>
 	Object.keys(record).reduce(
 		(result, key) => ({
 			...result,
-			...(schema[key] ? { [key]: schema[key].parse(record[key], key) } : {}),
+			...(schema[key] ? { [key]: parseValue(schema, key, record[key]) } : {}),
 		}),
 		defaultedRecord,
 	);
@@ -45,7 +53,7 @@ const handler = (schema) => ({
 			throw new Error(`${property} is not a property of model`);
 		}
 
-		target[property] = value;
+		target[property] = parseValue(schema, property, value);
 
 		return true;
 	},
@@ -54,7 +62,9 @@ const handler = (schema) => ({
 const objectModel = (schema) => (record = {}) => {
 	requiredCheck(schema, record);
 
-	return new Proxy(parseRecord(schema, record, defaultRecord(schema, record)), handler(schema));
+	const target = parseRecord(schema, record, defaultRecord(schema, record));
+
+	return new Proxy(target, handler(schema));
 };
 
 module.exports = objectModel;
