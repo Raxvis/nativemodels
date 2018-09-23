@@ -4,3 +4,8 @@ plugins:
     channel: "eslint-4"
   config:
     config: .eslintrc.json
+exclude_patterns:
+- "tests/"
+- "tests-dist/"
+- "spec/"
+- "node_modules/"
