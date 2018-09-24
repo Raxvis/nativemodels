@@ -16,6 +16,7 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - yarn clean
+  - yarn build
   - yarn test
   - codecov
 after_script:

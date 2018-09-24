@@ -35,7 +35,7 @@
 		"url": "git+https://github.com/Prefinem/nativemodels"
 	},
 	"scripts": {
-		"build": "./node_modules/.bin/babel src/ --out-dir dist",
+		"build": "./node_modules/.bin/babel src/ --out-dir dist && cp -R tests/ tests-dist/",
 		"clean": "yarn lint && yarn prettify",
 		"docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
 		"docs:md": "jsdoc2md src/** >> DOCS.md",
@@ -44,7 +44,7 @@
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
 		"pub": "./publish.sh",
 		"staged": "lint-staged",
-		"test": "yarn build && cp -R tests/ tests-dist/ && jest --coverage"
+		"test": "jest --coverage"
 	},
 	"version": "1.0.0"
 }
