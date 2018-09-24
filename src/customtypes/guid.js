@@ -1,6 +1,6 @@
 const base = require('./../datatypes/base');
 
-const int = () => ({
+const guid = () => ({
 	...base,
 	parse(value) {
 		return value.toUpperCase();
@@ -16,4 +16,4 @@ const int = () => ({
 	},
 });
 
-module.exports = int;
+module.exports = guid;

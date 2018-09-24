@@ -78,6 +78,19 @@ test('ensure default works on all data types', () => {
 	});
 });
 
+test('ensure nullable works on all data types', () => {
+	Object.keys(types).forEach((type) => {
+		if (types[type].valid) {
+			types[type].valid.forEach(() => {
+				const model = createModel({ [type]: datatypes[type]().nullable() });
+				const record = model({ [type]: null });
+
+				expect(record[type]).toEqual(null);
+			});
+		}
+	});
+});
+
 test('extending with bad validate throws error', () => {
 	const customType = () => ({
 		...datatypes.base,
