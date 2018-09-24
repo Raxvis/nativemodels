@@ -18,6 +18,9 @@ const base = {
 
 		return this;
 	},
+	validate() {
+		return true;
+	},
 };
 
 module.exports = base;

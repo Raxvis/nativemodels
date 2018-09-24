@@ -23,7 +23,7 @@ const set = (schema, target, property, value) => {
 		throw new Error(`${property} is not a property of model`);
 	}
 
-	target[property] = parseValue(schema, property, value);
+	target[property] = parseValue(schema[property], property, value);
 
 	return true;
 };

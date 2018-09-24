@@ -44,7 +44,7 @@
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
 		"pub": "./publish.sh",
 		"staged": "lint-staged",
-		"test": "yarn build && jest --coverage"
+		"test": "yarn build && cp -R tests/ tests-dist/ && jest --coverage"
 	},
 	"version": "0.0.6"
 }

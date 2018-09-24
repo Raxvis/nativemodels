@@ -1,13 +1,13 @@
 const base = require('./base');
+
 const float = () => ({
 	...base,
-	parse(value, name) {
-		if (value === true || value === false || value === '') {
-			throw new Error(`Property ${name} is not a float`);
-		}
-
-		if (!isNaN(parseFloat(value))) {
-			return parseFloat(value);
+	parse(value) {
+		return parseFloat(value);
+	},
+	validate(value, name) {
+		if (!isNaN(parseFloat(value)) && value !== true && value !== false && value !== '') {
+			return true;
 		}
 
 		throw new Error(`Property ${name} is not a float`);

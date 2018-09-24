@@ -1,9 +1,13 @@
-const parseValue = (schema, key, value) => {
-	if (schema[key].allowNull && value === null) {
+const parseValue = (type, key, value) => {
+	if (type.allowNull && value === null) {
 		return null;
 	}
 
-	return schema[key].parse(value, key);
+	if (type.validate(value, key)) {
+		return type.parse(value, key);
+	}
+
+	throw new Error(`Failed to validate ${key} with value of ${value}`);
 };
 
 module.exports = parseValue;

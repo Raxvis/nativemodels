@@ -1,8 +1,12 @@
 /* global test, expect */
 
-const { objectModel, datatypes } = require('./../dist');
+const { createModel, datatypes } = require('./source');
 
 const types = {
+	array: {
+		invalid: ['string', false, '', true, 100, 100.2, {}],
+		valid: [[]],
+	},
 	boolean: {
 		invalid: [],
 		valid: [true, false],
@@ -19,6 +23,9 @@ const types = {
 		invalid: ['string', false, '', true, 100.2],
 		valid: [100, 100.0],
 	},
+	object: {
+		invalid: ['string', false, '', true, 100, 100.2],
+	},
 	string: {
 		invalid: [],
 		valid: ['string'],
@@ -27,25 +34,30 @@ const types = {
 
 test('test basic valid / invalid datatypes', () => {
 	Object.keys(types).forEach((type) => {
-		types[type].valid.forEach((value) => {
-			const model = objectModel({ [type]: datatypes[type]() });
-			const record = model({ [type]: value });
+		if (types[type].valid) {
+			types[type].valid.forEach((value) => {
+				const model = createModel({ [type]: datatypes[type]() });
+				const record = model({ [type]: value });
 
-			expect(record[type]).toEqual(value);
-		});
-		types[type].invalid.forEach((value) => {
-			const model = objectModel({ [type]: datatypes[type]() });
+				expect(record[type]).toEqual(value);
+			});
+		}
 
-			expect(() => {
-				model({ [type]: value });
-			}).toThrow();
-		});
+		if (types[type].invalid) {
+			types[type].invalid.forEach((value) => {
+				const model = createModel({ [type]: datatypes[type]() });
+
+				expect(() => {
+					model({ [type]: value });
+				}).toThrow();
+			});
+		}
 	});
 });
 
 test('ensure required works on all data types', () => {
 	Object.keys(types).forEach((type) => {
-		const model = objectModel({ [type]: datatypes[type]().required() });
+		const model = createModel({ [type]: datatypes[type]().required() });
 
 		expect(() => {
 			model();
@@ -55,11 +67,28 @@ test('ensure required works on all data types', () => {
 
 test('ensure default works on all data types', () => {
 	Object.keys(types).forEach((type) => {
-		types[type].valid.forEach((value) => {
-			const model = objectModel({ [type]: datatypes[type]().default(value) });
-			const record = model();
+		if (types[type].valid) {
+			types[type].valid.forEach((value) => {
+				const model = createModel({ [type]: datatypes[type]().default(value) });
+				const record = model();
 
-			expect(record[type]).toEqual(value);
-		});
+				expect(record[type]).toEqual(value);
+			});
+		}
 	});
+});
+
+test('extending with bad validate throws error', () => {
+	const customType = () => ({
+		...datatypes.base,
+		validate() {
+			return false;
+		},
+	});
+
+	const model = createModel({ foo: customType() });
+
+	expect(() => {
+		model({ foo: 'bar' });
+	}).toThrow();
 });

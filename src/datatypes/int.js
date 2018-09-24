@@ -2,7 +2,10 @@ const base = require('./base');
 
 const int = () => ({
 	...base,
-	parse(value, name) {
+	parse(value) {
+		return parseInt(value);
+	},
+	validate(value, name) {
 		if (
 			value !== true &&
 			value !== false &&
@@ -10,10 +13,10 @@ const int = () => ({
 			!isNaN(parseInt(value)) &&
 			parseInt(value) === parseFloat(value)
 		) {
-			return parseInt(value);
+			return true;
 		}
 
-		throw new Error(`Property ${name} is not a int`);
+		throw new Error(`Property ${name} is not an int`);
 	},
 });
 

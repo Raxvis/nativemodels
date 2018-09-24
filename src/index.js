@@ -1,9 +1,7 @@
-const arrayModel = require('./arrayModel');
+const createModel = require('./createModel');
 const datatypes = require('./datatypes');
-const objectModel = require('./objectModel');
 
 module.exports = {
-	arrayModel,
+	createModel,
 	datatypes,
-	objectModel,
 };
