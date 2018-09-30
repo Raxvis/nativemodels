@@ -1,6 +1,6 @@
 const base = require('./../datatypes/base');
 
-const url = () => ({
+const phone = () => ({
 	...base,
 	validate(value, name) {
 		if (/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/iu.test(value)) {
@@ -11,4 +11,4 @@ const url = () => ({
 	},
 });
 
-module.exports = url;
+module.exports = phone;
