@@ -117,3 +117,27 @@ If value is valid, returns true, else throws error. Name is key on object;
 ### datatypes.parse(value)
 
 Parses the value being set. Used to extend base datatype
+
+## Customtypes
+
+Custom types are types that are useful to have and common enough for use to include them in our library. They currently include
+
+-   email
+-   enumberable
+-   guid
+-   phone
+-   url
+
+### Examples
+
+```js
+const { email, enumberable, guid, phone, url } = require('nativemodels/customtypes');
+
+const model = createModel({
+	email: email(),
+	enumberable: enumberable(['FOO', 'BAR']),
+	guid: guid(),
+	phone: phone(),
+	url: url(),
+});
+```
