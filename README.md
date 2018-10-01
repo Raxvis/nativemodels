@@ -146,7 +146,7 @@ const model = createModel({
 
 Sometimes computed values aren't syncronous. To help you deal with that, we have provided the resolve method which will allow you to resolve all computed functions that are promises or async functions.
 
-**_NOTE: You must return an async function or a Promise_**
+**_NOTE: You must return an async function, Promise or syncronous result. Generators will not work with this_**
 
 **_WARNING: This is an N+1 unoptimized resolver meaning that for each nested array / object will require an extra iteration._**
 
@@ -196,4 +196,3 @@ const data = model({ succeed: true });
 const resolvedData = await resolve(data, resolvedSchema);
 // => { async: 1, succeed: true }
 ```
-
