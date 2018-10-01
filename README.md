@@ -17,8 +17,8 @@ Native Models provides a way to map objects in a clean and typed way. The main g
 ## Getting Started
 
 ```js
-import { createModel } from 'nativemodels';
-import { array, boolean, computed, date, int, object, string } from 'nativemodels/datatypes';
+const { createModel } = require('nativemodels');
+const { array, boolean, computed, date, int, object, string } = require('nativemodels/datatypes');
 
 const photoSchema = {
 	ext: string(),
@@ -141,3 +141,59 @@ const model = createModel({
 	url: url(),
 });
 ```
+
+## Async / Promise Computed Functions
+
+Sometimes computed values aren't syncronous. To help you deal with that, we have provided the resolve method which will allow you to resolve all computed functions that are promises or async functions.
+
+**_NOTE: You must return an async function or a Promise_**
+
+**_WARNING: This is an N+1 unoptimized resolver meaning that for each nested array / object will require an extra iteration._**
+
+```js
+const { createModel, resolve } = require('nativemodels');
+const { boolean, computed } = require('nativemodels/datatypes');
+
+const schema = {
+	async: computed(
+		(record) =>
+			new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
+	),
+	succeed: boolean().default(false),
+};
+
+const model = createModel(schema);
+const data = model({ succeed: true });
+
+const resolvedData = await resolve(data);
+// => { async: 1, succeed: true }
+```
+
+### Schema Parsing of resolved data
+
+You can provide a second option to `resolve()` that will allow you to recieve back an object that has had the schema applied to it.
+
+```js
+const { createModel, resolve } = require('nativemodels');
+const { boolean, computed, int } = require('nativemodels/datatypes');
+
+const schema = {
+	async: computed(
+		(record) =>
+			new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
+	),
+	succeed: boolean().default(false),
+};
+
+const resolvedSchema = {
+	async: int(),
+	succeed: boolean(),
+};
+
+const model = createModel(schema);
+const data = model({ succeed: true });
+
+const resolvedData = await resolve(data, resolvedSchema);
+// => { async: 1, succeed: true }
+```
+
