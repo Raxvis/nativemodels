@@ -12,11 +12,15 @@ const cascadeResolve = (value) => {
 };
 
 const resolve = async (data, schema) => {
-	const keys = Object.keys(data);
-	const values = await Promise.all(keys.map((key) => cascadeResolve(data[key])));
-	const resolved = keys.reduce((result, key, index) => Object.assign(result, { [key]: values[index] }), {});
+	try {
+		const keys = Object.keys(data);
+		const values = await Promise.all(keys.map((key) => cascadeResolve(data[key])));
+		const resolved = keys.reduce((result, key, index) => Object.assign(result, { [key]: values[index] }), {});
 
-	return schema ? createModel(schema)(resolved) : resolved;
+		return schema ? createModel(schema)(resolved) : resolved;
+	} catch (error) {
+		throw error;
+	}
 };
 
 module.exports = resolve;

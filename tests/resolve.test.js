@@ -72,3 +72,17 @@ test('resolve - deep nested array', async () => {
 
 	expect(data).toEqual({ nested: [{ async: 1, succeed: true }] });
 });
+
+test('resolve - deep nested object fail', () => {
+	const model = createModel(schemaObject);
+	const data = resolve(model({ nested: {} }));
+
+	expect(data).resolves.toThrow();
+});
+
+test('resolve - deep nested array fail', () => {
+	const model = createModel(schemaArray);
+	const data = resolve(model({ nested: [{}] }));
+
+	expect(data).resolves.toThrow();
+});
