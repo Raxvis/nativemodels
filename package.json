@@ -19,6 +19,11 @@
 		"prettier": "^1.14.3"
 	},
 	"homepage": "https://github.com/Prefinem/nativemodels",
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn staged"
+		}
+	},
 	"license": "MIT",
 	"lint-staged": {
 		"*.js": [
@@ -41,7 +46,6 @@
 		"docs:md": "jsdoc2md src/** >> DOCS.md",
 		"eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
 		"lint": "eslint src/* --fix",
-		"precommit": "yarn staged",
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
 		"pub": "./publish.sh",
 		"staged": "lint-staged",
