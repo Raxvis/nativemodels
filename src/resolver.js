@@ -2,9 +2,9 @@
 const createModel = require('./createModel');
 
 const cascadeResolve = (value) => {
-	if (Array.isArray(value)) {
+	if (value && Array.isArray(value)) {
 		return Promise.all(value.map(cascadeResolve));
-	} else if (typeof value === 'object' && !value.then) {
+	} else if (value && typeof value === 'object' && !value.then) {
 		return resolver(value);
 	}
 
@@ -22,8 +22,9 @@ const resolver = (data, schema) =>
 		const keys = Object.keys(data);
 
 		Promise.all(keys.map((key) => cascadeResolve(data[key])))
-			.then((values) => resolved(keys, values, schema), reject)
-			.then(resolve);
+			.then((values) => resolved(keys, values, schema))
+			.then(resolve)
+			.catch(reject);
 	});
 
 module.exports = resolver;

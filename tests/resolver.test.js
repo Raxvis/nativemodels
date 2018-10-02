@@ -2,7 +2,7 @@
 
 const {
 	createModel,
-	datatypes: { array, boolean, computed, int, object },
+	datatypes: { array, boolean, computed, date, int, object, string },
 	resolver,
 } = require('./source');
 
@@ -73,11 +73,11 @@ test('resolver - deep nested array', async () => {
 	expect(data).toEqual({ nested: [{ async: 1, succeed: true }] });
 });
 
-test('resolver - deep nested object fail', () => {
+test('resolver - deep nested object fail', async () => {
 	const model = createModel(schemaObject);
 	const data = resolver(model({ nested: {} }));
 
-	expect(data).rejects.toThrow();
+	await expect(data).rejects.toThrow();
 });
 
 test('resolver - deep nested array fail', () => {
@@ -85,4 +85,29 @@ test('resolver - deep nested array fail', () => {
 	const data = resolver(model({ nested: [{}] }));
 
 	expect(data).rejects.toThrow();
+});
+
+test('resolver - handle null type', async () => {
+	const model = createModel({
+		nullable: string().nullable(),
+	});
+	const data = model({ nullable: null });
+	const resolved = resolver(data);
+
+	await expect(resolved).resolves.toEqual({ nullable: null });
+});
+
+test('resolver - handle resolveSchema fail', async () => {
+	const resolveSchema = {
+		date: date(),
+		nullable: string().nullable(),
+	};
+	const model = createModel({
+		date: computed(() => ''),
+		nullable: string().nullable(),
+	});
+	const data = model({ nullable: null });
+	const resolved = resolver(data, resolveSchema);
+
+	await expect(resolved).rejects.toThrow();
 });
