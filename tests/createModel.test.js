@@ -100,3 +100,11 @@ test('createModel - array map', () => {
 
 	expect(user).toEqual(userResult);
 });
+
+test('createModel - do not fail on no datatype or customtype', () => {
+	const data = createModel({
+		test: true,
+	})({ test: false });
+
+	expect(data).toEqual({ test: false });
+});

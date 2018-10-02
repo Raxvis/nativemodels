@@ -3,7 +3,11 @@ const parseValue = (type, key, value) => {
 		return null;
 	}
 
-	if (type.validate(value, key)) {
+	if (!type.validate || !type.parse) {
+		console.warn(`Schema Key: '${key}' is not a valid datatype or customtype`);
+
+		return value;
+	} else if (type.validate(value, key)) {
 		return type.parse(value, key);
 	}
 
