@@ -144,14 +144,14 @@ const model = createModel({
 
 ## Async / Promise Computed Functions
 
-Sometimes computed values aren't syncronous. To help you deal with that, we have provided the resolve method which will allow you to resolve all computed functions that are promises or async functions.
+Sometimes computed values aren't syncronous. To help you deal with that, we have provided the resolver method which will allow you to resolve all computed functions that are promises or async functions.
 
 **_NOTE: You must return an async function, Promise or syncronous result. Generators will not work with this_**
 
 **_WARNING: This is an N+1 unoptimized resolver meaning that for each nested array / object will require an extra iteration._**
 
 ```js
-const { createModel, resolve } = require('nativemodels');
+const { createModel, resolver } = require('nativemodels');
 const { boolean, computed } = require('nativemodels/datatypes');
 
 const schema = {
@@ -165,16 +165,16 @@ const schema = {
 const model = createModel(schema);
 const data = model({ succeed: true });
 
-const resolvedData = await resolve(data);
+const resolvedData = await resolver(data);
 // => { async: 1, succeed: true }
 ```
 
 ### Schema Parsing of resolved data
 
-You can provide a second option to `resolve()` that will allow you to recieve back an object that has had the schema applied to it.
+You can provide a second option to `resolver()` that will allow you to recieve back an object that has had the schema applied to it.
 
 ```js
-const { createModel, resolve } = require('nativemodels');
+const { createModel, resolver } = require('nativemodels');
 const { boolean, computed, int } = require('nativemodels/datatypes');
 
 const schema = {
@@ -193,6 +193,6 @@ const resolvedSchema = {
 const model = createModel(schema);
 const data = model({ succeed: true });
 
-const resolvedData = await resolve(data, resolvedSchema);
+const resolvedData = await resolver(data, resolvedSchema);
 // => { async: 1, succeed: true }
 ```

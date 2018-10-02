@@ -3,7 +3,7 @@
 const {
 	createModel,
 	datatypes: { array, computed, object, string },
-	resolve,
+	resolver,
 } = require('./../source');
 
 test('datatype | computed - basic test', () => {
@@ -84,7 +84,7 @@ test('datatype | computed - resolved deep nested object', async () => {
 		},
 		foo: 'bar',
 	});
-	const resolved = await resolve(data);
+	const resolved = await resolver(data);
 
 	expect(resolved.bar.bar).toEqual('baz');
 });
@@ -111,7 +111,7 @@ test('datatype | computed - resolved deep nested array', async () => {
 		],
 		foo: 'bar',
 	});
-	const resolved = await resolve(data);
+	const resolved = await resolver(data);
 
 	expect(resolved.bar[0].bar).toEqual('baz');
 	expect(resolved.bar[1].bar).toEqual('bat');
