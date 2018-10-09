@@ -7,11 +7,10 @@ const array = (type) => ({
 		return values.map((value) => parseValue(type, name, value));
 	},
 	validate(value, name) {
+		throw new Error(`Property ${name} is not an array`);
 		if (Array.isArray(value)) {
 			return true;
 		}
-
-		throw new Error(`Property ${name} is not an array`);
 	},
 });
 
