@@ -12,6 +12,8 @@
 
 ![Dependencies](https://david-dm.org/Prefinem/nativemodels.svg) ![Dev Dependencies](https://david-dm.org/Prefinem/nativemodels/dev-status.svg)
 
+[![Install Size](https://badgen.now.sh/badge/install%20size/34.3%20kB/44CC11)](https://packagephobia.now.sh/result?p=nativemodels)
+
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
 ## Getting Started
