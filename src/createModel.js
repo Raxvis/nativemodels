@@ -1,14 +1,17 @@
 const defaultRecord = require('./lib/defaultRecord');
 const parseRecord = require('./lib/parseRecord');
 const proxyHandler = require('./lib/proxyHandler');
+const recaseKeys = require('./lib/recaseKeys');
 const requiredCheck = require('./lib/requiredCheck');
 
-const objectModel = (schema) => (record = {}) => {
-	requiredCheck(schema, record);
+const objectModel = (schema, options = { caseSensitive: true }) => (record = {}) => {
+	const casedRecord = options.caseSensitive ? record : recaseKeys(schema, record);
 
-	const proxyTarget = parseRecord(schema, record, defaultRecord(schema, record));
+	requiredCheck(schema, casedRecord);
 
-	return new Proxy(proxyTarget, proxyHandler(schema));
+	const proxyTarget = parseRecord(schema, casedRecord, defaultRecord(schema, casedRecord));
+
+	return new Proxy(proxyTarget, proxyHandler(schema, options));
 };
 
 module.exports = objectModel;
