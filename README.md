@@ -205,3 +205,26 @@ const data = model({ succeed: true });
 const resolvedData = await resolver(data, resolvedSchema);
 // => { async: 1, succeed: true }
 ```
+
+## Options for createModel
+
+### caseSensitive
+
+The caseSensitive option `default(true)` allows you to turn off caseSensitive matching. This is useful for ignoreing and parsing user submitted data into a nice clean format while still maintaining model integrity
+
+```js
+cosnt { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const schema = {
+	foo: string(),
+};
+
+const options = {
+	caseSensitive: false
+};
+
+const model = createModel(schame, options);
+const data = model({ FOO: 'bar' });
+// => { foo: 'bar' }
+```

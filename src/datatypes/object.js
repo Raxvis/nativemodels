@@ -1,10 +1,10 @@
 const base = require('./base');
 const createModel = require('./../createModel');
 
-const object = (schema) => ({
+const object = (schema, options) => ({
 	...base,
 	parse(value) {
-		return createModel(schema)(value);
+		return createModel(schema, options)(value);
 	},
 	validate(value, name) {
 		if (typeof value === 'object' && !Array.isArray(value)) {
