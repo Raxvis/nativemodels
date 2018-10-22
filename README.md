@@ -180,7 +180,7 @@ const resolvedData = await resolver(data);
 
 ### Schema Parsing of resolved data
 
-You can provide a second option to `resolver()` that will allow you to recieve back an object that has had the schema applied to it.
+You can provide a second option to `resolver()` that will allow you to receive back an object that has had the schema applied to it.
 
 ```js
 const { createModel, resolver } = require('nativemodels');
