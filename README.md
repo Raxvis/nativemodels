@@ -213,11 +213,11 @@ const resolvedData = await resolver(data, resolvedSchema);
 The caseSensitive option `default(true)` allows you to turn off caseSensitive matching. This is useful for ignoring and parsing user submitted data into a nice clean format while still maintaining model integrity
 
 ```js
-cosnt { createModel } = require('nativemodels');
+const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	caseSensitive: false
+	caseSensitive: false,
 };
 
 const schema = {
@@ -232,11 +232,11 @@ const data = model({ FOO: 'bar' });
 Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand.
 
 ```js
-cosnt { createModel } = require('nativemodels');
+const { createModel } = require('nativemodels');
 const { object, string } = require('nativemodels/datatypes');
 
 const options = {
-	caseSensitive: false
+	caseSensitive: false,
 };
 
 const schema = {
@@ -244,7 +244,7 @@ const schema = {
 };
 
 const deepSchema = {
-	nested: object(schema, options)
+	nested: object(schema, options),
 };
 
 const model = createModel(deepSchema, options);
@@ -257,11 +257,11 @@ const data = model({ Nested: { FOO: 'bar' } });
 The strict option `default(false)` allows you to throw an error is the inital object you are assigning has extra keys. This is useful for validating data structure when coming from an unknown source
 
 ```js
-cosnt { createModel } = require('nativemodels');
+const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	strict: true
+	strict: true,
 };
 
 const schema = {
@@ -276,11 +276,11 @@ const data = model({ faa: 'bar' });
 Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand.
 
 ```js
-cosnt { createModel } = require('nativemodels');
+const { createModel } = require('nativemodels');
 const { object, string } = require('nativemodels/datatypes');
 
 const options = {
-	strict: true
+	strict: true,
 };
 
 const schema = {
@@ -288,7 +288,7 @@ const schema = {
 };
 
 const deepSchema = {
-	nested: object(schema, options)
+	nested: object(schema, options),
 };
 
 const model = createModel(deepSchema, options);
