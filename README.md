@@ -210,7 +210,7 @@ const resolvedData = await resolver(data, resolvedSchema);
 
 ### caseSensitive
 
-The caseSensitive option `default(true)` allows you to turn off caseSensitive matching. This is useful for ignoreing and parsing user submitted data into a nice clean format while still maintaining model integrity
+The caseSensitive option `default(true)` allows you to turn off caseSensitive matching. This is useful for ignoring and parsing user submitted data into a nice clean format while still maintaining model integrity
 
 ```js
 cosnt { createModel } = require('nativemodels');
@@ -250,4 +250,48 @@ const deepSchema = {
 const model = createModel(deepSchema, options);
 const data = model({ Nested: { FOO: 'bar' } });
 // => { nested: { foo: 'bar' } }
+```
+
+### strict
+
+The strict option `default(false)` allows you to throw an error is the inital object you are assigning has extra keys. This is useful for validating data structure when coming from an unknown source
+
+```js
+cosnt { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	strict: true
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema, options);
+const data = model({ faa: 'bar' });
+// => throw new Error(`Property: 'faa' is not defined in the schema`);
+```
+
+Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand.
+
+```js
+cosnt { createModel } = require('nativemodels');
+const { object, string } = require('nativemodels/datatypes');
+
+const options = {
+	strict: true
+};
+
+const schema = {
+	foo: string(),
+};
+
+const deepSchema = {
+	nested: object(schema, options)
+};
+
+const model = createModel(deepSchema, options);
+const data = model({ nested: { faa: 'bar' } });
+// => throw new Error(`Property: 'faa' is not defined in the schema`);
 ```
