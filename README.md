@@ -216,15 +216,38 @@ The caseSensitive option `default(true)` allows you to turn off caseSensitive ma
 cosnt { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
+const options = {
+	caseSensitive: false
+};
+
 const schema = {
 	foo: string(),
 };
+
+const model = createModel(schema, options);
+const data = model({ FOO: 'bar' });
+// => { foo: 'bar' }
+```
+
+Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand.
+
+```js
+cosnt { createModel } = require('nativemodels');
+const { object, string } = require('nativemodels/datatypes');
 
 const options = {
 	caseSensitive: false
 };
 
-const model = createModel(schame, options);
-const data = model({ FOO: 'bar' });
-// => { foo: 'bar' }
+const schema = {
+	foo: string(),
+};
+
+const deepSchema = {
+	nested: object(schema, options)
+};
+
+const model = createModel(deepSchema, options);
+const data = model({ Nested: { FOO: 'bar' } });
+// => { nested: { foo: 'bar' } }
 ```
