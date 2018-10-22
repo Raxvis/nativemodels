@@ -3,10 +3,16 @@ const parseRecord = require('./lib/parseRecord');
 const proxyHandler = require('./lib/proxyHandler');
 const recaseKeys = require('./lib/recaseKeys');
 const requiredCheck = require('./lib/requiredCheck');
+const strictCheck = require('./lib/strictCheck');
+const defaultOptions = require('./lib/defaultOptions');
 
-const objectModel = (schema, options = { caseSensitive: true }) => (record = {}) => {
+const createModel = (schema, modelOptions = {}) => (record = {}) => {
+	const options = { ...defaultOptions, ...modelOptions };
 	const casedRecord = options.caseSensitive ? record : recaseKeys(schema, record);
 
+	if (options.strict) {
+		strictCheck(schema, casedRecord);
+	}
 	requiredCheck(schema, casedRecord);
 
 	const proxyTarget = parseRecord(schema, casedRecord, defaultRecord(schema, casedRecord));
@@ -14,4 +20,4 @@ const objectModel = (schema, options = { caseSensitive: true }) => (record = {})
 	return new Proxy(proxyTarget, proxyHandler(schema, options));
 };
 
-module.exports = objectModel;
+module.exports = createModel;
