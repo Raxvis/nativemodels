@@ -1,15 +1,27 @@
+const strictCheck = (type, key, value) => {
+	if (type.requireStrict && type.strictCheck) {
+		type.strictCheck(value, key);
+	}
+};
+
+const invalidTypeCheck = (type, key) => {
+	if (!type.validate || !type.parse) {
+		console.log(`Schema Key: '${key}' is not a valid datatype or customtype`);
+
+		return true;
+	}
+
+	return false;
+};
+
 const parseValue = (type, key, value) => {
 	if (type.allowNull && value === null) {
 		return null;
 	}
 
-	if (type.requireStrict && type.strictCheck) {
-		type.strictCheck(value, key);
-	}
+	strictCheck(type, key, value);
 
-	if (!type.validate || !type.parse) {
-		console.warn(`Schema Key: '${key}' is not a valid datatype or customtype`);
-
+	if (invalidTypeCheck(type, key, value)) {
 		return value;
 	} else if (type.validate(value, key)) {
 		return type.parse(value, key);
