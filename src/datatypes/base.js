@@ -18,6 +18,14 @@ const base = {
 
 		return this;
 	},
+	strict() {
+		this.requireStrict = true;
+
+		return this;
+	},
+	strictCheck() {
+		return true;
+	},
 	validate() {
 		return true;
 	},

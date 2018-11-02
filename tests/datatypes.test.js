@@ -5,29 +5,41 @@ const { createModel, datatypes } = require('./source');
 const types = {
 	array: {
 		invalid: ['string', false, '', true, 100, 100.2, {}],
+		invalidStrict: [],
+		strict: [[]],
 		valid: [[]],
 	},
 	boolean: {
 		invalid: [],
-		valid: [true, false],
+		invalidStrict: ['true', 'false'],
+		strict: [true, false],
+		valid: [true, false, 'true', 'false'],
 	},
 	date: {
-		invalid: ['string', 100.0, false],
-		valid: [new Date()],
+		invalid: ['string', false],
+		invalidStrict: [100.0, '2018-10-01 00:00:00'],
+		strict: [new Date()],
+		valid: [new Date(), 100.0, '2018-10-01 00:00:00'],
 	},
 	float: {
 		invalid: ['string', false, '', true],
-		valid: [100, 100.0, 1.2],
+		invalidStrict: ['1.2'],
+		strict: [1.2],
+		valid: [100, 100.0, 1.2, '1.2'],
 	},
 	int: {
 		invalid: ['string', false, '', true, 100.2],
-		valid: [100, 100.0],
+		invalidStrict: ['100'],
+		strict: [100],
+		valid: [100, 100.0, '100'],
 	},
 	object: {
 		invalid: ['string', false, '', true, 100, 100.2],
 	},
 	string: {
 		invalid: [],
+		invalidStrict: [1],
+		strict: ['1'],
 		valid: ['string'],
 	},
 };
@@ -38,14 +50,43 @@ test('test basic valid / invalid datatypes', () => {
 			types[type].valid.forEach((value) => {
 				const model = createModel({ [type]: datatypes[type]() });
 				const record = model({ [type]: value });
+				const { parse } = datatypes[type]();
 
-				expect(record[type]).toEqual(value);
+				expect(record[type]).toEqual(parse(value));
 			});
 		}
 
 		if (types[type].invalid) {
 			types[type].invalid.forEach((value) => {
 				const model = createModel({ [type]: datatypes[type]() });
+
+				expect(() => {
+					model({ [type]: value });
+				}).toThrow();
+			});
+		}
+	});
+});
+
+test('test strict', () => {
+	Object.keys(types).forEach((type) => {
+		if (types[type].strict) {
+			types[type].strict.forEach((value) => {
+				const model = createModel({ [type]: datatypes[type]().strict() });
+				const record = model({ [type]: value });
+				const { parse } = datatypes[type]();
+
+				expect(record[type]).toEqual(parse(value));
+			});
+		}
+	});
+});
+
+test('test invalid strict', () => {
+	Object.keys(types).forEach((type) => {
+		if (types[type].invalidStrict) {
+			types[type].invalidStrict.forEach((value) => {
+				const model = createModel({ [type]: datatypes[type]().strict() });
 
 				expect(() => {
 					model({ [type]: value });

@@ -3,6 +3,10 @@ const parseValue = (type, key, value) => {
 		return null;
 	}
 
+	if (type.requireStrict && type.strictCheck) {
+		type.strictCheck(value, key);
+	}
+
 	if (!type.validate || !type.parse) {
 		console.warn(`Schema Key: '${key}' is not a valid datatype or customtype`);
 

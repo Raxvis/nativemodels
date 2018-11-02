@@ -5,6 +5,13 @@ const int = () => ({
 	parse(value) {
 		return parseInt(value);
 	},
+	strictCheck(value, name) {
+		if (typeof value === 'number') {
+			return true;
+		}
+
+		throw new Error(`Property ${name} is not an int`);
+	},
 	validate(value, name) {
 		if (
 			value !== true &&
