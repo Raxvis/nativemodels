@@ -129,6 +129,10 @@ Allows the value set to be null (useful for database models)
 
 Forces the value to be required. Is ignored if default value is set
 
+### datatypes.strict()
+
+Requires the value that is passed in to be the correct datatype instead of coerced
+
 ## Datatypes
 
 -   array
