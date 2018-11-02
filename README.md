@@ -7,19 +7,42 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 -->
 </h1>
 
-[![npm pack age](https://nodei.co/npm/nativemodels.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/nativemodels)
+<!-- NPM -->
 
-[![Version](https://badge.fury.io/js/nativemodels.svg)](https://npmjs.org/package/nativemodels) [![Build Status](https://travis-ci.org/Prefinem/nativemodels.svg)](https://travis-ci.org/Prefinem/nativemodels)
+[![Version](https://flat.badgen.net/npm/v/nativemodels)](https://npmjs.org/package/nativemodels)
+[![Weekly Downloads](https://flat.badgen.net/npm/dw/nativemodels)](https://npmjs.org/package/nativemodels)
+[![License](https://flat.badgen.net/npm/license/nativemodels)](https://npmjs.org/package/nativemodels)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/bde2cb4374583f7f2288/maintainability)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bde2cb4374583f7f2288/test_coverage)](https://codeclimate.com/github/Prefinem/nativemodels/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/Prefinem/nativemodels.svg)](https://greenkeeper.io/)
+<!-- GitHub -->
 
-![Weekly Downloads](https://img.shields.io/npm/dw/nativemodels.svg) ![Monthly Downloads](https://img.shields.io/npm/dm/nativemodels.svg) ![Yearly Downloads](https://img.shields.io/npm/dy/nativemodels.svg)
+[![Open Issues](https://flat.badgen.net/github/open-issues/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
+[![Stars](https://flat.badgen.net/github/stars/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
+[![Open PRs](https://flat.badgen.net/github/open-prs/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
 
-![Issues](https://img.shields.io/github/issues/Prefinem/nativemodels.svg) ![Pull Requests](https://img.shields.io/github/issues-pr/Prefinem/nativemodels.svg)
+<!-- Dependencies -->
 
-![Dependencies](https://david-dm.org/Prefinem/nativemodels.svg) ![Dev Dependencies](https://david-dm.org/Prefinem/nativemodels/dev-status.svg)
+[![Dependencies](https://flat.badgen.net/david/dep/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels)
+[![DevDependencies](https://flat.badgen.net/david/dev/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels?type=dev)
+[![PeerDependencies](https://flat.badgen.net/david/peer/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels?type=peer)
 
-[![Install Size](https://badgen.now.sh/badge/install%20size/34.3%20kB/44CC11)](https://packagephobia.now.sh/result?p=nativemodels)
+<!-- PackagePhobia -->
+
+[![Install Size](https://flat.badgen.net/packagephobia/install/nativemodels)](https://packagephobia.now.sh/result?p=nativemodels)
+[![Publish Size](https://flat.badgen.net/packagephobia/publish/nativemodels)](https://packagephobia.now.sh/result?p=nativemodels)
+
+<!-- Travis -->
+
+[![Build Status](https://flat.badgen.net/travis/Prefinem/nativemodels)](https://travis-ci.com/Prefinem/nativemodels)
+
+<!-- CodeCov -->
+
+[![Code Coverage](https://flat.badgen.net/codecov/c/github/Prefinem/nativemodels)](https://codecov.io/gh/Prefinem/nativemodels)
+
+<!-- CodeClimate -->
+
+[![Technical Debt](https://flat.badgen.net/codeclimate/tech-debt/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
+[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
+[![Coverage](https://flat.badgen.net/codeclimate/coverage/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
 
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
