@@ -2,10 +2,8 @@ const base = require('./base');
 
 const string = () => ({
 	...base,
-	parse(value) {
-		return `${value}`;
-	},
-	strictCheck(value, name) {
+	parse: (value) => `${value}`,
+	strictCheck: (value, name) => {
 		if (typeof value === 'string') {
 			return true;
 		}

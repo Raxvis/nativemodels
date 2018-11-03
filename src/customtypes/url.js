@@ -2,7 +2,7 @@ const base = require('./../datatypes/base');
 
 const url = () => ({
 	...base,
-	validate(value, name) {
+	validate: (value, name) => {
 		if (/^(https?|ftp):\/\/(-\.)?([^\s/?.#-]+\.?)+(\/[^\s]*)?$/iu.test(value)) {
 			return true;
 		}

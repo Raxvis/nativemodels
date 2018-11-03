@@ -2,10 +2,8 @@ const base = require('./base');
 
 const boolean = () => ({
 	...base,
-	parse(value) {
-		return Boolean(value);
-	},
-	strictCheck(value, name) {
+	parse: (value) => Boolean(value),
+	strictCheck: (value, name) => {
 		if (typeof value === 'boolean') {
 			return true;
 		}

@@ -18,15 +18,9 @@ const isValidDate = (value, name, strict = false) => {
 
 const date = () => ({
 	...base,
-	parse(value) {
-		return value instanceof Date ? value : new Date(value);
-	},
-	strictCheck(value, name) {
-		return isValidDate(value, name, true);
-	},
-	validate(value, name) {
-		return isValidDate(value, name);
-	},
+	parse: (value) => (value instanceof Date ? value : new Date(value)),
+	strictCheck: (value, name) => isValidDate(value, name, true),
+	validate: (value, name) => isValidDate(value, name),
 });
 
 module.exports = date;
