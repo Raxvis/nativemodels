@@ -19,11 +19,7 @@ const isValidDate = (value, strict = false) => {
 const date = () => ({
 	...base,
 	parse(value) {
-		if (value instanceof Date) {
-			return value;
-		}
-
-		return new Date(value);
+		return value instanceof Date ? value : new Date(value);
 	},
 	strictCheck(value, name) {
 		if (isValidDate(value, true)) {
