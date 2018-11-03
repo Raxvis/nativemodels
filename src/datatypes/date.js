@@ -1,5 +1,21 @@
 const base = require('./base');
 
+const isValidDate = (value, strict = false) => {
+	if (value instanceof Date) {
+		return true;
+	}
+
+	if (!strict) {
+		const test = new Date(value);
+
+		if (value && test instanceof Date && !isNaN(test)) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 const date = () => ({
 	...base,
 	parse(value) {
@@ -10,25 +26,15 @@ const date = () => ({
 		return new Date(value);
 	},
 	strictCheck(value, name) {
-		if (value instanceof Date) {
+		if (isValidDate(value, true)) {
 			return true;
 		}
 
 		throw new Error(`Property ${name} is not a date`);
 	},
 	validate(value, name) {
-		if (value instanceof Date) {
+		if (isValidDate(value)) {
 			return true;
-		}
-
-		try {
-			const test = new Date(value);
-
-			if (value && test instanceof Date && !isNaN(test)) {
-				return true;
-			}
-		} catch (error) {
-			// Do nothing, it's not a date
 		}
 
 		throw new Error(`Property ${name} is not a date`);
