@@ -3,6 +3,13 @@ const base = require('./base');
 const float = () => ({
 	...base,
 	parse: (key, value) => parseFloat(value),
+	requiredCheck(key, value) {
+		if (value || value === 0) {
+			return true;
+		}
+
+		throw new Error(`Property: '${key}' is required`);
+	},
 	strictCheck: (key, value) => {
 		if (typeof value === 'number') {
 			return true;
