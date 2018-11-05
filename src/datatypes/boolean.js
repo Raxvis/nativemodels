@@ -3,7 +3,7 @@ const base = require('./base');
 const boolean = () => ({
 	...base,
 	parse: (key, value) => Boolean(value),
-	requiredCheck(key, value) {
+	requiredCheck: (key, value) => {
 		if (typeof value === 'undefined' || value === '' || value === null) {
 			throw new Error(`Property: '${key}' is required`);
 		}
