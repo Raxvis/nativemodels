@@ -3,11 +3,12 @@
 		"es6": true,
 		"node": true
 	},
-	"extends": ["eslint:all", "prettier"],
+	"extends": ["eslint:all", "prettier", "plugin:jest/recommended"],
 	"parser": "babel-eslint",
 	"parserOptions": {
 		"sourceType": "module"
 	},
+	"plugins": ["babel", "jest"],
 	"rules": {
 		"array-bracket-newline": "off",
 		"array-element-newline": "off",
