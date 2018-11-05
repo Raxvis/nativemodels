@@ -17,7 +17,7 @@ const isValidFloat = (key, value, strict = false) => {
 const float = () => ({
 	...base,
 	parse: (key, value) => parseFloat(value),
-	requiredCheck(key, value) {
+	requiredCheck: (key, value) => {
 		if (value || value === 0) {
 			return true;
 		}

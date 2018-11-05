@@ -22,7 +22,7 @@ const isValidInt = (key, value, strict = false) => {
 const int = () => ({
 	...base,
 	parse: (key, value) => parseInt(value),
-	requiredCheck(key, value) {
+	requiredCheck: (key, value) => {
 		if (value || value === 0) {
 			return true;
 		}
