@@ -1,5 +1,3 @@
-/* global test, expect */
-
 const { createModel } = require('./../source');
 const { userData, userResult, userSchema } = require('./../setup');
 

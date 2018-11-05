@@ -1,5 +1,3 @@
-/* global test, expect */
-
 const {
 	createModel,
 	datatypes: { array, boolean, computed, date, int, object, string },

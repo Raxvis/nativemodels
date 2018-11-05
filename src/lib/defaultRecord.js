@@ -1,10 +1,12 @@
-const defaultRecord = (schema, record) =>
-	Object.keys(schema).reduce(
+const defaultRecord = (schema, record) => ({
+	...Object.keys(schema).reduce(
 		(result, key) => ({
 			...result,
-			...(schema[key].hasDefault && !record[key] ? { [key]: schema[key].defaultValue } : {}),
+			...(schema[key].hasDefault ? { [key]: schema[key].defaultValue } : {}),
 		}),
 		{},
-	);
+	),
+	...record,
+});
 
 module.exports = defaultRecord;

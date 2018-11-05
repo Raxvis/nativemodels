@@ -3,13 +3,13 @@ const parseValue = require('./../lib/parseValue');
 
 const array = (type) => ({
 	...base,
-	parse: (values, name) => values.map((value) => parseValue(type, name, value)),
-	validate: (value, name) => {
+	parse: (key, values) => values.map((value) => parseValue(type, key, value)),
+	validate: (key, value) => {
 		if (Array.isArray(value)) {
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not an array`);
+		throw new Error(`Property ${key} is not an array`);
 	},
 });
 

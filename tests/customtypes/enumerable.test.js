@@ -1,5 +1,3 @@
-/* global test, expect */
-
 const {
 	createModel,
 	customtypes: { enumerable },

@@ -2,13 +2,13 @@ const base = require('./base');
 
 const string = () => ({
 	...base,
-	parse: (value) => `${value}`,
-	strictCheck: (value, name) => {
+	parse: (key, value) => `${value}`,
+	strictCheck: (key, value) => {
 		if (typeof value === 'string') {
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not a string`);
+		throw new Error(`Property ${key} is not a string`);
 	},
 });
 

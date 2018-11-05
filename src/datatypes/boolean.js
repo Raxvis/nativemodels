@@ -2,13 +2,20 @@ const base = require('./base');
 
 const boolean = () => ({
 	...base,
-	parse: (value) => Boolean(value),
-	strictCheck: (value, name) => {
+	parse: (key, value) => Boolean(value),
+	requiredCheck(key, value) {
+		if (typeof value === 'undefined' || value === '' || value === null) {
+			throw new Error(`Property: '${key}' is required`);
+		}
+
+		return true;
+	},
+	strictCheck: (key, value) => {
 		if (typeof value === 'boolean') {
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not a boolean`);
+		throw new Error(`Property ${key} is not a boolean`);
 	},
 });
 

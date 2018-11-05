@@ -1,18 +1,6 @@
-const strictCheck = (type, key, value) => {
-	if (type.requireStrict && type.strictCheck) {
-		type.strictCheck(value, key);
-	}
-};
-
-const invalidTypeCheck = (type, key) => {
-	if (!type.validate || !type.parse) {
-		console.log(`Schema Key: '${key}' is not a valid datatype or customtype`);
-
-		return true;
-	}
-
-	return false;
-};
+const invalidTypeCheck = require('./checks/invalidType');
+const requiredCheck = require('./checks/required');
+const strictCheck = require('./checks/strict');
 
 const parseValue = (type, key, value) => {
 	if (type.allowNull && value === null) {
@@ -20,11 +8,12 @@ const parseValue = (type, key, value) => {
 	}
 
 	strictCheck(type, key, value);
+	requiredCheck(type, key, value);
 
 	if (invalidTypeCheck(type, key, value)) {
 		return value;
-	} else if (type.validate(value, key)) {
-		return type.parse(value, key);
+	} else if (type.validate(key, value)) {
+		return type.parse(key, value);
 	}
 
 	throw new Error(`Failed to validate ${key} with value of ${value}`);

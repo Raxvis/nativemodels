@@ -3,13 +3,13 @@ const createModel = require('./../createModel');
 
 const object = (schema, options) => ({
 	...base,
-	parse: (value) => createModel(schema, options)(value),
-	validate: (value, name) => {
+	parse: (key, value) => createModel(schema, options)(value),
+	validate: (key, value) => {
 		if (typeof value === 'object' && !Array.isArray(value)) {
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not an object`);
+		throw new Error(`Property ${key} is not an object`);
 	},
 });
 

@@ -1,5 +1,3 @@
-/* global test, expect */
-
 const { createModel, datatypes } = require('./source');
 
 const types = {
@@ -52,7 +50,7 @@ test('test basic valid / invalid datatypes', () => {
 				const record = model({ [type]: value });
 				const { parse } = datatypes[type]();
 
-				expect(record[type]).toEqual(parse(value));
+				expect(record[type]).toEqual(parse('', value));
 			});
 		}
 
@@ -76,7 +74,7 @@ test('test strict', () => {
 				const record = model({ [type]: value });
 				const { parse } = datatypes[type]();
 
-				expect(record[type]).toEqual(parse(value));
+				expect(record[type]).toEqual(parse('', value));
 			});
 		}
 	});
@@ -112,8 +110,9 @@ test('ensure default works on all data types', () => {
 			types[type].valid.forEach((value) => {
 				const model = createModel({ [type]: datatypes[type]().default(value) });
 				const record = model();
+				const { parse } = datatypes[type]();
 
-				expect(record[type]).toEqual(value);
+				expect(record[type]).toEqual(parse('', value));
 			});
 		}
 	});

@@ -2,15 +2,15 @@ const base = require('./base');
 
 const int = () => ({
 	...base,
-	parse: (value) => parseInt(value),
-	strictCheck: (value, name) => {
+	parse: (key, value) => parseInt(value),
+	strictCheck: (key, value) => {
 		if (typeof value === 'number') {
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not an int`);
+		throw new Error(`Property ${key} is not an int`);
 	},
-	validate: (value, name) => {
+	validate: (key, value) => {
 		if (
 			value !== true &&
 			value !== false &&
@@ -21,7 +21,7 @@ const int = () => ({
 			return true;
 		}
 
-		throw new Error(`Property ${name} is not an int`);
+		throw new Error(`Property ${key} is not an int`);
 	},
 });
 

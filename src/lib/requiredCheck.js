@@ -1,8 +1,8 @@
+const required = require('./checks/required');
+
 const requiredCheck = (schema, record) =>
 	Object.keys(schema).forEach((key) => {
-		if (schema[key].isRequired && !record[key] && !schema[key].defaultValue) {
-			throw new Error(`Property: '${key}' is required`);
-		}
+		required(schema[key], key, record[key]);
 	});
 
 module.exports = requiredCheck;

@@ -1,6 +1,6 @@
 const base = require('./base');
 
-const isValidDate = (value, name, strict = false) => {
+const isValidDate = (key, value, strict = false) => {
 	if (value instanceof Date) {
 		return true;
 	}
@@ -13,14 +13,14 @@ const isValidDate = (value, name, strict = false) => {
 		}
 	}
 
-	throw new Error(`Property ${name} is not a date`);
+	throw new Error(`Property ${key} is not a date`);
 };
 
 const date = () => ({
 	...base,
-	parse: (value) => (value instanceof Date ? value : new Date(value)),
-	strictCheck: (value, name) => isValidDate(value, name, true),
-	validate: (value, name) => isValidDate(value, name),
+	parse: (key, value) => (value instanceof Date ? value : new Date(value)),
+	strictCheck: (key, value) => isValidDate(key, value, true),
+	validate: (key, value) => isValidDate(key, value),
 });
 
 module.exports = date;

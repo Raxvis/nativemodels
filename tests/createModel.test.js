@@ -1,5 +1,3 @@
-/* global test, expect */
-
 const {
 	createModel,
 	datatypes: { int },
@@ -60,7 +58,7 @@ test('createModel - handle extra data', () => {
 	expect(model({ ...userData, unkownKey: 'remove this' })).toEqual(userResult);
 });
 
-test('createModel - handle extra data', () => {
+test('createModel - handle extra data part2', () => {
 	const model = createModel(userSchema);
 
 	const johnSmith = model(userData);
