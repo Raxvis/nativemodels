@@ -235,6 +235,15 @@ const resolvedData = await resolver(data, resolvedSchema);
 
 ## Options for createModel
 
+### defaultOptions
+
+```js
+const defaultOptions = {
+	caseSensitive: true, // Ignores case when initialing object from model
+	strict: false, // Throws an error if key is not in schema
+};
+```
+
 ### caseSensitive
 
 The caseSensitive option `default(true)` allows you to turn off caseSensitive matching. This is useful for ignoring and parsing user submitted data into a nice clean format while still maintaining model integrity
@@ -281,7 +290,7 @@ const data = model({ Nested: { FOO: 'bar' } });
 
 ### strict
 
-The strict option `default(false)` allows you to throw an error is the inital object you are assigning has extra keys. This is useful for validating data structure when coming from an unknown source
+The strict option `default: false` allows you to throw an error if the inital object you are assigning has extra keys. This is useful for validating data structure when coming from an unknown source
 
 ```js
 const { createModel } = require('nativemodels');
