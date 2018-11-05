@@ -23,11 +23,11 @@ test('datatype | array - basic array test', () => {
 	expect(createModel(userSchema)(data)).toEqual(result);
 });
 
-test('datatype | array - extending with bad validate throws error', () => {
+test('datatype | array - extending with bad validCheck throws error', () => {
 	const customType = () => ({
 		...base,
-		validate() {
-			return false;
+		validCheck() {
+			throw new Error('fail');
 		},
 	});
 

@@ -2,7 +2,7 @@ const base = require('./../datatypes/base');
 
 const enumerable = (enumerableValues) => ({
 	...base,
-	validate: (key, value) => {
+	validCheck: (key, value) => {
 		if (enumerableValues.indexOf(value) > -1) {
 			return true;
 		}

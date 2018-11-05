@@ -146,13 +146,53 @@ Requires the value that is passed in to be the correct datatype instead of coerc
 
 ## Extending Datatypes
 
-### datatypes.validate(value, name)
+```js
+const { base } = require('nativemodels/datatypes');
 
-If value is valid, returns true, else throws error. Name is key on object;
+const myCustomDataType = () => ({
+	...base,
+	parse: (key, value) => `${key}:${value}`,
+	requiredCheck(key, value) {
+		if (key && value) {
+			return true;
+		}
 
-### datatypes.parse(value)
+		throw new Error(`Property: '${key}' is required`);
+	},
+	strictCheck: (key, value) => {
+		if (typeof value === 'string') {
+			return true;
+		}
 
-Parses the value being set. Used to extend base datatype
+		throw new Error(`Property ${key} is not a customDataType`);
+	},
+	validate: (key, value) => {
+		if (`${key}:${value}` !== ':') {
+			return true;
+		}
+
+		throw new Error(`Property ${key} is not a customDataType`);
+	},
+});
+
+module.exports = int;
+```
+
+### base.parse(key, value)
+
+Parses the value being set
+
+### base.validCheck(key, value)
+
+Returns true if passes your valid check else should throw an erorr
+
+### base.requiredCheck(key, value)
+
+Returns true if passes your required check else should throw an error
+
+### base.strictCheck(key, value)
+
+Returns true is passes your strict check else should throw an error
 
 ## Customtypes
 
@@ -239,7 +279,7 @@ const resolvedData = await resolver(data, resolvedSchema);
 
 ```js
 const defaultOptions = {
-	caseSensitive: true, // Ignores case when initialing object from model
+	caseSensitive: true, // Ignores case when initializing object from model
 	strict: false, // Throws an error if key is not in schema
 };
 ```

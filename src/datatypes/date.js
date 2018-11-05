@@ -20,7 +20,7 @@ const date = () => ({
 	...base,
 	parse: (key, value) => (value instanceof Date ? value : new Date(value)),
 	strictCheck: (key, value) => isValidDate(key, value, true),
-	validate: (key, value) => isValidDate(key, value),
+	validCheck: (key, value) => isValidDate(key, value),
 });
 
 module.exports = date;

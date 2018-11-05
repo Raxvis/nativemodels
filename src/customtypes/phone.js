@@ -2,7 +2,7 @@ const base = require('./../datatypes/base');
 
 const phone = () => ({
 	...base,
-	validate: (key, value) => {
+	validCheck: (key, value) => {
 		if (/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/iu.test(value)) {
 			return true;
 		}

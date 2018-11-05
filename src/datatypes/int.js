@@ -17,7 +17,7 @@ const int = () => ({
 
 		throw new Error(`Property ${key} is not an int`);
 	},
-	validate: (key, value) => {
+	validCheck: (key, value) => {
 		if (
 			value !== true &&
 			value !== false &&

@@ -17,7 +17,7 @@ const float = () => ({
 
 		throw new Error(`Property ${key} is not a float`);
 	},
-	validate: (key, value) => {
+	validCheck: (key, value) => {
 		if (!isNaN(parseFloat(value)) && value !== true && value !== false && value !== '') {
 			return true;
 		}

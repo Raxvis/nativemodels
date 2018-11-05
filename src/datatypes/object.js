@@ -4,7 +4,7 @@ const createModel = require('./../createModel');
 const object = (schema, options) => ({
 	...base,
 	parse: (key, value) => createModel(schema, options)(value),
-	validate: (key, value) => {
+	validCheck: (key, value) => {
 		if (typeof value === 'object' && !Array.isArray(value)) {
 			return true;
 		}

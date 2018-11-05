@@ -33,7 +33,7 @@ const base = {
 	strictCheck() {
 		return true;
 	},
-	validate() {
+	validCheck() {
 		return true;
 	},
 };

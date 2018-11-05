@@ -131,11 +131,11 @@ test('ensure nullable works on all data types', () => {
 	});
 });
 
-test('extending with bad validate throws error', () => {
+test('extending with bad validCheck throws error', () => {
 	const customType = () => ({
 		...datatypes.base,
-		validate() {
-			return false;
+		validCheck() {
+			throw new Error('failed');
 		},
 	});
 
