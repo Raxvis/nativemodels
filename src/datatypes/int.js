@@ -1,5 +1,22 @@
 const base = require('./base');
 
+const isValidInt = (key, value, strict = false) => {
+	if (strict && typeof value === 'number') {
+		return true;
+	} else if (
+		!strict &&
+		value !== true &&
+		value !== false &&
+		value !== '' &&
+		!isNaN(parseInt(value)) &&
+		parseInt(value) === parseFloat(value)
+	) {
+		return true;
+	}
+
+	throw new Error(`Property ${key} is not an int`);
+};
+
 const int = () => ({
 	...base,
 	parse: (key, value) => parseInt(value),
@@ -10,26 +27,8 @@ const int = () => ({
 
 		throw new Error(`Property: '${key}' is required`);
 	},
-	strictCheck: (key, value) => {
-		if (typeof value === 'number') {
-			return true;
-		}
-
-		throw new Error(`Property ${key} is not an int`);
-	},
-	validCheck: (key, value) => {
-		if (
-			value !== true &&
-			value !== false &&
-			value !== '' &&
-			!isNaN(parseInt(value)) &&
-			parseInt(value) === parseFloat(value)
-		) {
-			return true;
-		}
-
-		throw new Error(`Property ${key} is not an int`);
-	},
+	strictCheck: (key, value) => isValidInt(key, value, true),
+	validCheck: (key, value) => isValidInt(key, value),
 });
 
 module.exports = int;
