@@ -27,7 +27,7 @@ test('datatype | array - extending with bad validCheck throws error', () => {
 	const customType = () => ({
 		...base,
 		validCheck() {
-			throw new Error('fail');
+			return false;
 		},
 	});
 

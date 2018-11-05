@@ -135,7 +135,7 @@ test('extending with bad validCheck throws error', () => {
 	const customType = () => ({
 		...datatypes.base,
 		validCheck() {
-			throw new Error('failed');
+			return false;
 		},
 	});
 

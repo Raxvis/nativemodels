@@ -1,7 +1,4 @@
-const strictCheck = (type, key, value) => {
-	if (type.requireStrict && type.strictCheck) {
-		type.strictCheck(key, value);
-	}
-};
+const strictCheck = (type, key, value) =>
+	type.requireStrict && type.strictCheck ? type.strictCheck(key, value) : true;
 
 module.exports = strictCheck;

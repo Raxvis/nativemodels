@@ -1,7 +1,3 @@
-const requiredCheck = (type, key, value) => {
-	if (type.isRequired) {
-		type.requiredCheck(key, value);
-	}
-};
+const requiredCheck = (type, key, value) => (type.isRequired ? type.requiredCheck(key, value) : true);
 
 module.exports = requiredCheck;
