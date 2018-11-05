@@ -1,10 +1,14 @@
 const base = require('./base');
 
 const isValidFloat = (key, value, strict = false) => {
-	if (strict && typeof value === 'number') {
+	if (typeof value === 'number') {
 		return true;
-	} else if (!strict && !isNaN(parseFloat(value)) && value !== true && value !== false && value !== '') {
-		return true;
+	}
+
+	if (!strict) {
+		if (!isNaN(parseFloat(value)) && value !== true && value !== false && value !== '') {
+			return true;
+		}
 	}
 
 	throw new Error(`Property ${key} is not a float`);

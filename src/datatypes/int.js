@@ -1,17 +1,19 @@
 const base = require('./base');
 
 const isValidInt = (key, value, strict = false) => {
-	if (strict && typeof value === 'number') {
+	if (typeof value === 'number' && parseInt(value) === parseFloat(value)) {
 		return true;
-	} else if (
-		!strict &&
-		value !== true &&
-		value !== false &&
-		value !== '' &&
-		!isNaN(parseInt(value)) &&
-		parseInt(value) === parseFloat(value)
-	) {
-		return true;
+	}
+
+	if (!strict) {
+		if (
+			typeof value !== 'boolean' &&
+			value !== '' &&
+			!isNaN(parseInt(value)) &&
+			parseInt(value) === parseFloat(value)
+		) {
+			return true;
+		}
 	}
 
 	throw new Error(`Property ${key} is not an int`);
