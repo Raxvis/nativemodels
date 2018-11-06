@@ -5,10 +5,12 @@ const proxyHandler = require('./lib/proxyHandler');
 const recaseKeys = require('./lib/recaseKeys');
 const requireAllKeys = require('./lib/requireAllKeys');
 const requiredCheck = require('./lib/requiredCheck');
+const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
 
 const createModel = (schema, modelOptions = {}) => (record = {}) => {
 	const options = { ...defaultOptions, ...modelOptions };
-	const casedRecord = options.caseSensitive ? record : recaseKeys(schema, record);
+	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, record) : record;
+	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
 	const defaultedRecord = defaultRecord(schema, casedRecord);
 
 	if (options.strict) {

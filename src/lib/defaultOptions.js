@@ -3,6 +3,8 @@ const defaultOptions = {
 	caseSensitive: true,
 	// Throws an error if key is not in schema
 	strict: false,
+	// Strip undefined values passed in
+	stripUndefined: true,
 };
 
 module.exports = defaultOptions;

@@ -1,5 +1,6 @@
 const {
 	createModel,
+	customtypes: { guid },
 	datatypes: { boolean, float, int },
 } = require('./source');
 
@@ -22,8 +23,16 @@ test('float required check with "0"', () => {
 	expect(model({ float: 0.0 }).float).toEqual(0.0);
 });
 
-test('nullable allows undefined and converts to null', () => {
-	const model = createModel({ float: float().nullable() });
+test(`undefined won't try and pass the validCheck`, () => {
+	const model = createModel({ guid: guid() });
 
-	expect(model({ float: undefined }).float).toEqual(null);
+	expect(model({ guid: undefined })).toEqual({});
+});
+
+test(`undefined will fail the validCheck if stripUndefined is false`, () => {
+	const model = createModel({ guid: guid() }, { stripUndefined: false });
+
+	expect(() => {
+		model({ guid: undefined });
+	}).toThrow();
 });
