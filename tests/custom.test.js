@@ -36,3 +36,9 @@ test(`undefined will fail the validCheck if stripUndefined is false`, () => {
 		model({ guid: undefined });
 	}).toThrow();
 });
+
+test(`accessing undefined parameter from model should result in undefined`, () => {
+	const model = createModel({ guid: guid() });
+
+	expect(model({ guid: undefined }).guid2).toEqual(undefined);
+});

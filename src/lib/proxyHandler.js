@@ -6,7 +6,7 @@ const get = (schema, target, property) => {
 		return schema[property].fn ? schema[property].fn(target) : target[property];
 	}
 
-	return false;
+	return undefined;
 };
 
 const getOwnPropertyDescriptor = (schema, target, property) => ({
