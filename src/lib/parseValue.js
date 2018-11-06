@@ -15,7 +15,7 @@ const runChecks = (type, key, value) => {
 };
 
 const parseValue = (type, key, value) => {
-	if (type.allowNull && value === null) {
+	if (type.allowNull && (value === null || value === undefined)) {
 		return null;
 	} else if (invalidTypeCheck(type, key, value)) {
 		return value;

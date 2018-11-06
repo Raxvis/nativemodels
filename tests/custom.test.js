@@ -21,3 +21,9 @@ test('float required check with "0"', () => {
 	expect(model({ float: 0 }).float).toEqual(0);
 	expect(model({ float: 0.0 }).float).toEqual(0.0);
 });
+
+test('nullable allows undefined and converts to null', () => {
+	const model = createModel({ float: float().nullable() });
+
+	expect(model({ float: undefined }).float).toEqual(null);
+});
