@@ -12,7 +12,7 @@ const get = (schema, target, property) => {
 const getOwnPropertyDescriptor = (schema, target, property) => ({
 	configurable: true,
 	enumerable: true,
-	value: schema[property].fn ? schema[property].fn(target) : target[property],
+	value: schema[property].fn ? undefined : target[property],
 	writable: true,
 });
 
