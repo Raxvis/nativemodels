@@ -1454,19 +1454,16 @@ eslint-config-prettier@^3.0.1:
 eslint-plugin-babel@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-babel/-/eslint-plugin-babel-5.2.1.tgz#95cccad9a70908ab1d21276e7e33cc9701a18293"
-  integrity sha512-2bYHrP9TOT3Bq2Ay12xo2FZg76dMZesZMcRzoHZiC4v+Q4CMUA/F0G3hGYseOpwXaaGqxaPXoJyqAyIa3eBF1Q==
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-jest@^21.27.1:
-  version "21.27.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-21.27.1.tgz#b64c2d6a7f0751cecc14580d7f4d9a5520424448"
-  integrity sha512-K+S4Wa20MoRRXICfnQBqjl2g9+ipJBeDUVrB3Csg4wOrxXMGcNxYuPRaiyA0pqmb/vO2cgaLEzurORfsLrztxg==
+eslint-plugin-jest@^22.0.0:
+  version "22.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.0.0.tgz#87dc52bbdd47f37f23bf2b10bb8469458bb3ed68"
 
 eslint-rule-composer@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
-  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@3.7.1:
   version "3.7.1"
