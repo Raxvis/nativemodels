@@ -264,3 +264,19 @@ test(`computed allows override with no type`, () => {
 
 	expect(data.computed).toEqual(2);
 });
+
+test(`computed allows override fails if incorrect type`, () => {
+	const data = createModel({ computed: computed(() => 1, int(), { allowOverride: true }) })({});
+
+	expect(() => {
+		data.computed = 'bar';
+	}).toThrow();
+});
+
+test(`computed override doesn't fail if not allowed and incorrect type`, () => {
+	const data = createModel({ computed: computed(() => 1, int()) })({});
+
+	data.computed = 'bar';
+
+	expect(data.computed).toEqual(1);
+});

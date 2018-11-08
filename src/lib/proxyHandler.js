@@ -23,7 +23,9 @@ const set = (schema, target, property, value) => {
 		throw new Error(`${property} is not a property of model`);
 	}
 
-	target[property] = parseValue(schema[property], property, value);
+	const type = schema[property].fn && schema[property].type ? schema[property].type : schema[property];
+
+	target[property] = parseValue(type, property, value);
 
 	return true;
 };

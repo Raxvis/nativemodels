@@ -28,6 +28,7 @@ const computed = (userFn, type, options = { allowOverride: false }) => ({
 
 		return userFn(record, key);
 	},
+	type: options.allowOverride ? type : undefined,
 });
 
 module.exports = computed;
