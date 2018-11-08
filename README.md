@@ -144,6 +144,67 @@ Requires the value that is passed in to be the correct datatype instead of coerc
 -   object
 -   string
 
+### computed
+
+The computed datatype accepts a function in with the current record of the object and key name is passed in and the result is returned.
+
+```js
+const { createModel } = require('nativemodels');
+const { computed, string } = require('nativiemodels/datatypes');
+
+const schema = {
+	hello: computed((record, key) => `${key} ${record.name}`),
+	name: string(),
+};
+const model = createModel(schema);
+
+const user = model({ name: 'john' });
+const hello = user.hello;
+// => 'hello john'
+```
+
+Values are generated on access of the key `const hello = user.hello;`
+
+If you wish your result to type checked, you can pass in a second parameter of the type. The value will be evaluated on access.
+
+```js
+const { createModel } = require('nativemodels');
+const { computed, int, string } = require('nativiemodels/datatypes');
+
+const schema = {
+	hello: computed((record, key) => `${key} ${record.name}`, int()),
+	name: string(),
+};
+const model = createModel(schema);
+
+const user = model({ name: 'john' });
+cosnt hello = user.hello;
+// => new Error('Property hello is not an int`)
+```
+
+If you wish to be able override the value, you can do so with a third paramater object
+
+```js
+const { createModel } = require('nativemodels');
+const { computed, int, string } = require('nativiemodels/datatypes');
+
+const schema = {
+	hello: computed((record, key) => `${key} ${record.name}`, string().strict(), { allowOverride: true }),
+	name: string(),
+};
+const model = createModel(schema);
+
+const user = model({ name: 'john' });
+
+user.hello = 'goodbye';
+
+cosnt hello = user.hello;
+// => 'goodbye'
+
+user.hello = 1
+// => new Error('Property hello is not a string')
+```
+
 ## Extending Datatypes
 
 ```js
