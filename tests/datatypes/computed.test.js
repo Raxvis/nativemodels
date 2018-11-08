@@ -1,27 +1,21 @@
 const {
 	createModel,
-	datatypes: { array, computed, object, string },
+	datatypes: { array, computed, int, object, string },
 	resolver,
 } = require('./../source');
 
-const sleep = (time) =>
+const sleep = (time = 1) =>
 	new Promise((resolve) =>
 		setTimeout(() => {
-			resolve();
+			resolve(time);
 		}, time),
 	);
 
+const buildFullName = (record) => `${record.firstName} ${record.lastName}`;
+
 test('datatype | computed - basic test', () => {
-	const schema = {
-		firstName: string(),
-		fullName: computed((record) => `${record.firstName} ${record.lastName}`),
-		lastName: string(),
-	};
-	const model = createModel(schema);
-	const user = model({
-		firstName: 'John',
-		lastName: 'Smith',
-	});
+	const model = createModel({ firstName: string(), fullName: computed(buildFullName), lastName: string() });
+	const user = model({ firstName: 'John', lastName: 'Smith' });
 
 	expect(user.fullName).toEqual('John Smith');
 	user.firstName = 'James';
@@ -29,18 +23,12 @@ test('datatype | computed - basic test', () => {
 });
 
 test('datatype | computed - deep nested object', () => {
-	const schema = {
-		bar: object({
-			bar: computed((record) => record.foo),
-			foo: string(),
-		}),
+	const model = createModel({
+		bar: object({ bar: computed((record) => record.foo), foo: string() }),
 		foo: string(),
-	};
-	const model = createModel(schema);
+	});
 	const data = model({
-		bar: {
-			foo: 'baz',
-		},
+		bar: { foo: 'baz' },
 		foo: 'bar',
 	});
 
@@ -48,7 +36,7 @@ test('datatype | computed - deep nested object', () => {
 });
 
 test('datatype | computed - deep nested array', () => {
-	const schema = {
+	const model = createModel({
 		bar: array(
 			object({
 				bar: computed((record) => record.foo),
@@ -56,17 +44,9 @@ test('datatype | computed - deep nested array', () => {
 			}),
 		),
 		foo: string(),
-	};
-	const model = createModel(schema);
+	});
 	const data = model({
-		bar: [
-			{
-				foo: 'baz',
-			},
-			{
-				foo: 'bat',
-			},
-		],
+		bar: [{ foo: 'baz' }, { foo: 'bat' }],
 		foo: 'bar',
 	});
 
@@ -75,18 +55,15 @@ test('datatype | computed - deep nested array', () => {
 });
 
 test('datatype | computed - resolved deep nested object', async () => {
-	const schema = {
+	const model = createModel({
 		bar: object({
 			bar: computed((record) => new Promise((success) => success(record.foo))),
 			foo: string(),
 		}),
 		foo: string(),
-	};
-	const model = createModel(schema);
+	});
 	const data = model({
-		bar: {
-			foo: 'baz',
-		},
+		bar: { foo: 'baz' },
 		foo: 'bar',
 	});
 	const resolved = await resolver(data);
@@ -95,7 +72,7 @@ test('datatype | computed - resolved deep nested object', async () => {
 });
 
 test('datatype | computed - resolved deep nested array', async () => {
-	const schema = {
+	const model = createModel({
 		bar: array(
 			object({
 				bar: computed((record) => new Promise((success) => success(record.foo))),
@@ -103,17 +80,9 @@ test('datatype | computed - resolved deep nested array', async () => {
 			}),
 		),
 		foo: string(),
-	};
-	const model = createModel(schema);
+	});
 	const data = model({
-		bar: [
-			{
-				foo: 'baz',
-			},
-			{
-				foo: 'bat',
-			},
-		],
+		bar: [{ foo: 'baz' }, { foo: 'bat' }],
 		foo: 'bar',
 	});
 	const resolved = await resolver(data);
@@ -124,7 +93,6 @@ test('datatype | computed - resolved deep nested array', async () => {
 
 test(`computed accessed only when called`, () => {
 	let count = 0;
-
 	const data = createModel({
 		computed: computed(() => {
 			count += 1;
@@ -175,7 +143,6 @@ test(`computed accessed only when called - deeply nested array`, () => {
 
 test(`computed accessed only when called with async`, async () => {
 	let count = 0;
-
 	const data = createModel({
 		computed: computed(async () => {
 			count += 1;
@@ -203,11 +170,7 @@ test(`computed accessed only when called with async - deeply nested`, async () =
 		}),
 	};
 
-	const parentSchema = {
-		object: object(schema),
-	};
-
-	const data = createModel(parentSchema)({ object: {} });
+	const data = createModel({ object: object(schema) })({ object: {} });
 
 	expect(resolver(data)).resolves.toEqual({ object: { computed: 1 } });
 	await sleep(10);
@@ -227,11 +190,7 @@ test(`computed accessed only when called with async - deeply nested with array`,
 		}),
 	};
 
-	const parentSchema = {
-		object: array(object(schema)),
-	};
-
-	const data = createModel(parentSchema)({ object: [{}] });
+	const data = createModel({ object: array(object(schema)) })({ object: [{}] });
 
 	expect(resolver(data)).resolves.toEqual({ object: [{ computed: 1 }] });
 	await sleep(10);
@@ -241,9 +200,67 @@ test(`computed accessed only when called with async - deeply nested with array`,
 });
 
 test(`computed still shows as key`, () => {
-	const schema = { computed: computed(() => 1) };
-	const data = createModel(schema)({});
-	const keys = Object.keys(data);
+	const data = createModel({ computed: computed(() => 1) })({});
 
-	expect(keys).toEqual(['computed']);
+	expect(Object.keys(data)).toEqual(['computed']);
+});
+
+test(`computed accepts a type`, () => {
+	const data = createModel({ computed: computed(() => 1, int()) })({});
+
+	expect(data.computed).toEqual(1);
+});
+
+test(`computed accepts a type`, () => {
+	const data = createModel({ computed: computed(() => undefined, int()) })({});
+
+	expect(data.computed).toEqual(undefined);
+});
+
+test(`computed won't accept a bad type`, () => {
+	const data = createModel({ computed: computed(() => 'foo', int()) })({});
+
+	expect(() => data.computed).toThrow('Property computed is not an int');
+});
+
+test(`computed won't accept an undefined required type`, () => {
+	const data = createModel({ computed: computed(() => undefined, int().required()) })({});
+
+	expect(() => data.computed).toThrow(`Property: 'computed' is required`);
+});
+
+test(`computed accepts a type with async and passes`, async () => {
+	const data = createModel({ computed: computed(() => sleep(1), int()) })({});
+	const value = await data.computed;
+
+	expect(value).toEqual(1);
+	expect(data.computed).resolves.toEqual(1);
+});
+
+test(`computed accepts a type with async and fails`, () => {
+	const data = createModel({
+		computed: computed(async () => {
+			await sleep(1);
+
+			return 'foo';
+		}, int()),
+	})({});
+
+	expect(data.computed).rejects.toThrow('Property computed is not an int');
+});
+
+test(`computed allows override`, () => {
+	const data = createModel({ computed: computed(() => 1, int(), { allowOverride: true }) })({});
+
+	data.computed = 2;
+
+	expect(data.computed).toEqual(2);
+});
+
+test(`computed allows override with no type`, () => {
+	const data = createModel({ computed: computed(() => 1, undefined, { allowOverride: true }) })({});
+
+	data.computed = 2;
+
+	expect(data.computed).toEqual(2);
 });

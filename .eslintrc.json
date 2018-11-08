@@ -25,6 +25,7 @@
 				"max": 2
 			}
 		],
+		"multiline-comment-style": "off",
 		"multiline-ternary": "off",
 		"no-console": "off",
 		"no-extra-parens": "off",

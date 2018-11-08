@@ -17,14 +17,10 @@ const resolved = (keys, values, schema) => {
 	return schema ? createModel(schema)(data) : data;
 };
 
-const resolver = (data, schema) =>
-	new Promise((resolve, reject) => {
-		const keys = Object.keys(data);
+const resolver = (data, schema) => {
+	const keys = Object.keys(data);
 
-		Promise.all(keys.map((key) => cascadeResolve(data[key])))
-			.then((values) => resolved(keys, values, schema))
-			.then(resolve)
-			.catch(reject);
-	});
+	return Promise.all(keys.map((key) => cascadeResolve(data[key]))).then((values) => resolved(keys, values, schema));
+};
 
 module.exports = resolver;
