@@ -54,5 +54,5 @@
 		"test": "jest --coverage",
 		"test-dist": "yarn build && cp -R tests/ tests-dist/ && jest"
 	},
-	"version": "1.9.0"
+	"version": "1.10.0"
 }
