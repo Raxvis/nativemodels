@@ -7,7 +7,7 @@ const requireAllKeys = require('./lib/requireAllKeys');
 const requiredCheck = require('./lib/requiredCheck');
 const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
 
-const createModel = (schema, modelOptions = {}) => (record = {}) => {
+const createModel = (schema, modelOptions = {}, context = {}) => (record = {}) => {
 	const options = { ...defaultOptions, ...modelOptions };
 	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, record) : record;
 	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
@@ -21,7 +21,7 @@ const createModel = (schema, modelOptions = {}) => (record = {}) => {
 
 	const proxyTarget = parseRecord(schema, defaultedRecord);
 
-	return new Proxy(proxyTarget, proxyHandler(schema, options));
+	return new Proxy(proxyTarget, proxyHandler(schema, options, context));
 };
 
 module.exports = createModel;

@@ -280,3 +280,9 @@ test(`computed override doesn't fail if not allowed and incorrect type`, () => {
 
 	expect(data.computed).toEqual(1);
 });
+
+test(`context is passed to computed`, () => {
+	const data = createModel({ computed: computed((record, key, context) => context) }, {}, { foo: 'bar' })({});
+
+	expect(data.computed).toEqual({ foo: 'bar' });
+});

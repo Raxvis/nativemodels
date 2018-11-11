@@ -1,6 +1,6 @@
 <h1 align="center">
 	<br>
-	<a href="https://github.com/Prefinem/simple-icon-generator"><img src="https://raw.githubusercontent.com/Prefinem/nativemodels/master/docs/logo.png" alt="NativeModels" width="200"></a>
+	<a href="https://github.com/Prefinem/nativemodels"><img src="https://raw.githubusercontent.com/Prefinem/nativemodels/master/docs/logo.png" alt="NativeModels" width="200"></a>
 	<br>
 <!--
 https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAzLCA1NiwgNTUpIiwiYm9yZGVyQ29sb3IiOiJ3aGl0ZSIsImJvcmRlcldpZHRoIjoiMCIsImV4cG9ydFNpemUiOjUxMiwiZXhwb3J0aW5nIjpmYWxzZSwiZm9udEZhbWlseSI6IkFndWFmaW5hIFNjcmlwdCIsImZvbnRQb3NpdGlvbiI6IjY1IiwiZm9udFNpemUiOiI0MiIsImZvbnRXZWlnaHQiOjYwMCwiaW1hZ2UiOiIiLCJpbWFnZU1hc2siOiIiLCJpbWFnZVNpemUiOjUwLCJzaGFwZSI6ImRpYW1vbmQiLCJ0ZXh0IjoiTi4gTS4ifQ
@@ -146,21 +146,21 @@ Requires the value that is passed in to be the correct datatype instead of coerc
 
 ### computed
 
-The computed datatype accepts a function in with the current record of the object and key name is passed in and the result is returned.
+The computed datatype accepts a function in with the current record of the object and key name is passed in and any context passed to createModel. The value is the result that is returned.
 
 ```js
 const { createModel } = require('nativemodels');
 const { computed, string } = require('nativiemodels/datatypes');
 
 const schema = {
-	hello: computed((record, key) => `${key} ${record.name}`),
+	hello: computed((record, key, context) => `${key} ${record.name} ${context.lastName}`),
 	name: string(),
 };
-const model = createModel(schema);
+const model = createModel(schema, {}, { lastName: 'smith' });
 
 const user = model({ name: 'john' });
 const hello = user.hello;
-// => 'hello john'
+// => 'hello john smith'
 ```
 
 Values are generated on access of the key `const hello = user.hello;`
@@ -338,6 +338,8 @@ const resolvedData = await resolver(data, resolvedSchema);
 
 ### defaultOptions
 
+Options are merged with whatever object is passed in, so a blank object will keep the default options
+
 ```js
 const defaultOptions = {
 	caseSensitive: true, // Ignores case when initializing object from model
@@ -432,3 +434,11 @@ const model = createModel(deepSchema, options);
 const data = model({ nested: { faa: 'bar' } });
 // => throw new Error(`Property: 'faa' is not defined in the schema`);
 ```
+
+## createModel context
+
+A third parameter can be passed in to createModel. This is called context and should not be used unless absolutely required. If a schema relies on it, you will have the potential to throw errors inside your computed functions which will make debugging difficult.
+
+**WARNING: Use context at your own risk**
+
+The use case for context is if you want to pass items to a computed field that normally wouldn't be accessible to the schema. Things such as a database connector, or variables unrelated to the model. This allows you to keep from litering the global space with variables that you might use in computed functions.

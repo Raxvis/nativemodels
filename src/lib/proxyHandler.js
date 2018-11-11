@@ -1,9 +1,9 @@
 /* eslint max-params: off */
 const parseValue = require('./parseValue');
 
-const get = (schema, target, property) => {
+const get = (schema, target, property, context) => {
 	if (schema[property]) {
-		return schema[property].fn ? schema[property].fn(target, property) : target[property];
+		return schema[property].fn ? schema[property].fn(target, property, context) : target[property];
 	}
 
 	return undefined;
@@ -30,8 +30,8 @@ const set = (schema, target, property, value) => {
 	return true;
 };
 
-const proxyHandler = (schema) => ({
-	get: (target, property) => get(schema, target, property),
+const proxyHandler = (schema, options, context) => ({
+	get: (target, property) => get(schema, target, property, context),
 	getOwnPropertyDescriptor: (target, property) => getOwnPropertyDescriptor(schema, target, property),
 	ownKeys: (target) => ownKeys(schema, target),
 	set: (target, property, value) => set(schema, target, property, value),
