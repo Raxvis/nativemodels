@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { guid },
-	datatypes: { boolean, float, int },
+	datatypes: { array, boolean, float, int, object, string },
 } = require('./source');
 
 test('boolean required check with "false"', () => {
@@ -41,4 +41,30 @@ test(`accessing undefined parameter from model should result in undefined`, () =
 	const model = createModel({ guid: guid() });
 
 	expect(model({ guid: undefined }).guid2).toEqual(undefined);
+});
+
+test(`shallow copy test`, () => {
+	const model = createModel({ object: object({ foo: string().default('bar') }).default({}) });
+	const data = model();
+
+	expect(data).toEqual({ object: { foo: 'bar' } });
+
+	const data2 = model(data);
+
+	data2.object.foo = 'baz';
+	expect(data).toEqual({ object: { foo: 'bar' } });
+	expect(data2).toEqual({ object: { foo: 'baz' } });
+});
+
+test(`shallow copy test2`, () => {
+	const model = createModel({ objects: array(object({ foo: string().default('bar') })).default([{}]) });
+	const data = model();
+
+	expect(data).toEqual({ objects: [{ foo: 'bar' }] });
+
+	const data2 = model(data);
+
+	data2.objects[0].foo = 'baz';
+	expect(data).toEqual({ objects: [{ foo: 'bar' }] });
+	expect(data2).toEqual({ objects: [{ foo: 'baz' }] });
 });
