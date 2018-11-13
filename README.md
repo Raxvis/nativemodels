@@ -344,6 +344,7 @@ Options are merged with whatever object is passed in, so a blank object will kee
 const defaultOptions = {
 	caseSensitive: true, // Ignores case when initializing object from model
 	strict: false, // Throws an error if key is not in schema
+	stripUndefined: true, // Strip undefined values passed in
 };
 ```
 
@@ -433,6 +434,46 @@ const deepSchema = {
 const model = createModel(deepSchema, options);
 const data = model({ nested: { faa: 'bar' } });
 // => throw new Error(`Property: 'faa' is not defined in the schema`);
+```
+
+## stripUndefined
+
+This will remove any undefined keys from the initial object passed in.
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	stripUndefined: true,
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema);
+const data = model({ foo: undefined });
+// => {}
+```
+
+Versus
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	stripUndefined: false,
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema);
+const data = model({ foo: undefined });
+// => { foo: undefined }
 ```
 
 ## createModel context
