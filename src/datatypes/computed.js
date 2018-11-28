@@ -3,6 +3,8 @@ const createModel = require('./../createModel');
 
 const parseValue = (type, key, value) => createModel({ [key]: type })({ [key]: value })[key];
 
+const getOverridedValue = (type, key, record) => (type ? parseValue(type, key, record[key]) : record[key]);
+
 const isAsync = (fn) => fn && (fn.then || fn.constructor.name === 'AsyncFunction');
 
 const resolve = (response, type, key) => Promise.resolve(response).then((value) => parseValue(type, key, value));
@@ -21,7 +23,7 @@ const computed = (userFn, type, options = { allowOverride: false }) => ({
 	...base,
 	fn: (record, key, context) => {
 		if (options.allowOverride && record[key]) {
-			return type ? parseValue(type, key, record[key]) : record[key];
+			return getOverridedValue(type, key, record);
 		} else if (type) {
 			return computeWithType(userFn, type, { context, key, record });
 		}
