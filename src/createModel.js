@@ -7,19 +7,25 @@ const requireAllKeys = require('./lib/requireAllKeys');
 const requiredCheck = require('./lib/requiredCheck');
 const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
 
-const createModel = (schema, modelOptions = {}, context = {}) => (record = {}) => {
-	const options = { ...defaultOptions, ...modelOptions };
+const buildRecord = (schema, record, options) => {
 	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, record) : record;
 	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
 	const defaultedRecord = defaultRecord(schema, casedRecord);
 
+	return defaultedRecord;
+};
+
+const createModel = (schema, modelOptions = {}, context = {}) => (record = {}) => {
+	const options = { ...defaultOptions, ...modelOptions };
+	const builtRecord = buildRecord(schema, record, options);
+
 	if (options.strict) {
-		requireAllKeys(schema, defaultedRecord);
+		requireAllKeys(schema, builtRecord);
 	}
 
-	requiredCheck(schema, defaultedRecord);
+	requiredCheck(schema, builtRecord);
 
-	const proxyTarget = parseRecord(schema, defaultedRecord);
+	const proxyTarget = parseRecord(schema, builtRecord);
 
 	return new Proxy(proxyTarget, proxyHandler(schema, options, context));
 };
