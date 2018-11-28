@@ -40,8 +40,6 @@
 	},
 	"scripts": {
 		"clean": "yarn lint && yarn prettify",
-		"docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
-		"docs:md": "jsdoc2md src/** >> DOCS.md",
 		"eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
 		"lint": "eslint src/* --fix",
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
