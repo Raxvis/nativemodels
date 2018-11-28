@@ -1,14 +1,5 @@
-const base = require('./../datatypes/base');
+const regex = require('./regex');
 
-const phone = () => ({
-	...base,
-	validCheck: (key, value) => {
-		if (/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/iu.test(value)) {
-			return true;
-		}
-
-		throw new Error(`Property ${key} (${value}) is not a Phone Number`);
-	},
-});
+const phone = () => regex(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/iu, 'phone number');
 
 module.exports = phone;

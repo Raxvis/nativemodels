@@ -1,4 +1,4 @@
-const base = require('./base');
+const createType = require('./../createType');
 
 const isValidDate = (key, value, strict = false) => {
 	if (value instanceof Date) {
@@ -16,11 +16,12 @@ const isValidDate = (key, value, strict = false) => {
 	throw new Error(`Property ${key} is not a date`);
 };
 
-const date = () => ({
-	...base,
-	parse: (key, value) => (value instanceof Date ? value : new Date(value)),
-	strictCheck: (key, value) => isValidDate(key, value, true),
-	validCheck: (key, value) => isValidDate(key, value),
-});
+const date = () =>
+	createType({
+		name: 'date',
+		parse: (key, value) => (value instanceof Date ? value : new Date(value)),
+		strictCheck: (key, value) => isValidDate(key, value, true),
+		validCheck: (key, value) => isValidDate(key, value),
+	});
 
 module.exports = date;

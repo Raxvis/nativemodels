@@ -1,4 +1,4 @@
-const base = require('./base');
+const createType = require('./../createType');
 
 const isValidFloat = (key, value, strict = false) => {
 	if (typeof value === 'number') {
@@ -14,18 +14,19 @@ const isValidFloat = (key, value, strict = false) => {
 	throw new Error(`Property ${key} is not a float`);
 };
 
-const float = () => ({
-	...base,
-	parse: (key, value) => parseFloat(value),
-	requiredCheck: (key, value) => {
-		if (value || value === 0) {
-			return true;
-		}
+const float = () =>
+	createType({
+		name: 'float',
+		parse: (key, value) => parseFloat(value),
+		requiredCheck: (key, value) => {
+			if (value || value === 0) {
+				return true;
+			}
 
-		throw new Error(`Property: '${key}' is required`);
-	},
-	strictCheck: (key, value) => isValidFloat(key, value, true),
-	validCheck: (key, value) => isValidFloat(key, value),
-});
+			throw new Error(`Property: '${key}' is required`);
+		},
+		strictCheck: (key, value) => isValidFloat(key, value, true),
+		validCheck: (key, value) => isValidFloat(key, value),
+	});
 
 module.exports = float;

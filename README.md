@@ -208,33 +208,33 @@ user.hello = 1
 ## Extending Datatypes
 
 ```js
-const { base } = require('nativemodels/datatypes');
+const { createType } = require('nativemodels');
 
-const myCustomDataType = () => ({
-	...base,
-	parse: (key, value) => `${key}:${value}`,
-	requiredCheck(key, value) {
-		if (key && value) {
-			return true;
-		}
+const myCustomDataType = () =>
+	createType({
+		parse: (key, value) => `${key}:${value}`,
+		requiredCheck(key, value) {
+			if (key && value) {
+				return true;
+			}
 
-		throw new Error(`Property: '${key}' is required`);
-	},
-	strictCheck: (key, value) => {
-		if (typeof value === 'string') {
-			return true;
-		}
+			throw new Error(`Property: '${key}' is required`);
+		},
+		strictCheck: (key, value) => {
+			if (typeof value === 'string') {
+				return true;
+			}
 
-		throw new Error(`Property ${key} is not a customDataType`);
-	},
-	validate: (key, value) => {
-		if (`${key}:${value}` !== ':') {
-			return true;
-		}
+			throw new Error(`Property ${key} is not a customDataType`);
+		},
+		validate: (key, value) => {
+			if (`${key}:${value}` !== ':') {
+				return true;
+			}
 
-		throw new Error(`Property ${key} is not a customDataType`);
-	},
-});
+			throw new Error(`Property ${key} is not a customDataType`);
+		},
+	});
 
 module.exports = int;
 ```
@@ -263,18 +263,20 @@ Custom types are types that are useful to have and common enough for use to incl
 -   enumberable
 -   guid
 -   phone
+-   regex
 -   url
 
 ### Examples
 
 ```js
-const { email, enumberable, guid, phone, url } = require('nativemodels/customtypes');
+const { email, enumberable, guid, phone, regex, url } = require('nativemodels/customtypes');
 
 const model = createModel({
 	email: email(),
-	enumberable: enumberable(['FOO', 'BAR']),
+	enumberable: enumberable(['FOO', 'BAR']), // Array of values to be compared against
 	guid: guid(),
 	phone: phone(),
+	regex: regex(/foo/iu, 'Foo'), // Regular Expression and Name of Type
 	url: url(),
 });
 ```
