@@ -8,7 +8,7 @@
 	"parserOptions": {
 		"sourceType": "module"
 	},
-	"plugins": ["babel", "jest"],
+	"plugins": ["jest"],
 	"rules": {
 		"array-bracket-newline": "off",
 		"array-element-newline": "off",
