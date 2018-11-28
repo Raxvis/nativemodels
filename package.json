@@ -43,10 +43,8 @@
 		"eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
 		"lint": "eslint src/* --fix",
 		"prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
-		"pub": "./publish.sh",
 		"staged": "lint-staged",
-		"test": "jest --coverage",
-		"test-dist": "cp -R tests/ tests-dist/ && jest"
+		"test": "jest --coverage"
 	},
 	"version": "1.10.0"
 }
