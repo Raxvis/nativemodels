@@ -133,6 +133,24 @@ Forces the value to be required. Is ignored if default value is set
 
 Requires the value that is passed in to be the correct datatype instead of coerced
 
+### datatypes.transform(transformFunction)
+
+Takes a validated value, and transforms it according to the transform function
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativiemodels/datatypes');
+
+const schema = {
+	name: string().transform((value) => value.toUpperCase()),
+};
+const model = createModel(schema);
+const user = model({ name: 'john' });
+
+console.log(user.name);
+// => 'JOHN'
+```
+
 ## Datatypes
 
 -   array
