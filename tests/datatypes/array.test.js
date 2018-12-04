@@ -1,6 +1,7 @@
 const {
 	createModel,
-	datatypes: { array, base },
+	createType,
+	datatypes: { array },
 } = require('./../source');
 const { userData, userResult, userSchema } = require('./../setup');
 
@@ -24,12 +25,12 @@ test('datatype | array - basic array test', () => {
 });
 
 test('datatype | array - extending with bad validCheck throws error', () => {
-	const customType = () => ({
-		...base,
-		validCheck() {
-			return false;
-		},
-	});
+	const customType = () =>
+		createType({
+			validCheck() {
+				return false;
+			},
+		});
 
 	const model = createModel({ foo: array(customType()) });
 

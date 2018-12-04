@@ -1,4 +1,4 @@
-const { createModel, datatypes } = require('./source');
+const { createModel, createType, datatypes } = require('./source');
 
 const types = {
 	array: {
@@ -132,12 +132,12 @@ test('ensure nullable works on all data types', () => {
 });
 
 test('extending with bad validCheck throws error', () => {
-	const customType = () => ({
-		...datatypes.base,
-		validCheck() {
-			return false;
-		},
-	});
+	const customType = () =>
+		createType({
+			validCheck() {
+				return false;
+			},
+		});
 
 	const model = createModel({ foo: customType() });
 

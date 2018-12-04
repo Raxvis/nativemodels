@@ -23,7 +23,9 @@ const parseValue = (type, key, value) => {
 
 	runChecks(type, key, value);
 
-	return type.parse(key, value);
+	const parsedValue = type.parse(key, value);
+
+	return type.transformFn ? type.transformFn(parsedValue) : parsedValue;
 };
 
 module.exports = parseValue;

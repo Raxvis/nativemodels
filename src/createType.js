@@ -1,6 +1,6 @@
 const base = require('./datatypes/base');
 
-const createType = (overrides, extended = base) => ({
+const createType = (overrides, extended = base()) => ({
 	...extended,
 	...overrides,
 });

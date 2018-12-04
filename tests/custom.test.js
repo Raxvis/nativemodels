@@ -68,3 +68,10 @@ test(`shallow copy test2`, () => {
 	expect(data).toEqual({ objects: [{ foo: 'bar' }] });
 	expect(data2).toEqual({ objects: [{ foo: 'baz' }] });
 });
+
+test(`transform functionality`, () => {
+	const model = createModel({ foo: string().transform((value) => value.toUpperCase()) });
+	const data = model({ foo: 'bar' });
+
+	expect(data).toEqual({ foo: 'BAR' });
+});
