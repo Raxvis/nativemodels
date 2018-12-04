@@ -294,7 +294,7 @@ Returns true is passes your strict check else should throw an error
 Custom types are types that are useful to have and common enough for use to include them in our library. They currently include
 
 -   email
--   enumberable
+-   enumerable
 -   guid
 -   phone
 -   regex
@@ -303,11 +303,11 @@ Custom types are types that are useful to have and common enough for use to incl
 ### Examples
 
 ```js
-const { email, enumberable, guid, phone, regex, url } = require('nativemodels/customtypes');
+const { email, enumerable, guid, phone, regex, url } = require('nativemodels/customtypes');
 
 const model = createModel({
 	email: email(),
-	enumberable: enumberable(['FOO', 'BAR']), // Array of values to be compared against
+	enumerable: enumerable(['FOO', 'BAR']), // Array of values to be compared against
 	guid: guid(),
 	phone: phone(),
 	regex: regex(/foo/iu, 'Foo'), // Regular Expression and Name of Type
