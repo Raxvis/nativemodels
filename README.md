@@ -223,6 +223,22 @@ user.hello = 1
 // => new Error('Property hello is not a string')
 ```
 
+### string(options)
+
+```js
+const user = createModel({ name: string({ length: 4 }) })({ name: 'William' });
+
+console.log(user.name);
+// => 'Will'
+```
+
+With Strict Mode
+
+```js
+const user = createModel({ name: string({ length: 4 }).strict() })({ name: 'William' });
+// => new Error('Property name is longer than 4')
+```
+
 ## Extending Datatypes
 
 ```js
