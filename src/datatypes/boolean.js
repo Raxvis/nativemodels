@@ -1,18 +1,19 @@
 const createType = require('./../createType');
+const { isBoolean, isUndefined } = require('./../lib/checks/types');
 
 const boolean = () =>
 	createType({
 		name: 'boolean',
 		parse: (key, value) => Boolean(value),
 		requiredCheck: (key, value) => {
-			if (typeof value === 'undefined' || value === '' || value === null) {
+			if (isUndefined(value) || value === '' || value === null) {
 				throw new Error(`Property: '${key}' is required`);
 			}
 
 			return true;
 		},
 		strictCheck: (key, value) => {
-			if (typeof value === 'boolean') {
+			if (isBoolean(value)) {
 				return true;
 			}
 

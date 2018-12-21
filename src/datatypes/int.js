@@ -1,10 +1,11 @@
 const createType = require('./../createType');
+const { isNumber } = require('./../lib/checks/types');
 
 const nonStrictCheck = (value) =>
 	typeof value !== 'boolean' && value !== '' && !isNaN(parseInt(value)) && parseInt(value) === parseFloat(value);
 
 const isValidInt = (key, value, strict = false) => {
-	if (typeof value === 'number' && parseInt(value) === parseFloat(value)) {
+	if (isNumber(value) && parseInt(value) === parseFloat(value)) {
 		return true;
 	}
 

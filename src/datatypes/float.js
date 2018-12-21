@@ -1,8 +1,9 @@
 const createType = require('./../createType');
+const { isNumber } = require('./../lib/checks/types');
 const int = require('./int');
 
 const isValidFloat = (key, value, strict = false) => {
-	if (typeof value === 'number') {
+	if (isNumber(value)) {
 		return true;
 	}
 

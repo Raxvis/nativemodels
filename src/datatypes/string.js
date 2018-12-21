@@ -1,4 +1,5 @@
 const createType = require('./../createType');
+const { isString } = require('./../lib/checks/types');
 
 const string = (options = {}) =>
 	createType({
@@ -11,7 +12,7 @@ const string = (options = {}) =>
 			return `${value}`;
 		},
 		strictCheck: (key, value) => {
-			if (typeof value === 'string') {
+			if (isString(value)) {
 				if (options.length && value.length > options.length) {
 					throw new Error(`Property ${key} is longer than ${options.length}`);
 				}

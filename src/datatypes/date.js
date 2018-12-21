@@ -1,7 +1,8 @@
 const createType = require('./../createType');
+const { isDate } = require('./../lib/checks/types');
 
 const isValidDate = (key, value, strict = false) => {
-	if (value instanceof Date) {
+	if (isDate(value)) {
 		return true;
 	}
 

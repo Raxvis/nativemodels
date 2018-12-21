@@ -1,10 +1,11 @@
 /* eslint-disable no-use-before-define */
+const { isArray, isObject } = require('./lib/checks/types');
 const createModel = require('./createModel');
 
 const cascadeResolve = (value) => {
-	if (value && Array.isArray(value)) {
+	if (isArray(value)) {
 		return Promise.all(value.map(cascadeResolve));
-	} else if (value && typeof value === 'object' && !value.then) {
+	} else if (isObject(value) && !value.then) {
 		return resolver(value);
 	}
 
