@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { regex },
-} = require('./../source');
+} = require('./../../src');
 
 test('customtype | regex - invalid regex', () => {
 	const model = createModel({ regex: regex('asdfasd') });

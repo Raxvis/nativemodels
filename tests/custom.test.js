@@ -2,7 +2,7 @@ const {
 	createModel,
 	customtypes: { guid },
 	datatypes: { array, boolean, float, int, object, string },
-} = require('./source');
+} = require('./../src');
 
 test('boolean required check with "false"', () => {
 	const model = createModel({ boolean: boolean().required() });

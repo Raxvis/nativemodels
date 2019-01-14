@@ -2,7 +2,7 @@ const {
 	datatypes: { date },
 	createModel,
 	resolver,
-} = require('./../source');
+} = require('./../../src');
 
 test('datatype | date - basic date test', () => {
 	expect(createModel({ date: date() })({ date: '2018-10-01 00:00:00' })).toEqual({

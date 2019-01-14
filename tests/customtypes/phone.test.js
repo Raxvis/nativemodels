@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { phone },
-} = require('./../source');
+} = require('./../../src');
 
 const validPhoneNumbers = ['123-456-7890', '(123) 456-7890', '123 456 7890', '123.456.7890', '+91 (123) 456-7890'];
 const invalidPhoneNumbers = ['', 'a', '123412345456', 1234567890];

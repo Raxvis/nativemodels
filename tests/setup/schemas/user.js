@@ -1,16 +1,17 @@
 const {
+	customtypes: { email, phone, url },
 	datatypes: { array, boolean, computed, date, int, object, string },
-} = require('./source');
+} = require('./../../../src');
 
 const photoSchema = {
 	ext: string(),
-	url: string().required(),
+	url: url().required(),
 };
 
 const contactSchema = {
-	email: string(),
-	phone: string(),
-	url: string().default('https://example.com'),
+	email: email(),
+	phone: phone(),
+	url: url().default('https://example.com'),
 };
 
 const userSchema = {
@@ -25,27 +26,4 @@ const userSchema = {
 	typeID: int().default(2),
 };
 
-const userData = {
-	contact: {
-		email: 'j.smith@example.com',
-	},
-	firstName: 'John',
-	isAdmin: null,
-	lastName: 'Smith',
-};
-const userResult = {
-	...userData,
-	contact: {
-		url: 'https://example.com',
-		...userData.contact,
-	},
-	fullName: 'John Smith',
-	isAdmin: null,
-	typeID: 2,
-};
-
-module.exports = {
-	userData,
-	userResult,
-	userSchema,
-};
+module.exports = userSchema;

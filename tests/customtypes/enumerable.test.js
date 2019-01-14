@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { enumerable },
-} = require('./../source');
+} = require('./../../src');
 
 test('customtype | guid - invalid', () => {
 	const model = createModel({ enumerable: enumerable(['FOO', 'BAR']) });

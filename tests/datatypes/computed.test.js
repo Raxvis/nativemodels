@@ -2,7 +2,7 @@ const {
 	createModel,
 	datatypes: { array, computed, int, object, string },
 	resolver,
-} = require('./../source');
+} = require('./../../src');
 
 const sleep = (time = 1) =>
 	new Promise((resolve) =>

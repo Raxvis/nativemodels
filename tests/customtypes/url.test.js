@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { url },
-} = require('./../source');
+} = require('./../../src');
 
 const validURLs = [
 	'http://www.example.com',

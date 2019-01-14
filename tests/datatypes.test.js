@@ -1,4 +1,4 @@
-const { createModel, createType, datatypes } = require('./source');
+const { createModel, createType, datatypes } = require('./../src');
 
 const types = {
 	array: {

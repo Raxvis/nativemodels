@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { email },
-} = require('./../source');
+} = require('./../../src');
 
 const validEmails = ['test@example.com'];
 const invalidEmails = ['', 'test', '@example.com', 'example.com'];

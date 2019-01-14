@@ -1,7 +1,7 @@
 const {
 	createModel,
 	datatypes: { string },
-} = require('./../source');
+} = require('./../../src');
 
 test('datatype | string - basic string test', () => {
 	expect(createModel({ name: string() })({ name: 'John' })).toEqual({ name: 'John' });

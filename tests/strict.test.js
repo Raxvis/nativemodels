@@ -1,7 +1,7 @@
 const {
 	createModel,
 	datatypes: { array, object, string },
-} = require('./source');
+} = require('./../src');
 
 const schema = {
 	foo: string(),

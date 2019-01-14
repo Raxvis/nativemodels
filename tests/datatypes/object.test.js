@@ -1,7 +1,7 @@
 const {
 	datatypes: { object },
 	createModel,
-} = require('./../source');
+} = require('./../../src');
 const { userData, userResult, userSchema } = require('./../setup');
 
 test('datatype | object - basic object test', () => {

@@ -1,7 +1,7 @@
 const {
 	createModel,
 	customtypes: { guid },
-} = require('./../source');
+} = require('./../../src');
 
 const validGUID = '2FC923FF-A906-11D3-8967-00105A7027AA';
 const blankGUID = '00000000-0000-0000-0000-000000000000';

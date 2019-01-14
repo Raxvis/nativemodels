@@ -2,7 +2,7 @@ const {
 	createModel,
 	datatypes: { array, boolean, computed, date, int, object, string },
 	resolver,
-} = require('./source');
+} = require('./../src');
 
 const schema = {
 	async: computed(

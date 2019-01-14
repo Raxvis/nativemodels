@@ -2,7 +2,7 @@ const {
 	createModel,
 	createType,
 	datatypes: { array },
-} = require('./../source');
+} = require('./../../src');
 const { userData, userResult, userSchema } = require('./../setup');
 
 test('datatype | array - basic array test', () => {
