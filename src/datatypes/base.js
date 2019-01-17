@@ -1,4 +1,5 @@
 const overrides = {
+	name: 'base',
 	parse: (key, value) => value,
 	requiredCheck: (key, value) => {
 		if (value) {
