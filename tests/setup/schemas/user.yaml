@@ -1,0 +1,40 @@
+accountID:
+  type: int
+  nullable: true
+contact:
+  type: object
+  schema:
+    email:
+      type: email
+      transform: lowercase
+    phone: phone
+    url:
+      type: url
+      default: https://example.com
+created: date
+firstName:
+  type: string
+  required: true
+fullName:
+  type: computed
+  fn: firstAndLast
+isAdmin:
+  type: boolean
+  nullable: true
+lastName:
+  type: string
+  required: true
+photos:
+  type: array
+  item:
+    type: object
+    schema:
+      ext:
+        type: string
+        strict: true
+      url:
+        type: url
+        required: true
+typeID:
+  type: int
+  default: 2

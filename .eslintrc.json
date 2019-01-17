@@ -35,6 +35,12 @@
 		"no-tabs": "off",
 		"no-ternary": "off",
 		"no-undefined": "off",
+		"no-unused-expressions": [
+			"error",
+			{
+				"allowShortCircuit": true
+			}
+		],
 		"one-var": "off",
 		"padded-blocks": "off",
 		"padding-line-between-statements": [

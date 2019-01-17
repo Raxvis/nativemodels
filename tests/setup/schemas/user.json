@@ -1,0 +1,57 @@
+{
+	"accountID": {
+		"nullable": true,
+		"type": "int"
+	},
+	"contact": {
+		"schema": {
+			"email": {
+				"type": "email",
+				"transform": "lowercase"
+			},
+			"phone": "phone",
+			"url": {
+				"default": "https://example.com",
+				"type": "url"
+			}
+		},
+		"type": "object"
+	},
+	"created": "date",
+	"firstName": {
+		"required": true,
+		"type": "string"
+	},
+	"fullName": {
+		"fn": "firstAndLast",
+		"type": "computed"
+	},
+	"isAdmin": {
+		"nullable": true,
+		"type": "boolean"
+	},
+	"lastName": {
+		"required": true,
+		"type": "string"
+	},
+	"photos": {
+		"item": {
+			"schema": {
+				"ext": {
+					"type": "string",
+					"strict": true
+				},
+				"url": {
+					"required": true,
+					"type": "url"
+				}
+			},
+			"type": "object"
+		},
+		"type": "array"
+	},
+	"typeID": {
+		"default": 2,
+		"type": "int"
+	}
+}
