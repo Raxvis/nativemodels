@@ -519,3 +519,61 @@ A third parameter can be passed in to createModel. This is called context and sh
 **WARNING: Use context at your own risk**
 
 The use case for context is if you want to pass items to a computed field that normally wouldn't be accessible to the schema. Things such as a database connector, or variables unrelated to the model. This allows you to keep from litering the global space with variables that you might use in computed functions.
+
+# generateSchema
+
+If you ever need to generate a schema dynamically, we have provided a generateSchema function which will allow you to easily convert a simple object / json into a schema object. It supports custom types and functions for transform or compute.
+
+```js
+const {createType, generateSchema} = require('nativemodels');
+
+const simpleSchema = {
+	firstName: {
+		type: 'string',
+		default: 'John',
+		required: true,
+		nullable: true,
+		strict: true,
+	},
+	/* or short circuit with just the type name */
+	lastName: 'string',
+	fullName: {
+		type: 'computed',
+		fn: 'firstAndLast',
+	},
+	email: {
+		type: 'string',
+		transform: 'tolowercase',
+	},
+	foo: {
+		type: 'foo'
+	},
+};
+
+const schemaFunctions = {
+	firstAndLast = (record) => `${record.firstName} ${record.lastName}`,
+	lowercase = (value) => value.toLowerCase(),
+};
+
+const customTypes = {
+	foo: createType({ parse: () => 'bar' });
+};
+
+const schema = generateSchema(simpleSchema, customTypes, schemaFunctions);
+const userData = {
+	lastName: 'Smith',
+	email: 'J.Smith@example.com',
+	foo: true
+};
+
+const user = createModel(schema)(userData);
+/*
+{
+	firstName: 'John',
+	lastName: 'Smith',
+	fullName: 'John Smith',
+	email: 'j.smith@example.com',
+	foo: 'bar',
+}
+*/
+```
