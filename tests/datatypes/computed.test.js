@@ -1,13 +1,13 @@
 const {
 	createModel,
 	datatypes: { array, computed, int, object, string },
-	resolver,
+	resolve,
 } = require('./../../src');
 
 const sleep = (time = 1) =>
-	new Promise((resolve) =>
+	new Promise((res) =>
 		setTimeout(() => {
-			resolve(time);
+			res(time);
 		}, time),
 	);
 
@@ -66,7 +66,7 @@ test('datatype | computed - resolved deep nested object', async () => {
 		bar: { foo: 'baz' },
 		foo: 'bar',
 	});
-	const resolved = await resolver(data);
+	const resolved = await resolve(data);
 
 	expect(resolved.bar.bar).toEqual('baz');
 });
@@ -85,7 +85,7 @@ test('datatype | computed - resolved deep nested array', async () => {
 		bar: [{ foo: 'baz' }, { foo: 'bat' }],
 		foo: 'bar',
 	});
-	const resolved = await resolver(data);
+	const resolved = await resolve(data);
 
 	expect(resolved.bar[0].bar).toEqual('baz');
 	expect(resolved.bar[1].bar).toEqual('bat');
@@ -152,11 +152,11 @@ test(`computed accessed only when called with async`, async () => {
 		}),
 	})({});
 
-	expect(resolver(data)).resolves.toEqual({ computed: 1 });
+	expect(resolve(data)).resolves.toEqual({ computed: 1 });
 	await sleep(10);
 	Object.keys(data);
 	await sleep(10);
-	expect(resolver(data)).resolves.toEqual({ computed: 2 });
+	expect(resolve(data)).resolves.toEqual({ computed: 2 });
 });
 
 test(`computed accessed only when called with async - deeply nested`, async () => {
@@ -172,11 +172,11 @@ test(`computed accessed only when called with async - deeply nested`, async () =
 
 	const data = createModel({ object: object(schema) })({ object: {} });
 
-	expect(resolver(data)).resolves.toEqual({ object: { computed: 1 } });
+	expect(resolve(data)).resolves.toEqual({ object: { computed: 1 } });
 	await sleep(10);
 	Object.keys(data.object);
 	await sleep(10);
-	expect(resolver(data)).resolves.toEqual({ object: { computed: 2 } });
+	expect(resolve(data)).resolves.toEqual({ object: { computed: 2 } });
 });
 
 test(`computed accessed only when called with async - deeply nested with array`, async () => {
@@ -192,11 +192,11 @@ test(`computed accessed only when called with async - deeply nested with array`,
 
 	const data = createModel({ object: array(object(schema)) })({ object: [{}] });
 
-	expect(resolver(data)).resolves.toEqual({ object: [{ computed: 1 }] });
+	expect(resolve(data)).resolves.toEqual({ object: [{ computed: 1 }] });
 	await sleep(10);
 	Object.keys(data.object[0]);
 	await sleep(10);
-	expect(resolver(data)).resolves.toEqual({ object: [{ computed: 2 }] });
+	expect(resolve(data)).resolves.toEqual({ object: [{ computed: 2 }] });
 });
 
 test(`computed still shows as key`, () => {

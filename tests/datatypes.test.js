@@ -1,46 +1,5 @@
 const { createModel, createType, datatypes } = require('./../src');
-
-const types = {
-	array: {
-		invalid: ['string', false, '', true, 100, 100.2, {}],
-		invalidStrict: [],
-		strict: [[]],
-		valid: [[]],
-	},
-	boolean: {
-		invalid: [],
-		invalidStrict: ['true', 'false'],
-		strict: [true, false],
-		valid: [true, false, 'true', 'false'],
-	},
-	date: {
-		invalid: ['string', false],
-		invalidStrict: [100.0, '2018-10-01 00:00:00'],
-		strict: [new Date()],
-		valid: [new Date(), 100.0, '2018-10-01 00:00:00'],
-	},
-	float: {
-		invalid: ['string', false, '', true],
-		invalidStrict: ['1.2'],
-		strict: [1.2],
-		valid: [100, 100.0, 1.2, '1.2'],
-	},
-	int: {
-		invalid: ['string', false, '', true, 100.2],
-		invalidStrict: ['100', 100.2],
-		strict: [100],
-		valid: [100, 100.0, '100'],
-	},
-	object: {
-		invalid: ['string', false, '', true, 100, 100.2],
-	},
-	string: {
-		invalid: [],
-		invalidStrict: [1],
-		strict: ['1'],
-		valid: ['string'],
-	},
-};
+const types = require('./setup/data/types');
 
 test('test basic valid / invalid datatypes', () => {
 	Object.keys(types).forEach((type) => {

@@ -9,7 +9,7 @@ const photoSchema = {
 };
 
 const contactSchema = {
-	email: email(),
+	email: email().transform((value) => value.toLowerCase()),
 	phone: phone(),
 	url: url().default('https://example.com'),
 };

@@ -1,7 +1,7 @@
 const {
 	datatypes: { date },
 	createModel,
-	resolver,
+	resolve,
 } = require('./../../src');
 
 test('datatype | date - basic date test', () => {
@@ -10,9 +10,9 @@ test('datatype | date - basic date test', () => {
 	});
 });
 
-test('datatype | date - resolver and date work', async () => {
+test('datatype | date - resolve and date work', async () => {
 	const data = createModel({ date: date() })({ date: '2018-10-01 00:00:00' });
-	const resolved = await resolver(data);
+	const resolved = await resolve(data);
 
 	expect(resolved).toEqual(data);
 });

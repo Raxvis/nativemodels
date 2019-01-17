@@ -1,6 +1,6 @@
 const {
 	createModel,
-	datatypes: { int },
+	datatypes: { int, string },
 } = require('./../src');
 const { userData, userResult, userSchema } = require('./setup');
 
@@ -105,4 +105,11 @@ test('createModel - do not fail on no datatype or customtype', () => {
 	})({ test: false });
 
 	expect(data).toEqual({ test: false });
+});
+
+test(`transform functionality`, () => {
+	const model = createModel({ foo: string().transform((value) => value.toUpperCase()) });
+	const data = model({ foo: 'bar' });
+
+	expect(data).toEqual({ foo: 'BAR' });
 });

@@ -1,10 +1,11 @@
 const userData = {
 	contact: {
-		email: 'j.smith@example.com',
+		email: 'J.Smith@example.com',
 	},
 	firstName: 'John',
 	isAdmin: null,
 	lastName: 'Smith',
+	photos: [{ ext: 'png', url: 'https://example.com/photo.png' }],
 };
 
 module.exports = userData;

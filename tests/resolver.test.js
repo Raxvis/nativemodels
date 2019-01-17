@@ -1,7 +1,7 @@
 const {
 	createModel,
 	datatypes: { array, boolean, computed, date, int, object, string },
-	resolver,
+	resolve,
 } = require('./../src');
 
 const schema = {
@@ -25,31 +25,31 @@ const resolvedSchema = {
 	succeed: boolean(),
 };
 
-test('resolver - fail on resolve', async () => {
+test('resolve - fail on resolve', async () => {
 	const model = createModel(schema);
-	const resolved = resolver(model());
+	const resolved = resolve(model());
 
 	await expect(resolved).rejects.toThrow();
 });
 
-test('resolver - succeed on resolve', async () => {
+test('resolve - succeed on resolve', async () => {
 	const model = createModel(schema);
-	const data = await resolver(model({ succeed: true }));
+	const data = await resolve(model({ succeed: true }));
 
 	expect(data).toEqual({ async: 1, succeed: true });
 });
 
-test('resolver - matches resolvedSchema', async () => {
+test('resolve - matches resolvedSchema', async () => {
 	const model = createModel(schema);
-	const data = await resolver(model({ succeed: true }));
+	const data = await resolve(model({ succeed: true }));
 	const resolvedData = createModel(resolvedSchema)(data);
 
 	expect(resolvedData).toEqual({ async: 1, succeed: true });
 });
 
-test('resolver - gives back modeled object', async () => {
+test('resolve - gives back modeled object', async () => {
 	const model = createModel(schema);
-	const data = await resolver(model({ succeed: true }), resolvedSchema);
+	const data = await resolve(model({ succeed: true }), resolvedSchema);
 
 	// This test wouldn't pass if we succeed in changing the type of the computed value
 	expect(() => {
@@ -57,45 +57,45 @@ test('resolver - gives back modeled object', async () => {
 	}).toThrow();
 });
 
-test('resolver - deep nested object', async () => {
+test('resolve - deep nested object', async () => {
 	const model = createModel(schemaObject);
-	const data = await resolver(model({ nested: { succeed: true } }));
+	const data = await resolve(model({ nested: { succeed: true } }));
 
 	expect(data).toEqual({ nested: { async: 1, succeed: true } });
 });
 
-test('resolver - deep nested array', async () => {
+test('resolve - deep nested array', async () => {
 	const model = createModel(schemaArray);
-	const data = await resolver(model({ nested: [{ succeed: true }] }));
+	const data = await resolve(model({ nested: [{ succeed: true }] }));
 
 	expect(data).toEqual({ nested: [{ async: 1, succeed: true }] });
 });
 
-test('resolver - deep nested object fail', async () => {
+test('resolve - deep nested object fail', async () => {
 	const model = createModel(schemaObject);
-	const data = resolver(model({ nested: {} }));
+	const data = resolve(model({ nested: {} }));
 
 	await expect(data).rejects.toThrow();
 });
 
-test('resolver - deep nested array fail', () => {
+test('resolve - deep nested array fail', () => {
 	const model = createModel(schemaArray);
-	const data = resolver(model({ nested: [{}] }));
+	const data = resolve(model({ nested: [{}] }));
 
 	expect(data).rejects.toThrow();
 });
 
-test('resolver - handle null type', async () => {
+test('resolve - handle null type', async () => {
 	const model = createModel({
 		nullable: string().nullable(),
 	});
 	const data = model({ nullable: null });
-	const resolved = resolver(data);
+	const resolved = resolve(data);
 
 	await expect(resolved).resolves.toEqual({ nullable: null });
 });
 
-test('resolver - handle resolveSchema fail', async () => {
+test('resolve - handle resolveSchema fail', async () => {
 	const resolveSchema = {
 		date: date(),
 		nullable: string().nullable(),
@@ -105,7 +105,7 @@ test('resolver - handle resolveSchema fail', async () => {
 		nullable: string().nullable(),
 	});
 	const data = model({ nullable: null });
-	const resolved = resolver(data, resolveSchema);
+	const resolved = resolve(data, resolveSchema);
 
 	await expect(resolved).rejects.toThrow();
 });
