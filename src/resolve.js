@@ -6,7 +6,7 @@ const cascadeResolve = (value) => {
 	if (isArray(value)) {
 		return Promise.all(value.map(cascadeResolve));
 	} else if (isObject(value) && !value.then) {
-		return resolver(value);
+		return resolve(value);
 	}
 
 	return value;
@@ -18,10 +18,10 @@ const resolved = (keys, values, schema) => {
 	return schema ? createModel(schema)(data) : data;
 };
 
-const resolver = (data, schema) => {
+const resolve = (data, schema) => {
 	const keys = Object.keys(data);
 
 	return Promise.all(keys.map((key) => cascadeResolve(data[key]))).then((values) => resolved(keys, values, schema));
 };
 
-module.exports = resolver;
+module.exports = resolve;
