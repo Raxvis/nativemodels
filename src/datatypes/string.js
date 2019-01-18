@@ -14,12 +14,12 @@ const string = (options = {}) =>
 		strictCheck: (key, value) => {
 			if (isString(value)) {
 				if (options.length && value.length > options.length) {
-					throw new Error(`Property ${key} is longer than ${options.length}`);
+					throw new Error(`NativeModels - Property ${key} is longer than ${options.length}`);
 				}
 				return true;
 			}
 
-			throw new Error(`Property ${key} is not a string`);
+			throw new Error(`NativeModels - Property ${key} is not a string`);
 		},
 	});
 

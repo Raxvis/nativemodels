@@ -8,7 +8,7 @@ const enumerable = (enumerableValues) =>
 				return true;
 			}
 
-			throw new Error(`Property ${key} is not in the list of enumerable values`);
+			throw new Error(`NativeModels - Property ${key} is not in the list of enumerable values`);
 		},
 	});
 

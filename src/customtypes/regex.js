@@ -10,10 +10,10 @@ const regex = (expression, typeName) =>
 			}
 
 			if (!isRegex(expression)) {
-				throw new Error(`Regex expression provided isn't a valid regex`);
+				throw new Error(`NativeModels - Regex expression provided isn't a valid regex`);
 			}
 
-			throw new Error(`Property ${key} (${value}) is not a/an ${typeName}`);
+			throw new Error(`NativeModels - Property ${key} (${value}) is not a/an ${typeName}`);
 		},
 	});
 

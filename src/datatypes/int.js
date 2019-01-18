@@ -9,7 +9,7 @@ const isValidInt = (key, value, strict = false) => {
 		return true;
 	}
 
-	throw new Error(`Property ${key} is not an int`);
+	throw new Error(`NativeModels - Property ${key} is not an int`);
 };
 
 const int = () =>
@@ -21,7 +21,7 @@ const int = () =>
 				return true;
 			}
 
-			throw new Error(`Property: '${key}' is required`);
+			throw new Error(`NativeModels - Property: '${key}' is required`);
 		},
 		strictCheck: (key, value) => isValidInt(key, value, true),
 		validCheck: (key, value) => isValidInt(key, value),

@@ -7,12 +7,12 @@ module.exports = (value, types, fns) => {
 			return types[value]();
 		}
 
-		throw new Error(`${value} is not a valid type`);
+		throw new Error(`NativeModels - ${value} is not a valid type`);
 	} else if (types[value.type]) {
 		const type = buildType(value, types, fns);
 
 		return extendType(value, type, fns);
 	}
 
-	throw new Error(`${value} is not a valid type`);
+	throw new Error(`NativeModels - ${value} is not a valid type`);
 };

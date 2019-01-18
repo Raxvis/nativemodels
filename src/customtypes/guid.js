@@ -11,7 +11,7 @@ const guid = () =>
 				return true;
 			}
 
-			throw new Error(`Property ${key} is not a GUID`);
+			throw new Error(`NativeModels - Property ${key} is not a GUID`);
 		},
 	});
 

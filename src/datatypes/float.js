@@ -13,7 +13,7 @@ const isValidFloat = (key, value, strict = false) => {
 		}
 	}
 
-	throw new Error(`Property ${key} is not a float`);
+	throw new Error(`NativeModels - Property ${key} is not a float`);
 };
 
 const float = () =>

@@ -6,7 +6,7 @@ const overrides = {
 			return true;
 		}
 
-		throw new Error(`Property: '${key}' is required`);
+		throw new Error(`NativeModels - Property: '${key}' is required`);
 	},
 	strictCheck: () => true,
 	validCheck: () => true,

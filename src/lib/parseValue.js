@@ -10,7 +10,7 @@ const checks = {
 const runChecks = (type, key, value) => {
 	Object.keys(checks).forEach((name) => {
 		if (!checks[name](type, key, value)) {
-			throw new Error(`Failed ${name} check.  Key: ${key} | Value: ${value}`);
+			throw new Error(`NativeModels - Failed ${name} check.  Key: ${key} | Value: ${value}`);
 		}
 	});
 };

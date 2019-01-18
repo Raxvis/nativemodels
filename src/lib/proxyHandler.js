@@ -20,7 +20,7 @@ const ownKeys = (schema, target) => [...Object.keys(target), ...Object.keys(sche
 
 const set = (schema, target, property, value) => {
 	if (!schema[property]) {
-		throw new Error(`${property} is not a property of model`);
+		throw new Error(`NativeModels - ${property} is not a property of model`);
 	}
 
 	const type = schema[property].fn && schema[property].type ? schema[property].type : schema[property];

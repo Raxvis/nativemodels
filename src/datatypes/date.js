@@ -14,7 +14,7 @@ const isValidDate = (key, value, strict = false) => {
 		}
 	}
 
-	throw new Error(`Property ${key} is not a date`);
+	throw new Error(`NativeModels - Property ${key} is not a date`);
 };
 
 const date = () =>

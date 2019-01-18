@@ -11,7 +11,7 @@ const object = (schema, options) =>
 				return true;
 			}
 
-			throw new Error(`Property ${key} is not an object`);
+			throw new Error(`NativeModels - Property ${key} is not an object`);
 		},
 	});
 

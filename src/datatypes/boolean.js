@@ -7,7 +7,7 @@ const boolean = () =>
 		parse: (key, value) => Boolean(value),
 		requiredCheck: (key, value) => {
 			if (isUndefined(value) || value === '' || value === null) {
-				throw new Error(`Property: '${key}' is required`);
+				throw new Error(`NativeModels - Property: '${key}' is required`);
 			}
 
 			return true;
@@ -17,7 +17,7 @@ const boolean = () =>
 				return true;
 			}
 
-			throw new Error(`Property ${key} is not a boolean`);
+			throw new Error(`NativeModels - Property ${key} is not a boolean`);
 		},
 	});
 
