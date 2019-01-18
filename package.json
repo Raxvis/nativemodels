@@ -47,5 +47,5 @@
 		"staged": "lint-staged",
 		"test": "jest --coverage"
 	},
-	"version": "2.3.1"
+	"version": "2.3.2"
 }
