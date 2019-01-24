@@ -9,9 +9,6 @@ jobs:
         steps:
             - checkout
             - run:
-                  name: Install Global Packages
-                  command: 'yarn global add jest codecov'
-            - run:
                   name: Setup Code Climate test-reporter
                   command: |
                       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -33,10 +30,10 @@ jobs:
                   command: yarn test
             - run:
                   name: codecov
-                  command: codecov
+                  command: ./node_modules/.bin/codecov
             - run:
                   name: Run tests with JUnit as reporter
-                  command: jest --ci --reporters=default --reporters=jest-junit
+                  command: ./node_modules/.bin/jest --ci --reporters=default --reporters=jest-junit
                   environment:
                       JEST_JUNIT_OUTPUT: 'reports/junit/test-results.xml'
             - store_artifacts:
