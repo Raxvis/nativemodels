@@ -48,5 +48,6 @@ jobs:
       - run:
           name: codeclimate
           command: |
-            ./cc-test-reporter upload-coverage < coverage/lcov.info
+            ./cc-test-reporter format-coverage -t lcov coverage/lcov.info
+            ./cc-test-reporter upload-coverage
             ./cc-test-reporter after-build --exit-code $?
