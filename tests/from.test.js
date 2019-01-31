@@ -19,6 +19,7 @@ test('from', () => {
 	const model = createModel({ foo: string().from('bar') });
 
 	expect(model({ bar: 'bar' })).toEqual({ foo: 'bar' });
+	expect(model({ foo: 'bar' })).toEqual({ foo: 'bar' });
 });
 
 test('from array', () => {
