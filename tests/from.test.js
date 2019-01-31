@@ -3,18 +3,6 @@ const {
 	datatypes: { array, object, string },
 } = require('./../src');
 
-// const schema = {
-// 	bar: string().from('baz', { caseSensitive: false }),
-// 	baz: object({
-// 		foo2: string().from('fooTwo')
-// 	}),
-// 	bazz: object({
-// 		foo: string(),
-// 	}).from('bazzObj')
-// 	foo: string().from('Foo'),
-// 	foos: array(string())
-// };
-
 test('from', () => {
 	const model = createModel({ foo: string().from('bar') });
 
