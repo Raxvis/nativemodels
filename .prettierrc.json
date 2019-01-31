@@ -12,6 +12,13 @@
 				"tabWidth": 2,
 				"useTabs": false
 			}
+		},
+		{
+			"files": ".travis.yml",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
 		}
 	]
 }
