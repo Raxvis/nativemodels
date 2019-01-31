@@ -1,3 +1,5 @@
+// Filter first
+
 const defaultRecord = (schema, record) => ({
 	...Object.keys(schema).reduce(
 		(result, key) => ({

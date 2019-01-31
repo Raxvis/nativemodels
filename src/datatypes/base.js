@@ -19,6 +19,12 @@ const chainable = {
 
 		return this;
 	},
+	from(key, options = {}) {
+		this.fromKeys = Array.isArray(key) ? key : [key];
+		this.fromOptions = options;
+
+		return this;
+	},
 	nullable() {
 		this.allowNull = true;
 

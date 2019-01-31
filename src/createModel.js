@@ -1,5 +1,6 @@
 const defaultOptions = require('./lib/defaultOptions');
 const defaultRecord = require('./lib/defaultRecord');
+const mapRecord = require('./lib/mapRecord');
 const parseRecord = require('./lib/parseRecord');
 const proxyHandler = require('./lib/proxyHandler');
 const recaseKeys = require('./lib/recaseKeys');
@@ -8,7 +9,8 @@ const requiredCheck = require('./lib/requiredCheck');
 const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
 
 const buildRecord = (schema, record, options) => {
-	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, record) : record;
+	const mappedRecord = mapRecord(schema, record, options.caseSensitive);
+	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, mappedRecord) : mappedRecord;
 	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
 	const defaultedRecord = defaultRecord(schema, casedRecord);
 
