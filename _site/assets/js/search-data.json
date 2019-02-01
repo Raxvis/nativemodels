@@ -1,0 +1,52 @@
+{
+  "0": {
+    "id": "0",
+    "title": "404",
+    "content": "404 Page not found :( The requested page could not be found.",
+    "url": "http://localhost:4000/404.html",
+    "relUrl": "/404.html"
+  },
+  "1": {
+    "id": "1",
+    "title": "About",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/about/",
+    "relUrl": "/about/"
+  },
+  "2": {
+    "id": "2",
+    "title": "createModel",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/docs/createModel/",
+    "relUrl": "/docs/createModel/"
+  },
+  "3": {
+    "id": "3",
+    "title": "Docs",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/docs/",
+    "relUrl": "/docs/"
+  },
+  "4": {
+    "id": "4",
+    "title": "Getting Started",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/getting-started/",
+    "relUrl": "/getting-started/"
+  },
+  "5": {
+    "id": "5",
+    "title": "Home",
+    "content": "Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs. Quick Start const { createModel } = require(&#39;nativemodels&#39;); const { computed, string } = require(&#39;nativemodels/datatypes&#39;); const { email } = require(&#39;nativemodels/customtypes&#39;); const data = { fistName: &#39;John&#39;, lastName: &#39;Smith&#39;, email: &#39;john.smith@example.com&#39;, }; const schema = { fistName: string(), lastName: string(), fullName: computed((record) =&gt; { return firstName + &#39; &#39; + lastName; }), email: email(), }; const user = createModel(schema)(data);",
+    "url": "http://localhost:4000/",
+    "relUrl": "/"
+  },
+  "6": {
+    "id": "6",
+    "title": "schema",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/docs/schema/",
+    "relUrl": "/docs/schema/"
+  }
+  
+}
