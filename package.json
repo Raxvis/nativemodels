@@ -29,11 +29,16 @@
 	},
 	"license": "MIT",
 	"lint-staged": {
-		"*.js": [
-			"eslint --fix",
-			"prettier --config ./.prettierrc.json --write",
-			"jest --bail --findRelatedTests",
-			"git add"
+		"linters": {
+			"*.js": [
+				"eslint --fix",
+				"prettier --config ./.prettierrc.json --write",
+				"jest --bail --findRelatedTests",
+				"git add"
+			]
+		},
+		"ignore": [
+			"site/**"
 		]
 	},
 	"main": "index.js",

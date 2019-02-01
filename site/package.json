@@ -12,12 +12,8 @@
 	"scripts": {
 		"export": "next export",
 		"build": "next build",
-		"deploy": "next build && next export && touch out/.nojekyll && touch out/CNAME && echo \"nativemodels.js.org\" >> out/CNAME && gh-pages -d out",
 		"dev": "next",
 		"start": "next start"
 	},
-	"version": "1.0.0",
-	"devDependencies": {
-		"gh-pages": "^2.0.1"
-	}
+	"version": "1.0.0"
 }
