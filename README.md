@@ -401,10 +401,32 @@ Options are merged with whatever object is passed in, so a blank object will kee
 
 ```js
 const defaultOptions = {
+	allowNulls: false, // Allow nulls on all columns
 	caseSensitive: true, // Ignores case when initializing object from model
 	strict: false, // Throws an error if key is not in schema
 	stripUndefined: true, // Strip undefined values passed in
 };
+```
+
+### allowNulls
+
+The allowNulls option `default: false` will allow you to accept null for any field in your schema document. Useful for importing data from database records
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	allowNulls: true,
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema, options);
+const data = model({ foo: null });
+// => { foo: null }
 ```
 
 ### caseSensitive
