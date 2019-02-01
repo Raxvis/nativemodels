@@ -58,12 +58,7 @@
 		"react/jsx-boolean-value": "off",
 		"react/jsx-child-element-spacing": "off",
 		"react/jsx-filename-extension": "off",
-		"react/jsx-max-depth": [
-			"error",
-			{
-				"max": 4
-			}
-		],
+		"react/jsx-max-depth": "off",
 		"react/jsx-no-bind": "off",
 		"react/jsx-no-literals": "off",
 		"react/jsx-one-expression-per-line": "off",
