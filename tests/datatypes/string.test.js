@@ -14,5 +14,12 @@ test('datatype | string - basic string length option', () => {
 test('datatype | string - basic string length option strict', () => {
 	expect(() => {
 		createModel({ name: string({ length: 3 }).strict() })({ name: 'John' });
-	}).toThrow('Property name is longer than 3');
+	}).toThrow('NativeModels - Property name is longer than 3');
+});
+
+test('datatype | string - null should not go to string', () => {
+	expect(() => {
+		createModel({ name: string() })({ name: null });
+	}).toThrow('NativeModels - Property name is not a string');
+	expect(createModel({ name: string().nullable() })({ name: null })).toEqual({ name: null });
 });

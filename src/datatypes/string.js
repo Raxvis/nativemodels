@@ -21,6 +21,13 @@ const string = (options = {}) =>
 
 			throw new Error(`NativeModels - Property ${key} is not a string`);
 		},
+		validCheck: (key, value) => {
+			if (value === null) {
+				throw new Error(`NativeModels - Property ${key} is not a string`);
+			}
+
+			return true;
+		},
 	});
 
 module.exports = string;
