@@ -1,5 +1,5 @@
 const defaultOptions = {
-	// Allow Nulls on all columns
+	// Allow nulls on all columns
 	allowNulls: false,
 	// Ignores case when initializing object from model
 	caseSensitive: true,
