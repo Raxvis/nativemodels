@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 const invalidTypeCheck = require('./checks/invalidType');
 const { isNull } = require('./checks/types');
 
@@ -15,8 +16,8 @@ const runChecks = (type, key, value) => {
 	});
 };
 
-const parseValue = (type, key, value) => {
-	if (type.allowNull && isNull(value)) {
+const parseValue = (type, key, value, allowNulls) => {
+	if ((type.allowNull || allowNulls) && isNull(value)) {
 		return null;
 	} else if (invalidTypeCheck(type, key, value)) {
 		return value;
