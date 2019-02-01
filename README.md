@@ -34,6 +34,10 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 [![Build Status](https://flat.badgen.net/travis/Prefinem/nativemodels)](https://travis-ci.com/Prefinem/nativemodels)
 
+<!-- CircleCI -->
+
+[![Build Status](https://flat.badgen.net/circleci/Prefinem/nativemodels)](https://circleci.com/gh/Prefinem/nativemodels)
+
 <!-- CodeCov -->
 
 [![Code Coverage](https://flat.badgen.net/codecov/c/github/Prefinem/nativemodels)](https://codecov.io/gh/Prefinem/nativemodels)
@@ -149,6 +153,24 @@ const user = model({ name: 'john' });
 
 console.log(user.name);
 // => 'JOHN'
+```
+
+### datatypes.from(fromKeys, options)
+
+When passing in an object that you would like a key renamed, you can set the correct name in the schema and set the from to key name on the original object. This is useful for renaming and recasing.
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativiemodels/datatypes');
+
+const schema = {
+	name: string().from('firstName'),
+};
+const model = createModel(schema);
+const user = model({ firstName: 'john' });
+
+console.log(user.name);
+// => 'john'
 ```
 
 ## Datatypes
