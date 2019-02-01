@@ -1,0 +1,12 @@
+title: NativeModels
+email: william@prefinem.com
+description: >-
+  NativeModels - Runtime type checking for Javascript
+baseurl: /
+url: https://nativemodels.js.org
+github_username: Prefinem
+
+markdown: kramdown
+
+theme: 'just-the-docs'
+search_enabled: true
