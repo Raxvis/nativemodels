@@ -36,7 +36,7 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 <!-- CircleCI -->
 
-[![Build Status](https://flat.badgen.net/circleci/Prefinem/nativemodels)](https://circleci.com/gh/Prefinem/nativemodels)
+[![Build Status](https://flat.badgen.net/circleci/github/Prefinem/nativemodels)](https://circleci.com/gh/Prefinem/nativemodels)
 
 <!-- CodeCov -->
 
