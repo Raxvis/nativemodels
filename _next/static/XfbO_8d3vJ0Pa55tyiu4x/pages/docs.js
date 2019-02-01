@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{245:function(n,e,t){__NEXT_REGISTER_PAGE("/docs",function(){return n.exports=t(246),{page:n.exports.default}})},246:function(n,e,t){"use strict";t.r(e);var o=t(17),a=t(0),c=t.n(a);e.default=function(){return c.a.createElement(o.a,null,c.a.createElement("div",{className:"p-16"},"Coming Soon"))}}},[[245,1,0]]]);
