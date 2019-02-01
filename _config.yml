@@ -8,5 +8,6 @@ github_username: Prefinem
 
 markdown: kramdown
 
+remote_theme: pmarsceill/just-the-docs
 theme: 'just-the-docs'
 search_enabled: true
