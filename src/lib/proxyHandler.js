@@ -9,12 +9,15 @@ const get = (schema, target, property, context) => {
 	return undefined;
 };
 
-const getOwnPropertyDescriptor = (schema, target, property) => ({
-	configurable: true,
-	enumerable: true,
-	value: schema[property].fn ? undefined : target[property],
-	writable: true,
-});
+const getOwnPropertyDescriptor = (schema, target, property) =>
+	schema[property]
+		? {
+				configurable: true,
+				enumerable: true,
+				value: schema[property] && !schema[property].fn ? target[property] : undefined,
+				writable: true,
+		  }
+		: undefined;
 
 const ownKeys = (schema, target) => [...Object.keys(target), ...Object.keys(schema).filter((key) => schema[key].fn)];
 
