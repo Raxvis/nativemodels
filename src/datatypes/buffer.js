@@ -13,12 +13,12 @@ const bufferCheck = (key, value, strict) => {
 	throw new Error(`NativeModels - Property ${key} is not a buffer`);
 };
 
-const boolean = () =>
+const buffer = () =>
 	createType({
-		name: 'boolean',
+		name: 'buffer',
 		parse: (key, value) => Buffer.from(value),
 		strictCheck: (key, value) => bufferCheck(key, value, true),
 		validCheck: (key, value) => bufferCheck(key, value),
 	});
 
-module.exports = boolean;
+module.exports = buffer;
