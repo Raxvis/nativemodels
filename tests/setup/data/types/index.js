@@ -1,4 +1,5 @@
 module.exports = {
+	any: require('./any'),
 	array: require('./array'),
 	boolean: require('./boolean'),
 	date: require('./date'),

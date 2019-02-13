@@ -1,3 +1,4 @@
+const any = require('./any');
 const array = require('./array');
 const base = require('./base');
 const boolean = require('./boolean');
@@ -10,6 +11,7 @@ const object = require('./object');
 const string = require('./string');
 
 module.exports = {
+	any,
 	array,
 	base,
 	boolean,
