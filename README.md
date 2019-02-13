@@ -176,6 +176,7 @@ console.log(user.name);
 
 ## Datatypes
 
+-   any
 -   array
 -   base
 -   boolean
