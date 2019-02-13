@@ -177,7 +177,9 @@ console.log(user.name);
 ## Datatypes
 
 -   array
+-   base
 -   boolean
+-   buffer
 -   computed
 -   date
 -   float
