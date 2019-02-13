@@ -1,6 +1,7 @@
 // Pre ES5 => value && typeof value === 'object' && value.constructor === Array;
 const isArray = (value) => Array.isArray(value);
 const isBoolean = (value) => typeof value === 'boolean';
+const isBuffer = (value) => Buffer.isBuffer(value);
 const isDate = (value) => value instanceof Date;
 // const isError = (value) => value instanceof Error && typeof value.message !== 'undefined';
 // const isFunction = (value) => typeof value === 'function';
@@ -15,6 +16,7 @@ const isUndefined = (value) => typeof value === 'undefined';
 module.exports = {
 	isArray,
 	isBoolean,
+	isBuffer,
 	isDate,
 	// isError,
 	// isFunction,
