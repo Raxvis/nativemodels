@@ -7,10 +7,12 @@ const recaseKeys = require('./lib/recaseKeys');
 const requireAllKeys = require('./lib/requireAllKeys');
 const requiredCheck = require('./lib/requiredCheck');
 const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
+const transformRecord = require('./lib/transformRecord');
 
 const buildRecord = (schema, record, options) => {
 	const mappedRecord = mapRecord(schema, record, options.caseSensitive);
-	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, mappedRecord) : mappedRecord;
+	const transformedRecord = transformRecord(schema, mappedRecord);
+	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, transformedRecord) : transformedRecord;
 	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
 	const defaultedRecord = defaultRecord(schema, casedRecord);
 

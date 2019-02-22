@@ -40,8 +40,9 @@ const chainable = {
 
 		return this;
 	},
-	transform(fn) {
-		this.transformFn = fn;
+	transform(fn, type = 'post') {
+		this.transforms = this.transforms || {};
+		this.transforms[type] = fn;
 
 		return this;
 	},

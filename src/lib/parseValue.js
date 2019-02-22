@@ -1,6 +1,7 @@
 /* eslint-disable max-params */
 const invalidTypeCheck = require('./checks/invalidType');
 const { isNull } = require('./checks/types');
+const transformValue = require('./transformValue');
 
 const checks = {
 	required: require('./checks/required'),
@@ -27,7 +28,7 @@ const parseValue = (type, key, value, allowNulls) => {
 
 	const parsedValue = type.parse(key, value);
 
-	return type.transformFn ? type.transformFn(parsedValue) : parsedValue;
+	return transformValue(type, parsedValue, 'post');
 };
 
 module.exports = parseValue;
