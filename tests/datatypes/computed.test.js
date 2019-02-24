@@ -27,22 +27,14 @@ test('datatype | computed - deep nested object', () => {
 		bar: object({ bar: computed((record) => record.foo), foo: string() }),
 		foo: string(),
 	});
-	const data = model({
-		bar: { foo: 'baz' },
-		foo: 'bar',
-	});
+	const data = model({ bar: { foo: 'baz' }, foo: 'bar' });
 
 	expect(data.bar.bar).toEqual('baz');
 });
 
 test('datatype | computed - deep nested array', () => {
 	const model = createModel({
-		bar: array(
-			object({
-				bar: computed((record) => record.foo),
-				foo: string(),
-			}),
-		),
+		bar: array(object({ bar: computed((record) => record.foo), foo: string() })),
 		foo: string(),
 	});
 	const data = model({
@@ -56,16 +48,10 @@ test('datatype | computed - deep nested array', () => {
 
 test('datatype | computed - resolved deep nested object', async () => {
 	const model = createModel({
-		bar: object({
-			bar: computed((record) => new Promise((success) => success(record.foo))),
-			foo: string(),
-		}),
+		bar: object({ bar: computed((record) => new Promise((success) => success(record.foo))), foo: string() }),
 		foo: string(),
 	});
-	const data = model({
-		bar: { foo: 'baz' },
-		foo: 'bar',
-	});
+	const data = model({ bar: { foo: 'baz' }, foo: 'bar' });
 	const resolved = await resolve(data);
 
 	expect(resolved.bar.bar).toEqual('baz');
@@ -73,18 +59,10 @@ test('datatype | computed - resolved deep nested object', async () => {
 
 test('datatype | computed - resolved deep nested array', async () => {
 	const model = createModel({
-		bar: array(
-			object({
-				bar: computed((record) => new Promise((success) => success(record.foo))),
-				foo: string(),
-			}),
-		),
+		bar: array(object({ bar: computed((record) => new Promise((success) => success(record.foo))), foo: string() })),
 		foo: string(),
 	});
-	const data = model({
-		bar: [{ foo: 'baz' }, { foo: 'bat' }],
-		foo: 'bar',
-	});
+	const data = model({ bar: [{ foo: 'baz' }, { foo: 'bat' }], foo: 'bar' });
 	const resolved = await resolve(data);
 
 	expect(resolved.bar[0].bar).toEqual('baz');
@@ -285,4 +263,23 @@ test(`context is passed to computed`, () => {
 	const data = createModel({ computed: computed((record, key, context) => context) }, {}, { foo: 'bar' })({});
 
 	expect(data.computed).toEqual({ foo: 'bar' });
+});
+
+test(`console.log looks correct`, () => {
+	const userSchema = {
+		firstName: string(),
+		fullName: computed((record) => `${record.firstName} ${record.lastName}`),
+		lastName: string(),
+	};
+	const userData = { firstName: 'John', lastName: 'Smith' };
+	const userModel = createModel(userSchema);
+	const user = userModel(userData);
+
+	console.log(user);
+
+	expect(user).toEqual({
+		firstName: 'John',
+		fullName: 'John Smith',
+		lastName: 'Smith',
+	});
 });

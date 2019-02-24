@@ -14,7 +14,7 @@ const getOwnPropertyDescriptor = (schema, target, property) =>
 		? {
 				configurable: true,
 				enumerable: true,
-				value: schema[property] && !schema[property].fn ? target[property] : undefined,
+				value: schema[property].fn ? '[computedValue]' : target[property],
 				writable: true,
 		  }
 		: undefined;
