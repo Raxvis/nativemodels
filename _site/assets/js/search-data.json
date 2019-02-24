@@ -8,24 +8,24 @@
   },
   "1": {
     "id": "1",
-    "title": "About",
-    "content": "Coming Soon",
-    "url": "http://localhost:4000/about/",
-    "relUrl": "/about/"
-  },
-  "2": {
-    "id": "2",
     "title": "createModel",
     "content": "Coming Soon",
     "url": "http://localhost:4000/docs/createModel/",
     "relUrl": "/docs/createModel/"
   },
-  "3": {
-    "id": "3",
+  "2": {
+    "id": "2",
     "title": "Docs",
     "content": "Coming Soon",
     "url": "http://localhost:4000/docs/",
     "relUrl": "/docs/"
+  },
+  "3": {
+    "id": "3",
+    "title": "About",
+    "content": "Coming Soon",
+    "url": "http://localhost:4000/about/",
+    "relUrl": "/about/"
   },
   "4": {
     "id": "4",
@@ -37,7 +37,7 @@
   "5": {
     "id": "5",
     "title": "Home",
-    "content": "Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs. Quick Start const { createModel } = require(&#39;nativemodels&#39;); const { computed, string } = require(&#39;nativemodels/datatypes&#39;); const { email } = require(&#39;nativemodels/customtypes&#39;); const data = { fistName: &#39;John&#39;, lastName: &#39;Smith&#39;, email: &#39;john.smith@example.com&#39;, }; const schema = { fistName: string(), lastName: string(), fullName: computed((record) =&gt; { return firstName + &#39; &#39; + lastName; }), email: email(), }; const user = createModel(schema)(data);",
+    "content": "Native runtime type checking Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs. Quick Start 1. Install yarn install nativemodels 2. Define your model schema const { computed, string } = require(&#39;nativemodels/datatypes&#39;); const { email } = require(&#39;nativemodels/customtypes&#39;); const schema = { firstName: string(), lastName: string(), fullName: computed((record) =&gt; `${record.firstName} ${record.lastName}`), email: email(), }; module.exports = schema; 3. Create and consume your model const { createModel } = require(&#39;nativemodels&#39;); const schema = require(&#39;./schema&#39;); const userModel = createModel(schema); const userData = { firstName: &#39;John&#39;, lastName: &#39;Smith&#39;, email: &#39;john.smith@example.com&#39;, }; const user = userModel(userData); /* * { * firstName: &#39;John&#39;, * lastName: &#39;Smith&#39;, * fullName: &#39;John Smith&#39;, * email: &#39;john.smith@example.com&#39;, * } */",
     "url": "http://localhost:4000/",
     "relUrl": "/"
   },
