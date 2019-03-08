@@ -56,6 +56,7 @@
 				"prev": ["const", "let", "var"]
 			}
 		],
+		"prefer-named-capture-group": "off",
 		"quote-props": "off",
 		"quotes": "off",
 		"radix": "off",
