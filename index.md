@@ -4,9 +4,6 @@ title: Home
 nav_order: 1
 ---
 
-![Logo](https://raw.githubusercontent.com/Prefinem/nativemodels/master/docs/logo.png)
-{: .fs-9 }
-
 <!-- prettier-ignore-start -->
 # Native runtime type checking
 {: .fs-9 }
@@ -14,6 +11,8 @@ nav_order: 1
 
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 {: .fs-6 .fw-300 }
+
+[Get started now](/getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/Prefinem/nativemodels){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 

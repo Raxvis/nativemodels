@@ -10,4 +10,7 @@ markdown: kramdown
 
 remote_theme: pmarsceill/just-the-docs
 theme: 'just-the-docs'
-search_enabled: true
+
+aux_links:
+  'NativeModels on GitHub':
+    - 'https://github.com/Prefinem/nativemodels'
