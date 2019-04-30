@@ -283,3 +283,15 @@ test(`console.log looks correct`, () => {
 		lastName: 'Smith',
 	});
 });
+
+test(`import of computed into computed shouldn't duplicate key`, () => {
+	const test1 = { bar: computed((record) => `${record.foo}bar1`), foo: string() };
+	const test2 = { bar: computed((record) => `${record.foo}bar2`), foo: string() };
+
+	const data1 = createModel(test1)({ foo: 'foo' });
+	const data2 = createModel(test2)(data1);
+
+	const output = JSON.stringify(data2);
+
+	expect(output).toEqual(JSON.stringify({ foo: 'foo', bar: 'foobar2' })); // eslint-disable-line sort-keys
+});

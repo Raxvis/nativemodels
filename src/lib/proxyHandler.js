@@ -19,7 +19,11 @@ const getOwnPropertyDescriptor = (schema, target, property) =>
 		  }
 		: undefined;
 
-const ownKeys = (schema, target) => [...Object.keys(target), ...Object.keys(schema).filter((key) => schema[key].fn)];
+const ownKeys = (schema, target) => {
+	const allKeys = [...Object.keys(target), ...Object.keys(schema).filter((key) => schema[key].fn)];
+
+	return [...new Set(allKeys)];
+};
 
 const set = (schema, target, property, value) => {
 	if (!schema[property]) {
