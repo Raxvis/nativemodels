@@ -25,14 +25,14 @@ const ownKeys = (schema, target) => {
 	return [...new Set(allKeys)];
 };
 
-const set = (schema, target, property, value) => {
+const set = (schema, target, property, value, options) => {
 	if (!schema[property]) {
 		throw new Error(`NativeModels - ${property} is not a property of model`);
 	}
 
 	const type = schema[property].fn && schema[property].type ? schema[property].type : schema[property];
 
-	target[property] = parseValue(type, property, value);
+	target[property] = parseValue(type, property, value, options);
 
 	return true;
 };
@@ -41,7 +41,7 @@ const proxyHandler = (schema, options, context) => ({
 	get: (target, property) => get(schema, target, property, context),
 	getOwnPropertyDescriptor: (target, property) => getOwnPropertyDescriptor(schema, target, property),
 	ownKeys: (target) => ownKeys(schema, target),
-	set: (target, property, value) => set(schema, target, property, value),
+	set: (target, property, value) => set(schema, target, property, value, options),
 });
 
 module.exports = proxyHandler;

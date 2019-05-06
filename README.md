@@ -403,6 +403,8 @@ const resolvedData = await resolve(data, resolvedSchema);
 
 ## Options for createModel
 
+Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand or set `passOptions` to true.
+
 ### defaultOptions
 
 Options are merged with whatever object is passed in, so a blank object will keep the default options
@@ -414,6 +416,28 @@ const defaultOptions = {
 	strict: false, // Throws an error if key is not in schema
 	stripUndefined: true, // Strip undefined values passed in
 };
+```
+
+### passOptions
+
+The passOptions option `default: false` will pass your options through all your children.
+
+```js
+const { createModel } = require('nativemodels');
+const { object, string } = require('nativemodels/datatypes');
+
+const options = {
+	caseSensitive: false,
+	passOptions: true,
+};
+
+const schema = {
+	foo: object({ bar: string() }),
+};
+
+const model = createModel(schema, options);
+const data = model({ FOO: { BAR: 'baz' } });
+// => { foo: { bar: 'baz' } }
 ```
 
 ### allowNulls
@@ -458,7 +482,7 @@ const data = model({ FOO: 'bar' });
 // => { foo: 'bar' }
 ```
 
-Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand.
+Options are shallow by default, so if you have a deeply nested object, you will need to pass down options by hand or set `passOptions` to true.
 
 ```js
 const { createModel } = require('nativemodels');

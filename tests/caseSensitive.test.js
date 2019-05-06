@@ -73,3 +73,16 @@ test('caseSensitive - array test', async () => {
 	await expect(modelShallow({ nested: [{ Foo: 'bar' }] }).nested[0]).toEqual({});
 	await expect(modelShallow({ Nested: [{ Foo: 'bar' }] }).nested[0]).toEqual({});
 });
+
+test('caseSensitive - passOptions', () => {
+	const model = createModel({ nested: object(schema) }, { caseSensitive: false, passOptions: true });
+	const modelWithOptionOverrides = createModel(
+		{ nested: object(schema, { caseSensitive: true }) },
+		{ caseSensitive: false, passOptions: true },
+	);
+
+	expect(model({ nested: { Foo: 'bar' } }).nested).toEqual(data);
+	expect(model({ Nested: { Foo: 'bar' } }).nested).toEqual(data);
+	expect(modelWithOptionOverrides({ nested: { Foo: 'bar' } }).nested).toEqual({});
+	expect(modelWithOptionOverrides({ Nested: { Foo: 'bar' } }).nested).toEqual({});
+});

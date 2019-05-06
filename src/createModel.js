@@ -29,7 +29,7 @@ const createModel = (schema, modelOptions = {}, context = {}) => (record = {}) =
 
 	requiredCheck(schema, builtRecord);
 
-	const proxyTarget = parseRecord(schema, builtRecord, modelOptions.allowNulls);
+	const proxyTarget = parseRecord(schema, builtRecord, options);
 
 	return new Proxy(proxyTarget, proxyHandler(schema, options, context));
 };

@@ -17,8 +17,8 @@ const runChecks = (type, key, value) => {
 	});
 };
 
-const parseValue = (type, key, value, allowNulls) => {
-	if ((type.allowNull || allowNulls) && isNull(value)) {
+const parseValue = (type, key, value, options) => {
+	if ((type.allowNull || (options && options.allowNulls)) && isNull(value)) {
 		return null;
 	} else if (invalidTypeCheck(type, key, value)) {
 		return value;
@@ -26,7 +26,7 @@ const parseValue = (type, key, value, allowNulls) => {
 
 	runChecks(type, key, value);
 
-	const parsedValue = type.parse(key, value);
+	const parsedValue = type.parse(key, value, options && options.passOptions ? options : {});
 
 	return transformValue(type, parsedValue, 'post');
 };

@@ -3,6 +3,8 @@ const defaultOptions = {
 	allowNulls: false,
 	// Ignores case when initializing object from model
 	caseSensitive: true,
+	// Pass options to all children
+	passOptions: false,
 	// Throws an error if key is not in schema
 	strict: false,
 	// Strip undefined values passed in

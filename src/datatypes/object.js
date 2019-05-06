@@ -5,7 +5,8 @@ const { isObject } = require('./../lib/checks/types');
 const object = (schema, options) =>
 	createType({
 		name: 'object',
-		parse: (key, value) => (schema ? createModel(schema, options)(value) : value),
+		parse: (key, value, parentOptions) =>
+			schema ? createModel(schema, { ...parentOptions, ...options })(value) : value,
 		validCheck: (key, value) => {
 			if (isObject(value)) {
 				return true;

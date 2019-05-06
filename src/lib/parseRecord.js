@@ -1,10 +1,10 @@
 const parseValue = require('./parseValue');
 
-const parseRecord = (schema, record, allowNulls) =>
+const parseRecord = (schema, record, options) =>
 	Object.keys(record).reduce(
 		(result, key) => ({
 			...result,
-			...(schema[key] ? { [key]: parseValue(schema[key], key, record[key], allowNulls) } : {}),
+			...(schema[key] ? { [key]: parseValue(schema[key], key, record[key], options) } : {}),
 		}),
 		{},
 	);

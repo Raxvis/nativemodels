@@ -5,7 +5,7 @@ const { isArray } = require('./../lib/checks/types');
 const array = (type) =>
 	createType({
 		name: 'array',
-		parse: (key, values) => values.map((value) => parseValue(type, key, value)),
+		parse: (key, values, parentOptions) => values.map((value) => parseValue(type, key, value, parentOptions)),
 		validCheck: (key, value) => {
 			if (isArray(value)) {
 				return true;
