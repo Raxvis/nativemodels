@@ -80,9 +80,13 @@ test('caseSensitive - passOptions', () => {
 		{ nested: object(schema, { caseSensitive: true }) },
 		{ caseSensitive: false, passOptions: true },
 	);
+	const modelWithNoPassOptions = createModel({ nested: object(schema) }, { caseSensitive: false });
 
 	expect(model({ nested: { Foo: 'bar' } }).nested).toEqual(data);
 	expect(model({ Nested: { Foo: 'bar' } }).nested).toEqual(data);
 	expect(modelWithOptionOverrides({ nested: { Foo: 'bar' } }).nested).toEqual({});
 	expect(modelWithOptionOverrides({ Nested: { Foo: 'bar' } }).nested).toEqual({});
+	expect(modelWithNoPassOptions({ nested: { Foo: 'bar' } }).nested).toEqual({});
+	expect(modelWithNoPassOptions({ Nested: { Foo: 'bar' } }).nested).toEqual({});
+	expect(modelWithNoPassOptions({ Nested: { foo: 'bar' } }).nested).toEqual({ foo: 'bar' });
 });
