@@ -301,7 +301,7 @@ const myCustomDataType = () =>
 		},
 	});
 
-module.exports = int;
+module.exports = myCustomDataType;
 ```
 
 ### base.parse(key, value)
