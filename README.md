@@ -51,6 +51,13 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
+## Similar Libraries
+
+* [Yup](https://www.npmjs.com/package/yup)
+* [Joi](https://www.npmjs.com/package/joi)
+* [Schema Object](https://www.npmjs.com/package/schema-object)
+* [ObjectModel](https://www.npmjs.com/package/objectmodel)
+
 ## Getting Started
 
 ```js
@@ -142,7 +149,7 @@ Requires the value that is passed in to be the correct datatype instead of coerc
 
 Takes a validated value, and transforms it according to the transform function
 
-#### Types
+#### Transformation Types
 
 -   `post` - happens after validation
 -   `pre` - happens before validation
