@@ -6,7 +6,7 @@
 	},
 	"description": "Native Models for Javascript",
 	"devDependencies": {
-		"codecov": "3.5.0",
+		"codecov": "3.6.1",
 		"eslint": "6.1.0",
 		"eslint-config-prettier": "6.0.0",
 		"eslint-plugin-jest": "22.14.0",
