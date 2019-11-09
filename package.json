@@ -18,7 +18,7 @@
 		"js-yaml": "3.13.1",
 		"lint-staged": "9.4.2",
 		"lodash.isequal": "4.5.0",
-		"prettier": "1.19.0"
+		"prettier": "1.19.1"
 	},
 	"engines": {
 		"node": ">=8.10"
