@@ -9,7 +9,7 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 [![Version](https://img.shields.io/npm/v/nativemodels?style=for-the-badge)](https://npmjs.org/package/nativemodels)
 
-[![Build Status](https://img.shields.io/github/workflow/status/Prefinem/nativemodels/Node%20CI?style=for-the-badge)](https://github.com/Prefinem/nativemodels/actions) [![Maintainability](https://img.shields.io/codeclimate/coverage-letter/Prefinem/nativemodels?style=for-the-badge)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://img.shields.io/codecov/c/github/Prefinem/nativemodels?style=for-the-badge)](https://codecov.io/gh/Prefinem/nativemodels)
+[![Build Status](https://img.shields.io/github/workflow/status/Prefinem/nativemodels/ci?style=for-the-badge)](https://github.com/Prefinem/nativemodels/actions) [![Maintainability](https://img.shields.io/codeclimate/coverage-letter/Prefinem/nativemodels?style=for-the-badge)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://img.shields.io/codecov/c/github/Prefinem/nativemodels?style=for-the-badge)](https://codecov.io/gh/Prefinem/nativemodels)
 
 ![Monthly Downloads](https://img.shields.io/npm/dm/nativemodels?style=for-the-badge)
 
