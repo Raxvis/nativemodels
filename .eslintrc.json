@@ -4,7 +4,7 @@
 		"es6": true,
 		"node": true
 	},
-	"extends": ["eslint:all", "prettier", "prettier/react", "plugin:jest/recommended"],
+	"extends": ["eslint:all", "prettier", "plugin:jest/recommended"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true

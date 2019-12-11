@@ -6,15 +6,12 @@
 	},
 	"description": "Native Models for Javascript",
 	"devDependencies": {
-		"codecov": "3.6.1",
 		"eslint": "6.7.2",
 		"eslint-config-prettier": "6.7.0",
 		"eslint-plugin-jest": "23.1.1",
-		"eslint-plugin-react": "7.17.0",
 		"gh-pages": "2.1.1",
 		"husky": "3.1.0",
 		"jest": "24.9.0",
-		"jest-junit": "10.0.0",
 		"js-yaml": "3.13.1",
 		"lint-staged": "9.5.0",
 		"lodash.isequal": "4.5.0",
@@ -52,7 +49,7 @@
 		"site": "cd site && bundle exec jekyll server",
 		"site:deploy": "gh-pages --dist site",
 		"staged": "lint-staged",
-		"test": "jest --coverage"
+		"test": "./node_modules/.bin/jest"
 	},
 	"version": "2.8.0"
 }
