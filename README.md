@@ -7,56 +7,24 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 -->
 </h1>
 
-<!-- NPM -->
+[![Version](https://img.shields.io/npm/v/nativemodels?style=for-the-badge)](https://npmjs.org/package/nativemodels)
 
-[![Version](https://flat.badgen.net/npm/v/nativemodels)](https://npmjs.org/package/nativemodels)
-[![Weekly Downloads](https://flat.badgen.net/npm/dw/nativemodels)](https://npmjs.org/package/nativemodels)
-[![License](https://flat.badgen.net/npm/license/nativemodels)](https://npmjs.org/package/nativemodels)
+[![Build Status](https://img.shields.io/github/workflow/status/Prefinem/nativemodels/Node%20CI?style=for-the-badge)](https://github.com/Prefinem/nativemodels/actions) [![Maintainability](https://img.shields.io/codeclimate/coverage-letter/Prefinem/nativemodels?style=for-the-badge)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://img.shields.io/codecov/c/github/Prefinem/nativemodels?style=for-the-badge)](https://codecov.io/gh/Prefinem/nativemodels)
 
-<!-- GitHub -->
+![Monthly Downloads](https://img.shields.io/npm/dm/nativemodels?style=for-the-badge)
 
-[![Open Issues](https://flat.badgen.net/github/open-issues/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
-[![Stars](https://flat.badgen.net/github/stars/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
-[![Open PRs](https://flat.badgen.net/github/open-prs/Prefinem/nativemodels)](https://github.com/Prefinem/nativemodels)
+![Issues](https://img.shields.io/github/issues/Prefinem/nativemodels?style=for-the-badge) ![Pull Requests](https://img.shields.io/github/issues-pr/Prefinem/nativemodels?style=for-the-badge)
 
-<!-- Dependencies -->
-
-[![Dependencies](https://flat.badgen.net/david/dep/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels)
-[![DevDependencies](https://flat.badgen.net/david/dev/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels?type=dev)
-[![PeerDependencies](https://flat.badgen.net/david/peer/Prefinem/nativemodels)](https://david-dm.org/Prefinem/nativemodels?type=peer)
-
-<!-- PackagePhobia -->
-
-[![Install Size](https://flat.badgen.net/packagephobia/install/nativemodels)](https://packagephobia.now.sh/result?p=nativemodels)
-[![Publish Size](https://flat.badgen.net/packagephobia/publish/nativemodels)](https://packagephobia.now.sh/result?p=nativemodels)
-
-<!-- Travis -->
-
-[![Build Status](https://flat.badgen.net/travis/Prefinem/nativemodels)](https://travis-ci.com/Prefinem/nativemodels)
-
-<!-- CircleCI -->
-
-[![Build Status](https://flat.badgen.net/circleci/github/Prefinem/nativemodels)](https://circleci.com/gh/Prefinem/nativemodels)
-
-<!-- CodeCov -->
-
-[![Code Coverage](https://flat.badgen.net/codecov/c/github/Prefinem/nativemodels)](https://codecov.io/gh/Prefinem/nativemodels)
-
-<!-- CodeClimate -->
-
-[![Technical Debt](https://flat.badgen.net/codeclimate/tech-debt/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
-[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
-[![Coverage](https://flat.badgen.net/codeclimate/coverage/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
-[![Lines of Code](https://flat.badgen.net/codeclimate/loc/Prefinem/nativemodels)](https://codeclimate.com/github/Prefinem/nativemodels)
+![Dependencies](https://img.shields.io/david/Prefinem/nativemodels?style=for-the-badge) ![Dev Dependencies](https://img.shields.io/david/dev/Prefinem/nativemodels?style=for-the-badge)
 
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
 ## Similar Libraries
 
-* [Yup](https://www.npmjs.com/package/yup)
-* [Joi](https://www.npmjs.com/package/joi)
-* [Schema Object](https://www.npmjs.com/package/schema-object)
-* [ObjectModel](https://www.npmjs.com/package/objectmodel)
+-   [Yup](https://www.npmjs.com/package/yup)
+-   [Joi](https://www.npmjs.com/package/joi)
+-   [Schema Object](https://www.npmjs.com/package/schema-object)
+-   [ObjectModel](https://www.npmjs.com/package/objectmodel)
 
 ## Getting Started
 
