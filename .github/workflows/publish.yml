@@ -30,7 +30,7 @@ jobs:
           cp -r ./src/ ./dist
           cp ./package.json ./dist/package.json
           cp ./README.md ./dist/README.md
-          npm publish dist/
+          cd dist && npm publish
           rm -rf ./dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
