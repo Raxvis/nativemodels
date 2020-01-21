@@ -50,5 +50,5 @@
 		"staged": "lint-staged",
 		"test": "./node_modules/.bin/jest"
 	},
-	"version": "2.8.4"
+	"version": "2.8.5"
 }
