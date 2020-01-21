@@ -1,6 +1,7 @@
 name: publish
 
 on:
+  push
   release:
     types: [created]
 
@@ -30,7 +31,8 @@ jobs:
           cp -r ./src/ ./dist
           cp ./package.json ./dist/package.json
           cp ./README.md ./dist/README.md
-          cd dist && npm publish
+          ls -al ./dist
+          npm publish ./dist --dry-run
           rm -rf ./dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
