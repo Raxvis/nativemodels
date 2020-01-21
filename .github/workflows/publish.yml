@@ -24,22 +24,27 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn
-      - run: ./publish.sh
+      - run: |
+          mkdir -p dist/
+          rm -rf ./dist/*
+          cp -r ./src/ ./dist
+          cp ./package.json ./dist/package.json
+          cp ./README.md ./dist/README.md
+          npm publish dist/
+          rm -rf ./dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@Prefinem'
-      - run: yarn
-      - run: ./publish.sh
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  # publish-gpr:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #         registry-url: https://npm.pkg.github.com/
+  #         scope: '@Prefinem'
+  #     - run: yarn
+  #     - run: ./publish.sh
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
