@@ -23,14 +23,10 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: |
-          mkdir -p dist/
-          rm -rf ./dist/*
-          cp -r ./src/ ./dist
-          cp ./package.json ./dist/package.json
-          cp ./README.md ./dist/README.md
-          ls -al ./dist
-          npm publish ./dist --dry-run
-          rm -rf ./dist
+          mv ./package.json ./src/package.json
+          mv ./README.md ./src/README.md
+          ls -al ./src
+          npm publish ./src --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
   # publish-gpr:
