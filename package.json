@@ -14,7 +14,7 @@
 		"eslint-plugin-react": "7.19.0",
 		"gh-pages": "2.2.0",
 		"husky": "4.2.3",
-		"jest": "25.2.4",
+		"jest": "25.2.7",
 		"js-yaml": "3.13.1",
 		"lint-staged": "10.1.1",
 		"lodash.isequal": "4.5.0",
