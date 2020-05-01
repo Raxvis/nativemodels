@@ -16,7 +16,7 @@
 		"husky": "4.2.5",
 		"jest": "25.5.3",
 		"js-yaml": "3.13.1",
-		"lint-staged": "10.2.1",
+		"lint-staged": "10.2.2",
 		"lodash.isequal": "4.5.0",
 		"prettier": "2.0.5",
 		"typescript": "3.8.3"
