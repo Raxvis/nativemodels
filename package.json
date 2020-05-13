@@ -11,7 +11,7 @@
 		"eslint-config-prettier": "6.11.0",
 		"eslint-plugin-babel": "5.3.0",
 		"eslint-plugin-jest": "23.11.0",
-		"eslint-plugin-react": "7.19.0",
+		"eslint-plugin-react": "7.20.0",
 		"gh-pages": "2.2.0",
 		"husky": "4.2.5",
 		"jest": "26.0.1",
