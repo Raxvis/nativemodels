@@ -9,6 +9,8 @@ const defaultOptions = {
 	strict: false,
 	// Strip undefined values passed in
 	stripUndefined: true,
+	// Strip null values passed in
+	stripNull: false,
 };
 
 module.exports = defaultOptions;

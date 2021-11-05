@@ -18,7 +18,9 @@ const runChecks = (type, key, value) => {
 };
 
 const parseValue = (type, key, value, options) => {
-	if ((type.allowNull || (options && options.allowNulls)) && isNull(value)) {
+	if (options.stripNulls && isNull(value)) {
+		return undefined;
+	} else if ((type.allowNull || (options && options.allowNulls)) && isNull(value)) {
 		return null;
 	} else if (invalidTypeCheck(type, key, value)) {
 		return value;
