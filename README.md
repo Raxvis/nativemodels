@@ -390,6 +390,7 @@ const defaultOptions = {
 	caseSensitive: true, // Ignores case when initializing object from model
 	strict: false, // Throws an error if key is not in schema
 	stripUndefined: true, // Strip undefined values passed in
+	stripNull: false, // Do not strip null values passed in
 };
 ```
 
@@ -562,6 +563,46 @@ const schema = {
 const model = createModel(schema);
 const data = model({ foo: undefined });
 // => { foo: undefined }
+```
+
+## stripNull
+
+This will remove any null values from the initial object passed in.
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	stripNull: true,
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema);
+const data = model({ foo: null });
+// => {}
+```
+
+Versus
+
+```js
+const { createModel } = require('nativemodels');
+const { string } = require('nativemodels/datatypes');
+
+const options = {
+	stripNull: false,
+};
+
+const schema = {
+	foo: string(),
+};
+
+const model = createModel(schema);
+const data = model({ foo: null });
+// => Error: NativeModels - Failed valid check.  Key: foo | Value: null
 ```
 
 ## createModel context
