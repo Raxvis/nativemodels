@@ -1,3 +1,4 @@
+/* eslint-disable logical-assignment-operators */
 const overrides = {
   name: 'base',
   parse: (key, value) => value,
@@ -41,7 +42,7 @@ const chainable = {
     return this;
   },
   transform(fn, type = 'post') {
-    this.transforms ||= {};
+    this.transforms = this.transforms || {};
     this.transforms[type] = fn;
 
     return this;
