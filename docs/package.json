@@ -1,0 +1,19 @@
+{
+  "name": "nativemodels-docs",
+  "version": "0.0.1",
+  "description": "Native Models documentation site",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "start": "next dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^13.3.0",
+    "nextra": "^2.4.0",
+    "nextra-theme-docs": "^2.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

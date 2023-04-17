@@ -1,6 +1,6 @@
 /coverage
 /dist
-/node_modules
+node_modules/
 /tests-dist
 .DS_Store
 /nativemodels.wiki

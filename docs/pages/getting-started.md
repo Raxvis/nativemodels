@@ -1,8 +1,6 @@
 ---
-layout: default
 title: Getting Started
 permalink: /getting-started/
-nav_order: 2
 ---
 
 # Getting Started
@@ -17,8 +15,8 @@ nav_order: 2
 const { string } = require('nativemodels/datatypes');
 
 const photoSchema = {
-	ext: string(),
-	url: string().required(),
+  ext: string(),
+  url: string().required(),
 };
 
 module.exports = photoSchema;
@@ -30,9 +28,9 @@ module.exports = photoSchema;
 const { email, phone, url } = require('nativemodels/customtypes');
 
 const contactSchema = {
-	email: email(),
-	phone: phone(),
-	url: url(),
+  email: email(),
+  phone: phone(),
+  url: url(),
 };
 
 module.exports = contactSchema;
@@ -47,15 +45,15 @@ const contactSchema = require('./contact');
 const photoSchema = require('./photo');
 
 const userSchema = {
-	accountID: int().nullable(),
-	contact: object(contactSchema),
-	created: date(),
-	firstName: string().required(),
-	fullName: computed((record) => `${record.firstName} ${record.lastName}`),
-	isAdmin: boolean().nullable(),
-	lastName: string().required(),
-	photos: array(object(photoSchema)),
-	typeID: int().default(2),
+  accountID: int().nullable(),
+  contact: object(contactSchema),
+  created: date(),
+  firstName: string().required(),
+  fullName: computed((record) => `${record.firstName} ${record.lastName}`),
+  isAdmin: boolean().nullable(),
+  lastName: string().required(),
+  photos: array(object(photoSchema)),
+  typeID: int().default(2),
 };
 
 module.exports = userSchema;
@@ -76,7 +74,7 @@ module.exports = createModel(userSchema);
 
 ---
 
-## Now your your model with data
+## Now populate your model with data
 
 `index.js`
 
@@ -84,31 +82,31 @@ module.exports = createModel(userSchema);
 const userModel = require('./models/user');
 
 const johnSmith = userModel({
-	contact: {
-		email: 'j.smith@example.com',
-	},
-	firstName: 'John',
-	lastName: 'Smith',
-	photos: [
-		{
-			ext: '.jpg',
-			url: 'https://example.com/img.jpg',
-		},
-	],
+  contact: {
+    email: 'j.smith@example.com',
+  },
+  firstName: 'John',
+  lastName: 'Smith',
+  photos: [
+    {
+      ext: '.jpg',
+      url: 'https://example.com/img.jpg',
+    },
+  ],
 });
 
 console.log(johnSmith);
 // => { firstName: 'John', lastName: 'Smith', fullName: 'John Smith', ...}
 
 const userRecords = [
-	{
-		firstName: 'John',
-		lastName: 'Smith',
-	},
-	{
-		firstName: 'Jane',
-		lastName: 'Doe',
-	},
+  {
+    firstName: 'John',
+    lastName: 'Smith',
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Doe',
+  },
 ];
 const users = userRecords.map(userModel);
 
@@ -116,9 +114,9 @@ console.log(users);
 // => [{ firstName: 'John', lastName: 'Smith', fullName: 'John Smith', ...}]
 
 const janeDoe = userModel({
-	...johnSmith,
-	firstName: 'Jane',
-	lastName: 'Doe',
+  ...johnSmith,
+  firstName: 'Jane',
+  lastName: 'Doe',
 });
 
 console.log(janeDoe);
