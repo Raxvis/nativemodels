@@ -39,7 +39,7 @@
     "site": "cd site && bundle exec jekyll server",
     "site:deploy": "gh-pages --dist site",
     "test": "jest",
-    "prepare": "husky install"
+    "husky-prepare": "husky install"
   },
   "version": "2.10.0"
 }
