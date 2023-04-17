@@ -10,28 +10,30 @@ const stripUndefinedKeys = require('./lib/stripUndefinedKeys');
 const transformRecord = require('./lib/transformRecord');
 
 const buildRecord = (schema, record, options) => {
-	const mappedRecord = mapRecord(schema, record, options.caseSensitive);
-	const transformedRecord = transformRecord(schema, mappedRecord);
-	const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, transformedRecord) : transformedRecord;
-	const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
-	const defaultedRecord = defaultRecord(schema, casedRecord);
+  const mappedRecord = mapRecord(schema, record, options.caseSensitive);
+  const transformedRecord = transformRecord(schema, mappedRecord);
+  const stripedRecord = options.stripUndefined ? stripUndefinedKeys(schema, transformedRecord) : transformedRecord;
+  const casedRecord = options.caseSensitive ? stripedRecord : recaseKeys(schema, stripedRecord);
+  const defaultedRecord = defaultRecord(schema, casedRecord);
 
-	return defaultedRecord;
+  return defaultedRecord;
 };
 
-const createModel = (schema, modelOptions = {}, context = {}) => (record = {}) => {
-	const options = { ...defaultOptions, ...modelOptions };
-	const builtRecord = buildRecord(schema, record, options);
+const createModel =
+  (schema, modelOptions = {}, context = {}) =>
+  (record = {}) => {
+    const options = { ...defaultOptions, ...modelOptions };
+    const builtRecord = buildRecord(schema, record, options);
 
-	if (options.strict) {
-		requireAllKeys(schema, builtRecord);
-	}
+    if (options.strict) {
+      requireAllKeys(schema, builtRecord);
+    }
 
-	requiredCheck(schema, builtRecord);
+    requiredCheck(schema, builtRecord);
 
-	const proxyTarget = parseRecord(schema, builtRecord, options);
+    const proxyTarget = parseRecord(schema, builtRecord, options);
 
-	return new Proxy(proxyTarget, proxyHandler(schema, options, context));
-};
+    return new Proxy(proxyTarget, proxyHandler(schema, options, context));
+  };
 
 module.exports = createModel;

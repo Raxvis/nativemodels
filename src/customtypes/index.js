@@ -6,10 +6,10 @@ const regex = require('./regex');
 const url = require('./url');
 
 module.exports = {
-	email,
-	enumerable,
-	guid,
-	phone,
-	regex,
-	url,
+  email,
+  enumerable,
+  guid,
+  phone,
+  regex,
+  url,
 };

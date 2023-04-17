@@ -11,15 +11,15 @@ const object = require('./object');
 const string = require('./string');
 
 module.exports = {
-	any,
-	array,
-	base,
-	boolean,
-	buffer,
-	computed,
-	date,
-	float,
-	int,
-	object,
-	string,
+  any,
+  array,
+  base,
+  boolean,
+  buffer,
+  computed,
+  date,
+  float,
+  int,
+  object,
+  string,
 };

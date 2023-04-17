@@ -7,14 +7,14 @@ const resolve = require('./resolve');
 
 /* istanbul ignore next */
 const resolver = (data, schema) =>
-	console.warn('DEPRECATION NOTICE: Please use resolve() instead of resolver()') || resolve(data, schema);
+  console.warn('DEPRECATION NOTICE: Please use resolve() instead of resolver()') || resolve(data, schema);
 
 module.exports = {
-	createModel,
-	createType,
-	customtypes,
-	datatypes,
-	generateSchema,
-	resolve,
-	resolver,
+  createModel,
+  createType,
+  customtypes,
+  datatypes,
+  generateSchema,
+  resolve,
+  resolver,
 };

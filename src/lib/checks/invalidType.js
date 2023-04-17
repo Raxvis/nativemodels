@@ -1,11 +1,11 @@
 const invalidTypeCheck = (type, key) => {
-	if (!type.validCheck || !type.parse) {
-		console.log(`Schema Key: '${key}' is not a valid datatype or customtype`);
+  if (!type.validCheck || !type.parse) {
+    console.log(`Schema Key: '${key}' is not a valid datatype or customtype`);
 
-		return true;
-	}
+    return true;
+  }
 
-	return false;
+  return false;
 };
 
 module.exports = invalidTypeCheck;
