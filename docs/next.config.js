@@ -1,7 +1,14 @@
 const withNextra = require('nextra')({
-  distDir: '../build',
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.jsx',
 });
 
-module.exports = withNextra();
+const config = {
+  ...withNextra(),
+  distDir: '../build',
+  // output: 'export',
+};
+
+delete config.rewrites;
+
+module.exports = config;

@@ -1,5 +1,5 @@
 ---
-title: About
+title: Home
 ---
 
 # Native runtime type checking

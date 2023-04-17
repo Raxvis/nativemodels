@@ -13,4 +13,9 @@ export default {
   project: {
     link: 'https://github.com/Prefinem/nativemodels',
   },
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – Native Models',
+    };
+  },
 };
