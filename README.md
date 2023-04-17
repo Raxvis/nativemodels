@@ -15,8 +15,6 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 ![Issues](https://img.shields.io/github/issues/Prefinem/nativemodels?style=for-the-badge) ![Pull Requests](https://img.shields.io/github/issues-pr/Prefinem/nativemodels?style=for-the-badge)
 
-![Dependencies](https://img.shields.io/librariesio/release/npm/nativemodels?style=for-the-badge) ![Latest Dependencies](https://img.shields.io/librariesio/github/Prefinem/nativemodels?style=for-the-badge)
-
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
 ## Similar Libraries
