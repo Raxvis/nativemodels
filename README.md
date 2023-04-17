@@ -1,7 +1,7 @@
 <h1 align="center">
-	<br>
-	<a href="https://github.com/Prefinem/nativemodels"><img src="https://raw.githubusercontent.com/Prefinem/nativemodels/master/docs/logo.png" alt="NativeModels" width="200"></a>
-	<br>
+  <br>
+  <a href="https://github.com/Prefinem/nativemodels"><img src="https://raw.githubusercontent.com/Prefinem/nativemodels/master/docs/logo.png" alt="NativeModels" width="200"></a>
+  <br>
 <!--
 https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAzLCA1NiwgNTUpIiwiYm9yZGVyQ29sb3IiOiJ3aGl0ZSIsImJvcmRlcldpZHRoIjoiMCIsImV4cG9ydFNpemUiOjUxMiwiZXhwb3J0aW5nIjpmYWxzZSwiZm9udEZhbWlseSI6IkFndWFmaW5hIFNjcmlwdCIsImZvbnRQb3NpdGlvbiI6IjY1IiwiZm9udFNpemUiOiI0MiIsImZvbnRXZWlnaHQiOjYwMCwiaW1hZ2UiOiIiLCJpbWFnZU1hc2siOiIiLCJpbWFnZVNpemUiOjUwLCJzaGFwZSI6ImRpYW1vbmQiLCJ0ZXh0IjoiTi4gTS4ifQ
 -->
@@ -9,22 +9,22 @@ https://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2IoMjAz
 
 [![Version](https://img.shields.io/npm/v/nativemodels?style=for-the-badge)](https://npmjs.org/package/nativemodels)
 
-[![Build Status](https://img.shields.io/github/workflow/status/Prefinem/nativemodels/ci?style=for-the-badge)](https://github.com/Prefinem/nativemodels/actions) [![Maintainability](https://img.shields.io/codeclimate/coverage-letter/Prefinem/nativemodels?style=for-the-badge)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://img.shields.io/codecov/c/github/Prefinem/nativemodels?style=for-the-badge)](https://codecov.io/gh/Prefinem/nativemodels)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Prefinem/nativemodels/.github/workflows/ci.yml?branch=master&style=for-the-badge)](https://github.com/Prefinem/nativemodels/actions) [![Maintainability](https://img.shields.io/codeclimate/coverage-letter/Prefinem/nativemodels?style=for-the-badge)](https://codeclimate.com/github/Prefinem/nativemodels/maintainability) [![Test Coverage](https://img.shields.io/codecov/c/github/Prefinem/nativemodels?style=for-the-badge)](https://codecov.io/gh/Prefinem/nativemodels)
 
 ![Monthly Downloads](https://img.shields.io/npm/dm/nativemodels?style=for-the-badge)
 
 ![Issues](https://img.shields.io/github/issues/Prefinem/nativemodels?style=for-the-badge) ![Pull Requests](https://img.shields.io/github/issues-pr/Prefinem/nativemodels?style=for-the-badge)
 
-![Dependencies](https://img.shields.io/david/Prefinem/nativemodels?style=for-the-badge) ![Dev Dependencies](https://img.shields.io/david/dev/Prefinem/nativemodels?style=for-the-badge)
+![Dependencies](https://img.shields.io/librariesio/release/npm/nativemodels?style=for-the-badge) ![Latest Dependencies](https://img.shields.io/librariesio/github/Prefinem/nativemodels?style=for-the-badge)
 
 Native Models provides a way to map objects in a clean and typed way. The main goal is to ensure runtime type checking and consistent models for APIs.
 
 ## Similar Libraries
 
--   [Yup](https://www.npmjs.com/package/yup)
--   [Joi](https://www.npmjs.com/package/joi)
--   [Schema Object](https://www.npmjs.com/package/schema-object)
--   [ObjectModel](https://www.npmjs.com/package/objectmodel)
+- [Yup](https://www.npmjs.com/package/yup)
+- [Joi](https://www.npmjs.com/package/joi)
+- [Schema Object](https://www.npmjs.com/package/schema-object)
+- [ObjectModel](https://www.npmjs.com/package/objectmodel)
 
 ## Getting Started
 
@@ -33,62 +33,62 @@ const { createModel } = require('nativemodels');
 const { array, boolean, computed, date, int, object, string } = require('nativemodels/datatypes');
 
 const photoSchema = {
-	ext: string(),
-	url: string().required(),
+  ext: string(),
+  url: string().required(),
 };
 
 const contactSchema = {
-	email: string(),
-	phone: string(),
-	url: string(),
+  email: string(),
+  phone: string(),
+  url: string(),
 };
 
 const userSchema = {
-	accountID: int().nullable(),
-	contact: object(contactSchema),
-	created: date(),
-	firstName: string().required(),
-	fullName: computed((record) => `${record.firstName} ${record.lastName}`),
-	isAdmin: boolean().nullable(),
-	lastName: string().required(),
-	photos: array(object(photoSchema)),
-	typeID: int().default(2),
+  accountID: int().nullable(),
+  contact: object(contactSchema),
+  created: date(),
+  firstName: string().required(),
+  fullName: computed((record) => `${record.firstName} ${record.lastName}`),
+  isAdmin: boolean().nullable(),
+  lastName: string().required(),
+  photos: array(object(photoSchema)),
+  typeID: int().default(2),
 };
 
 const userModel = createModel(userSchema);
 
 const johnSmith = userModel({
-	contact: {
-		email: 'j.smith@example.com',
-	},
-	firstName: 'John',
-	lastName: 'Smith',
-	photos: [
-		{
-			ext: '.jpg',
-			url: 'https://example.com/img.jpg',
-		},
-	],
+  contact: {
+    email: 'j.smith@example.com',
+  },
+  firstName: 'John',
+  lastName: 'Smith',
+  photos: [
+    {
+      ext: '.jpg',
+      url: 'https://example.com/img.jpg',
+    },
+  ],
 });
 // => { firstName: 'John', lastName: 'Smith', fullName: 'John Smith', ...}
 
 const userRecords = [
-	{
-		firstName: 'John',
-		lastName: 'Smith',
-	},
-	{
-		firstName: 'Jane',
-		lastName: 'Doe',
-	},
+  {
+    firstName: 'John',
+    lastName: 'Smith',
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Doe',
+  },
 ];
 const users = userRecords.map(userModel);
 // => [{ firstName: 'John', lastName: 'Smith', fullName: 'John Smith', ...}]
 
 const janeDoe = userModel({
-	...johnSmith,
-	firstName: 'Jane',
-	lastName: 'Doe',
+  ...johnSmith,
+  firstName: 'Jane',
+  lastName: 'Doe',
 });
 // => { firstName: 'Jane', lastName: 'Doe', fullName: 'Jane Doe', ...}
 ```
@@ -119,16 +119,16 @@ Takes a validated value, and transforms it according to the transform function
 
 #### Transformation Types
 
--   `post` - happens after validation
--   `pre` - happens before validation
+- `post` - happens after validation
+- `pre` - happens before validation
 
 ```js
 const { createModel } = require('nativemodels');
 const { string } = require('nativiemodels/datatypes');
 
 const schema = {
-	name: string().transform((value) => value.toUpperCase()),
-	id: int().transform((value) => parseInt(value), 'pre'),
+  name: string().transform((value) => value.toUpperCase()),
+  id: int().transform((value) => parseInt(value), 'pre'),
 };
 const model = createModel(schema);
 const user = model({ name: 'john', id: '1' });
@@ -145,7 +145,7 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativiemodels/datatypes');
 
 const schema = {
-	name: string().from('firstName'),
+  name: string().from('firstName'),
 };
 const model = createModel(schema);
 const user = model({ firstName: 'john' });
@@ -156,17 +156,17 @@ console.log(user.name);
 
 ## Datatypes
 
--   any
--   array
--   base
--   boolean
--   buffer
--   computed
--   date
--   float
--   int
--   object
--   string
+- any
+- array
+- base
+- boolean
+- buffer
+- computed
+- date
+- float
+- int
+- object
+- string
 
 ### computed
 
@@ -177,8 +177,8 @@ const { createModel } = require('nativemodels');
 const { computed, string } = require('nativiemodels/datatypes');
 
 const schema = {
-	hello: computed((record, key, context) => `${key} ${record.name} ${context.lastName}`),
-	name: string(),
+  hello: computed((record, key, context) => `${key} ${record.name} ${context.lastName}`),
+  name: string(),
 };
 const model = createModel(schema, {}, { lastName: 'smith' });
 
@@ -196,8 +196,8 @@ const { createModel } = require('nativemodels');
 const { computed, int, string } = require('nativiemodels/datatypes');
 
 const schema = {
-	hello: computed((record, key) => `${key} ${record.name}`, int()),
-	name: string(),
+  hello: computed((record, key) => `${key} ${record.name}`, int()),
+  name: string(),
 };
 const model = createModel(schema);
 
@@ -213,8 +213,8 @@ const { createModel } = require('nativemodels');
 const { computed, int, string } = require('nativiemodels/datatypes');
 
 const schema = {
-	hello: computed((record, key) => `${key} ${record.name}`, string().strict(), { allowOverride: true }),
-	name: string(),
+  hello: computed((record, key) => `${key} ${record.name}`, string().strict(), { allowOverride: true }),
+  name: string(),
 };
 const model = createModel(schema);
 
@@ -251,30 +251,30 @@ const user = createModel({ name: string({ length: 4 }).strict() })({ name: 'Will
 const { createType } = require('nativemodels');
 
 const myCustomDataType = () =>
-	createType({
-		parse: (key, value) => `${key}:${value}`,
-		requiredCheck(key, value) {
-			if (key && value) {
-				return true;
-			}
+  createType({
+    parse: (key, value) => `${key}:${value}`,
+    requiredCheck(key, value) {
+      if (key && value) {
+        return true;
+      }
 
-			throw new Error(`Property: '${key}' is required`);
-		},
-		strictCheck: (key, value) => {
-			if (typeof value === 'string') {
-				return true;
-			}
+      throw new Error(`Property: '${key}' is required`);
+    },
+    strictCheck: (key, value) => {
+      if (typeof value === 'string') {
+        return true;
+      }
 
-			throw new Error(`Property ${key} is not a customDataType`);
-		},
-		validate: (key, value) => {
-			if (`${key}:${value}` !== ':') {
-				return true;
-			}
+      throw new Error(`Property ${key} is not a customDataType`);
+    },
+    validate: (key, value) => {
+      if (`${key}:${value}` !== ':') {
+        return true;
+      }
 
-			throw new Error(`Property ${key} is not a customDataType`);
-		},
-	});
+      throw new Error(`Property ${key} is not a customDataType`);
+    },
+  });
 
 module.exports = myCustomDataType;
 ```
@@ -299,12 +299,12 @@ Returns true is passes your strict check else should throw an error
 
 Custom types are types that are useful to have and common enough for use to include them in our library. They currently include
 
--   email
--   enumerable
--   guid
--   phone
--   regex
--   url
+- email
+- enumerable
+- guid
+- phone
+- regex
+- url
 
 ### Examples
 
@@ -312,12 +312,12 @@ Custom types are types that are useful to have and common enough for use to incl
 const { email, enumerable, guid, phone, regex, url } = require('nativemodels/customtypes');
 
 const model = createModel({
-	email: email(),
-	enumerable: enumerable(['FOO', 'BAR']), // Array of values to be compared against
-	guid: guid(),
-	phone: phone(),
-	regex: regex(/foo/iu, 'Foo'), // Regular Expression and Name of Type
-	url: url(),
+  email: email(),
+  enumerable: enumerable(['FOO', 'BAR']), // Array of values to be compared against
+  guid: guid(),
+  phone: phone(),
+  regex: regex(/foo/iu, 'Foo'), // Regular Expression and Name of Type
+  url: url(),
 });
 ```
 
@@ -334,11 +334,11 @@ const { createModel, resolve } = require('nativemodels');
 const { boolean, computed } = require('nativemodels/datatypes');
 
 const schema = {
-	async: computed(
-		(record) =>
-			new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
-	),
-	succeed: boolean().default(false),
+  async: computed(
+    (record) =>
+      new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
+  ),
+  succeed: boolean().default(false),
 };
 
 const model = createModel(schema);
@@ -357,16 +357,16 @@ const { createModel, resolve } = require('nativemodels');
 const { boolean, computed, int } = require('nativemodels/datatypes');
 
 const schema = {
-	async: computed(
-		(record) =>
-			new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
-	),
-	succeed: boolean().default(false),
+  async: computed(
+    (record) =>
+      new Promise((succeed, reject) => (record.succeed ? succeed(1) : reject(new Error('Failed to resolve')))),
+  ),
+  succeed: boolean().default(false),
 };
 
 const resolvedSchema = {
-	async: int(),
-	succeed: boolean(),
+  async: int(),
+  succeed: boolean(),
 };
 
 const model = createModel(schema);
@@ -386,11 +386,11 @@ Options are merged with whatever object is passed in, so a blank object will kee
 
 ```js
 const defaultOptions = {
-	allowNulls: false, // Allow nulls on all columns
-	caseSensitive: true, // Ignores case when initializing object from model
-	strict: false, // Throws an error if key is not in schema
-	stripUndefined: true, // Strip undefined values passed in
-	stripNull: false, // Do not strip null values passed in
+  allowNulls: false, // Allow nulls on all columns
+  caseSensitive: true, // Ignores case when initializing object from model
+  strict: false, // Throws an error if key is not in schema
+  stripUndefined: true, // Strip undefined values passed in
+  stripNull: false, // Do not strip null values passed in
 };
 ```
 
@@ -403,12 +403,12 @@ const { createModel } = require('nativemodels');
 const { object, string } = require('nativemodels/datatypes');
 
 const options = {
-	caseSensitive: false,
-	passOptions: true,
+  caseSensitive: false,
+  passOptions: true,
 };
 
 const schema = {
-	foo: object({ bar: string() }),
+  foo: object({ bar: string() }),
 };
 
 const model = createModel(schema, options);
@@ -425,11 +425,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	allowNulls: true,
+  allowNulls: true,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema, options);
@@ -446,11 +446,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	caseSensitive: false,
+  caseSensitive: false,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema, options);
@@ -465,15 +465,15 @@ const { createModel } = require('nativemodels');
 const { object, string } = require('nativemodels/datatypes');
 
 const options = {
-	caseSensitive: false,
+  caseSensitive: false,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const deepSchema = {
-	nested: object(schema, options),
+  nested: object(schema, options),
 };
 
 const model = createModel(deepSchema, options);
@@ -490,11 +490,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	strict: true,
+  strict: true,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema, options);
@@ -509,15 +509,15 @@ const { createModel } = require('nativemodels');
 const { object, string } = require('nativemodels/datatypes');
 
 const options = {
-	strict: true,
+  strict: true,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const deepSchema = {
-	nested: object(schema, options),
+  nested: object(schema, options),
 };
 
 const model = createModel(deepSchema, options);
@@ -534,11 +534,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	stripUndefined: true,
+  stripUndefined: true,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema);
@@ -553,11 +553,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	stripUndefined: false,
+  stripUndefined: false,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema);
@@ -574,11 +574,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	stripNull: true,
+  stripNull: true,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema);
@@ -593,11 +593,11 @@ const { createModel } = require('nativemodels');
 const { string } = require('nativemodels/datatypes');
 
 const options = {
-	stripNull: false,
+  stripNull: false,
 };
 
 const schema = {
-	foo: string(),
+  foo: string(),
 };
 
 const model = createModel(schema);
@@ -621,52 +621,52 @@ If you ever need to generate a schema dynamically, we have provided a generateSc
 const {createType, generateSchema} = require('nativemodels');
 
 const simpleSchema = {
-	firstName: {
-		type: 'string',
-		default: 'John',
-		required: true,
-		nullable: true,
-		strict: true,
-	},
-	/* or short circuit with just the type name */
-	lastName: 'string',
-	fullName: {
-		type: 'computed',
-		fn: 'firstAndLast',
-	},
-	email: {
-		type: 'string',
-		transform: 'tolowercase',
-	},
-	foo: {
-		type: 'foo'
-	},
+  firstName: {
+    type: 'string',
+    default: 'John',
+    required: true,
+    nullable: true,
+    strict: true,
+  },
+  /* or short circuit with just the type name */
+  lastName: 'string',
+  fullName: {
+    type: 'computed',
+    fn: 'firstAndLast',
+  },
+  email: {
+    type: 'string',
+    transform: 'tolowercase',
+  },
+  foo: {
+    type: 'foo'
+  },
 };
 
 const schemaFunctions = {
-	firstAndLast = (record) => `${record.firstName} ${record.lastName}`,
-	lowercase = (value) => value.toLowerCase(),
+  firstAndLast = (record) => `${record.firstName} ${record.lastName}`,
+  lowercase = (value) => value.toLowerCase(),
 };
 
 const customTypes = {
-	foo: createType({ parse: () => 'bar' });
+  foo: createType({ parse: () => 'bar' });
 };
 
 const schema = generateSchema(simpleSchema, customTypes, schemaFunctions);
 const userData = {
-	lastName: 'Smith',
-	email: 'J.Smith@example.com',
-	foo: true
+  lastName: 'Smith',
+  email: 'J.Smith@example.com',
+  foo: true
 };
 
 const user = createModel(schema)(userData);
 /*
 {
-	firstName: 'John',
-	lastName: 'Smith',
-	fullName: 'John Smith',
-	email: 'j.smith@example.com',
-	foo: 'bar',
+  firstName: 'John',
+  lastName: 'Smith',
+  fullName: 'John Smith',
+  email: 'j.smith@example.com',
+  foo: 'bar',
 }
 */
 ```
