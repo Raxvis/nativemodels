@@ -24,6 +24,7 @@ const createModel =
   (record = {}) => {
     const options = { ...defaultOptions, ...modelOptions };
     const builtRecord = buildRecord(schema, record, options);
+    const ctx = { ...context, record };
 
     if (options.strict) {
       requireAllKeys(schema, builtRecord);
@@ -33,7 +34,7 @@ const createModel =
 
     const proxyTarget = parseRecord(schema, builtRecord, options);
 
-    return new Proxy(proxyTarget, proxyHandler(schema, options, context));
+    return new Proxy(proxyTarget, proxyHandler(schema, options, ctx));
   };
 
 module.exports = createModel;

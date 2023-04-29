@@ -35,11 +35,11 @@
     "clean": "yarn lint && yarn prettify",
     "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src/* --fix",
-    "prettify": "prettier --config ./.prettierrc.json --write \"src/**\"",
+    "prettify": "prettier --config ./.prettierrc.json --write \"**/*.js\"",
     "site": "cd site && bundle exec jekyll server",
     "site:deploy": "gh-pages --dist site",
     "test": "jest",
     "husky-prepare": "husky install"
   },
-  "version": "2.10.0"
+  "version": "2.11.0"
 }
