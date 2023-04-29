@@ -2,7 +2,6 @@
 const parseValue = require('./parseValue');
 
 const get = (schema, target, property, context) => {
-  console.log('target', target);
   if (schema[property]) {
     return schema[property].fn ? schema[property].fn(target, property, context) : target[property];
   }
