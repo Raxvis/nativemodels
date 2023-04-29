@@ -1,10 +1,10 @@
 const {
-	createModel,
-	datatypes: { boolean },
+  createModel,
+  datatypes: { boolean },
 } = require('./../../src');
 
 test('boolean required check with "false"', () => {
-	const model = createModel({ boolean: boolean().required() });
+  const model = createModel({ boolean: boolean().required() });
 
-	expect(model({ boolean: false }).boolean).toEqual(false);
+  expect(model({ boolean: false }).boolean).toEqual(false);
 });

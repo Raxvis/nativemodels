@@ -1,24 +1,24 @@
 const {
-	createModel,
-	customtypes: { email },
+  createModel,
+  customtypes: { email },
 } = require('./../../src');
 
 const validEmails = ['test@example.com'];
 const invalidEmails = ['', 'test', '@example.com', 'example.com'];
 
 test('customtype | email - invalid', () => {
-	const model = createModel({ email: email() });
+  const model = createModel({ email: email() });
 
-	invalidEmails.forEach((string) => {
-		expect(() => {
-			model({ email: string });
-		}).toThrow();
-	});
+  invalidEmails.forEach((string) => {
+    expect(() => {
+      model({ email: string });
+    }).toThrow();
+  });
 });
 test('customtype | email - valid', () => {
-	const model = createModel({ email: email() });
+  const model = createModel({ email: email() });
 
-	validEmails.forEach((string) => {
-		expect(model({ email: string })).toEqual({ email: string });
-	});
+  validEmails.forEach((string) => {
+    expect(model({ email: string })).toEqual({ email: string });
+  });
 });
